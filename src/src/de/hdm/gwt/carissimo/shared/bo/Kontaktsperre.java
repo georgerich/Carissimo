@@ -1,5 +1,6 @@
 package src.de.hdm.gwt.carissimo.shared.bo;
 
+
 /**
  * Realisierung einer exemplarischen Partnerbörse. Über eine Kontaktsperre kann ein 
  * Teilnehmerprofil ein anderen Teilnehmer sperren. Die Kontaktsperren bestehen aus 

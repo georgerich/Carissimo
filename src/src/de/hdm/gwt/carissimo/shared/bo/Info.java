@@ -1,5 +1,6 @@
 package src.de.hdm.gwt.carissimo.shared.bo;
 
+
 /**
  * Realisierung einer exemplarischen Partnerbörse. Über ein Info-Objekt werden 
  * die Eigenschaften eines Teilnehmerprofils definiert. 

@@ -1,5 +1,6 @@
 package src.de.hdm.gwt.carissimo.shared.bo;
 
+
 /**
  * Realisierung einer exemplarischen Partnerbörse. Über ein Merkezettel kann 
  * sich ein Teilnehmerprofil ein anderes Profil merken. 

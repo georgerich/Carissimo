@@ -1,5 +1,6 @@
 package src.de.hdm.gwt.carissimo.shared.bo;
 
+
 /**
  * Realisierung einer exemplarischen Partnerbörse. Über die Eigenschaft werden 
  * dem Profil bescheibende Attribute hinzugefügt. Eigenschaftsobjekte werden 

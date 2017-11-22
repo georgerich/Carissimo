@@ -1,5 +1,6 @@
 package src.de.hdm.gwt.carissimo.shared.bo;
 
+
 import java.util.Date;
 
 /**

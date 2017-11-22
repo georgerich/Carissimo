@@ -1,4 +1,5 @@
-package de.hdm.gwt.carissimo.shared.bo;
+package src.de.hdm.gwt.carissimo.shared.bo;
+
 
 import java.io.Serializable;
 
