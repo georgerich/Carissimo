@@ -2,7 +2,7 @@ package src.de.hdm.gwt.carissimo.shared.bo;
 
 /**
  * Realisierung einer exemplarischen Partnerbörse. Über die Eigenschaft werden 
- * werden dem Profil bescheibende Attribute hinzugefügt. Eigenschaftsobjekte werden 
+ * dem Profil bescheibende Attribute hinzugefügt. Eigenschaftsobjekte werden 
  * in einem Info-Objekt aggregiert und bestehen aus einer Eigenschaft-ID und der dazugehörigen
  * Erlaeuterung.
  * Bspw.: Eigenschaft-ID: 1 = Erlaeuterung: Haarfarbe
