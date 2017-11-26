@@ -2,12 +2,14 @@ package src.de.hdm.gwt.carissimo.shared.bo;
 
 import java.util.Vector;
 
+import src.de.hdm.gwt.carissimo.shared.ro.ProfilEigenschaft;
+
 /**
  * Realisierung einer exemplarischen Partnerbörse. Über ein Suchprofil kann 
  * sich ein Teilnehmerprofil andere Profile nach festgelegten Kriterien anzeiegen lassen. 
  * 
  * 
- * @author Kevin Cataluna Batista
+ * @author Kevin Cataluna Batista & Yakup Kanal
  * @version 1.0
  */
 
@@ -23,7 +25,7 @@ public class Suchprofil extends BusinessObject {
 	 * Das Suchprofil enthaelt Eigenschaften und eine eindeutig identifizierbare ID
 	 */
 	
-	private int suchprofilId;
+	private int suchprofilid;
 	private String suchprofilname, haarfarbe, raucher, religion, geschlecht;
 	private int koerpergroesseMin, koerpergroesseMax, alterMin, alterMax;
 	private Vector <ProfilEigenschaft> profileigenschaften;
@@ -34,10 +36,10 @@ public class Suchprofil extends BusinessObject {
 	*/
 	
 	public int getSuchprofilId() {
-		return suchprofilId;
+		return suchprofilid;
 	}
-	public void setSuchprofilId(int suchprofilId) {
-		this.suchprofilId = suchprofilId;
+	public void setSuchprofilid(int suchprofilid) {
+		this.suchprofilid = suchprofilid;
 	}
 	public String getSuchprofilname() {
 		return suchprofilname;

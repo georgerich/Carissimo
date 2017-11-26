@@ -8,7 +8,7 @@ import java.util.Date;
  * repräsentiert. Jedes Profil enthaelt Attribute, welche die Eigenschaften eines Teilnehmers
  * darstellen.
  * 
- * @author Kevin Cataluna Batista
+ * @author Kevin Cataluna Batista & Yakup Kanal
  * @version 1.0
  */
 

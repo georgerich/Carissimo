@@ -5,7 +5,7 @@ package src.de.hdm.gwt.carissimo.shared.bo;
  * Realisierung einer exemplarischen Partnerbörse. Über ein Info-Objekt werden 
  * die Eigenschaften eines Teilnehmerprofils definiert. 
  * 
- * @author Kevin Cataluna Batista
+ * @author Kevin Cataluna Batista & Yakup Kanal
  * @version 1.0
  */
 
@@ -21,7 +21,7 @@ public class Info extends BusinessObject {
 	/**
 	 * Jedes Info-Objekt erhält eine eindeutig identifizierbare ID
 	 */
-	private int InfoId;
+	private int infoId;
 	private Eigenschaft eigenschaft;
 	
 	/**
@@ -32,15 +32,15 @@ public class Info extends BusinessObject {
 	/**
 	 * Auslesen der Info-ID
 	 */
-	public int getInfoId() {
-		return InfoId;
+	public int getInfoid() {
+		return infoId;
 	}
 	
 	/**
 	 * Setzen der Info-ID
 	 */
-	public void setInfoId(int infoId) {
-		InfoId = infoId;
+	public void setInfoid(int infoId) {
+		infoId = infoId;
 	}
 	
 	/**

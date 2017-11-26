@@ -11,15 +11,13 @@ package src.de.hdm.gwt.carissimo.shared.bo;
  * Die Klasse Eigenschaft ist Superklasse und wird durch die Klassen Auswahleigenschaft 
  * und Freitexteigenschaft erweitert.
  * 
- * @author Kevin Cataluna Batista
+ * @author Kevin Cataluna Batista & Yakup Kanal
  * @version 1.0
  */
 
 public class Eigenschaft extends BusinessObject{
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	
 	/**
@@ -39,7 +37,7 @@ public class Eigenschaft extends BusinessObject{
 	/**
 	 * Auslesen der Eigenschafts-ID
 	 */
-	public int getEigenschaftId() {
+	public int getEigenschaftid() {
 		return eigenschaftId;
 		
 	}

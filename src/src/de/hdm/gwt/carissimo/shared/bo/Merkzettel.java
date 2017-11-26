@@ -6,7 +6,7 @@ package src.de.hdm.gwt.carissimo.shared.bo;
  * sich ein Teilnehmerprofil ein anderes Profil merken. 
  * Der Merkzettel enthält das zumerkende Profil und das merkende Profil.
  * 
- * @author Kevin Cataluna Batista
+ * @author Kevin Cataluna Batista & Yakup Kanal
  * @version 1.0
  */
 
@@ -20,8 +20,8 @@ public class Merkzettel extends BusinessObject {
 	 * eindeutig indetifzierbar sind und auf diese Weise das zu merkende und das zu gemerkte
 	 * Profil repräsentieren.
 	 */
-	private String merkendesProfil;
-	private String gemerktesProfil;
+	private String merkendesprofil;
+	private String gemerktesprofil;
 	
 		
 	/**
@@ -33,7 +33,7 @@ public class Merkzettel extends BusinessObject {
 	 * @return Email-Adresse des merkenden Profils
 	 */
 	public String getMerkendesProfil() {
-		return merkendesProfil;
+		return merkendesprofil;
 	}
 		
 	/**
@@ -41,7 +41,7 @@ public class Merkzettel extends BusinessObject {
 	 * @param Email-Adresse des merkenden Profils
 	 */
 	public void setMerkendesProfil(String email) {
-		this.merkendesProfil = email;
+		this.merkendesprofil = email;
 	}
 	
 	/**
@@ -49,7 +49,7 @@ public class Merkzettel extends BusinessObject {
 	 * @return Email-Adresse des gemerkten Profils
 	 */
 	public String getGemerktesProfil() {
-		return gemerktesProfil;
+		return gemerktesprofil;
 		
 	/**
 	 * Setzen des gemerkten Profils
@@ -57,7 +57,7 @@ public class Merkzettel extends BusinessObject {
 	 */
 	}
 	public void setGemerktesProfil(String gemerkteemail) {
-		this.gemerktesProfil = gemerkteemail;
+		this.gemerktesprofil = gemerkteemail;
 	}
 	
 	

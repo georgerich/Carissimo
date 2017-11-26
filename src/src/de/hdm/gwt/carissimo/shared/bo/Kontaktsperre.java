@@ -6,7 +6,7 @@ package src.de.hdm.gwt.carissimo.shared.bo;
  * Teilnehmerprofil ein anderen Teilnehmer sperren. Die Kontaktsperren bestehen aus 
  * einem sperrenden und einem gesperrten Profil.
  * 
- * @author Kevin Cataluna Batista
+ * @author Kevin Cataluna Batista & Yakup Kanal
  * @version 1.0
  */
 
@@ -21,8 +21,8 @@ public class Kontaktsperre extends BusinessObject {
 	 * identifizierbar sind.
 	 * */
 	
-	private String sperrendesProfil;
-	private String gesperrtesProfil;
+	private String sperrendesprofil;
+	private String gesperrtesprofil;
 	
 	/**
 	* Es folgen die Get- und Set-Methoden.
@@ -33,7 +33,7 @@ public class Kontaktsperre extends BusinessObject {
 	 * @return Email-Adresse des sperrenden Profils
 	 */
 	public String getSperrendesProfil() {
-		return sperrendesProfil;
+		return sperrendesprofil;
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class Kontaktsperre extends BusinessObject {
 	 * @param sperrendesProfil
 	 */
 	public void setSperrendesProfil(String email) {
-		this.sperrendesProfil = email;
+		this.sperrendesprofil = email;
 	}
 	
 	/**
@@ -49,14 +49,14 @@ public class Kontaktsperre extends BusinessObject {
 	 * @return Email-Adresse des gesperrten Profils
 	 */
 	public String getGesperrtesProfil() {
-		return gesperrtesProfil;
+		return gesperrtesprofil;
 		
 	/**
 	 * Setzen der Email des gesperrten Profils
 	 */
 	}
 	public void setGesperrtesProfil(String gesperteeemail) {
-		this.gesperrtesProfil = gesperteeemail;
+		this.gesperrtesprofil = gesperteeemail;
 	}
 	
 	
