@@ -1,8 +1,8 @@
-package src.de.hdm.gwt.carissimo.shared.bo;
+package de.hdm.gwt.carissimo.shared.bo;
 
 import java.util.Vector;
 
-import src.de.hdm.gwt.carissimo.shared.ro.ProfilEigenschaft;
+import de.hdm.gwt.carissimo.shared.ro.ProfilEigenschaft;
 
 /**
  * Realisierung einer exemplarischen Partnerbörse. Über ein Suchprofil kann 

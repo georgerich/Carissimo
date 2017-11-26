@@ -1,4 +1,4 @@
-package src.de.hdm.gwt.carissimo.shared.bo;
+package de.hdm.gwt.carissimo.shared.bo;
 
 /**
  * Realisierung einer exemplarischen Partnerbörse. Über die Freitexteigenschaft wird 
