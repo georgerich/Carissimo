@@ -21,8 +21,8 @@ public class Kontaktsperre extends BusinessObject {
 	 * identifizierbar sind.
 	 * */
 	
-	private String sperrendesprofil;
-	private String gesperrtesprofil;
+	private String sperrendesProfil;
+	private String gesperrtesProfil;
 	
 	/**
 	* Es folgen die Get- und Set-Methoden.
@@ -33,7 +33,7 @@ public class Kontaktsperre extends BusinessObject {
 	 * @return Email-Adresse des sperrenden Profils
 	 */
 	public String getSperrendesProfil() {
-		return sperrendesprofil;
+		return sperrendesProfil;
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class Kontaktsperre extends BusinessObject {
 	 * @param sperrendesProfil
 	 */
 	public void setSperrendesProfil(String email) {
-		this.sperrendesprofil = email;
+		this.sperrendesProfil = email;
 	}
 	
 	/**
@@ -49,14 +49,14 @@ public class Kontaktsperre extends BusinessObject {
 	 * @return Email-Adresse des gesperrten Profils
 	 */
 	public String getGesperrtesProfil() {
-		return gesperrtesprofil;
+		return gesperrtesProfil;
 		
 	/**
 	 * Setzen der Email des gesperrten Profils
 	 */
 	}
 	public void setGesperrtesProfil(String gesperteeemail) {
-		this.gesperrtesprofil = gesperteeemail;
+		this.gesperrtesProfil = gesperteeemail;
 	}
 	
 	

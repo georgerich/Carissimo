@@ -40,7 +40,7 @@ public class Info extends BusinessObject {
 	 * Setzen der Info-ID
 	 */
 	public void setInfoid(int infoId) {
-		infoId = infoId;
+		this.infoId = infoId;
 	}
 	
 	/**

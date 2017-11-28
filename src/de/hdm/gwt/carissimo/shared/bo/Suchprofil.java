@@ -25,7 +25,7 @@ public class Suchprofil extends BusinessObject {
 	 * Das Suchprofil enthaelt Eigenschaften und eine eindeutig identifizierbare ID
 	 */
 	
-	private int suchprofilid;
+	private int suchprofilId;
 	private String suchprofilname, haarfarbe, raucher, religion, geschlecht;
 	private int koerpergroesseMin, koerpergroesseMax, alterMin, alterMax;
 	private Vector <ProfilEigenschaft> profileigenschaften;
@@ -36,10 +36,10 @@ public class Suchprofil extends BusinessObject {
 	*/
 	
 	public int getSuchprofilId() {
-		return suchprofilid;
+		return suchprofilId;
 	}
 	public void setSuchprofilid(int suchprofilid) {
-		this.suchprofilid = suchprofilid;
+		this.suchprofilId = suchprofilid;
 	}
 	public String getSuchprofilname() {
 		return suchprofilname;

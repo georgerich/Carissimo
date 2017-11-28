@@ -20,8 +20,8 @@ public class Merkzettel extends BusinessObject {
 	 * eindeutig indetifzierbar sind und auf diese Weise das zu merkende und das zu gemerkte
 	 * Profil repräsentieren.
 	 */
-	private String merkendesprofil;
-	private String gemerktesprofil;
+	private String merkendesProfil;
+	private String gemerktesProfil;
 	
 		
 	/**
@@ -33,7 +33,7 @@ public class Merkzettel extends BusinessObject {
 	 * @return Email-Adresse des merkenden Profils
 	 */
 	public String getMerkendesProfil() {
-		return merkendesprofil;
+		return merkendesProfil;
 	}
 		
 	/**
@@ -41,7 +41,7 @@ public class Merkzettel extends BusinessObject {
 	 * @param Email-Adresse des merkenden Profils
 	 */
 	public void setMerkendesProfil(String email) {
-		this.merkendesprofil = email;
+		this.merkendesProfil = email;
 	}
 	
 	/**
@@ -49,7 +49,7 @@ public class Merkzettel extends BusinessObject {
 	 * @return Email-Adresse des gemerkten Profils
 	 */
 	public String getGemerktesProfil() {
-		return gemerktesprofil;
+		return gemerktesProfil;
 		
 	/**
 	 * Setzen des gemerkten Profils
@@ -57,7 +57,7 @@ public class Merkzettel extends BusinessObject {
 	 */
 	}
 	public void setGemerktesProfil(String gemerkteemail) {
-		this.gemerktesprofil = gemerkteemail;
+		this.gemerktesProfil = gemerkteemail;
 	}
 	
 	
