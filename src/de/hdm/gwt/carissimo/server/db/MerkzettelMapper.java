@@ -57,17 +57,17 @@ public class MerkzettelMapper {
 	/**
 	 * Einfügen eines Merkzettel-Objekts in die Datenbank.
 	 * 
-	 * @param merkzettel
+	 * @param m
 	 * @throws Exception
 	 */
-	public void insertMerkzettel(Merkzettel merkzettel) throws Exception {
+	public void insertMerkzettel(Merkzettel m) throws Exception {
 		
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
 				"INSERT INTO merkzettel (email, gemerkteemail) VALUES"
-				+ "('" + merkzettel.getMerkendesProfil() + "','" 
-				+ merkzettel.getGemerktesProfil() + "')");
+				+ "('" + m.getMerkendesProfil() + "','" 
+				+ m.getGemerktesProfil() + "')");
 		
 		prestmt.execute();	
 	}
@@ -76,18 +76,18 @@ public class MerkzettelMapper {
 	/**
 	 * Löschen eines Merkzettel-Objekts aus der Datenbank.
 	 * 
-	 * @param merkzettel
+	 * @param m
 	 * @throws Exception 
 	 */
-	public void deleteMerkzettel(Merkzettel merkzettel) throws Exception{
+	public void deleteMerkzettel(Merkzettel m) throws Exception{
 		
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
 				"DELETE FROM merkzettel WHERE email = '"
-				+ merkzettel.getMerkendesProfil() 
+				+ m.getMerkendesProfil() 
 				+ "' AND gemerkteemail = '"
-				+ merkzettel.getGemerktesProfil() + "')"); 
+				+ m.getGemerktesProfil() + "')"); 
 				
 		prestmt.execute();
 	}
