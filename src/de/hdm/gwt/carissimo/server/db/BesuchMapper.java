@@ -67,14 +67,68 @@ public class BesuchMapper {
 		
 		PreparedStatement prestmt = con.prepareStatement(
 				"INSERT INTO besuch (email, besuchteemail) VALUES"
-				+ "('" + b.getBesuchendesProfil() + "','" 
+				+ "('" + b.getBesuchendesProfil() + "', '" 
 				+ b.getBesuchtesProfil() + "')");
 		
 		prestmt.execute();	
 	}
 	
+		
+	/**
+	 * Auslesen der <code>Besuch</code> bzw. <code>Profil</code>-Objekte bezogen auf ein Profil.
+	 * 
+	 * @param p
+	 * @return Vector<Besuch>
+	 * @throws Exception
+	 */
+	public Vector<Besuch> getBesuch(Profil p) throws Exception {
+		
+		Connection con = (Connection) DBConnection.connection();
+		
+		PreparedStatement prestmt = con.prepareStatement(
+				"SELECT besuchteemail FROM besuch WHERE email = '"
+				+ p.getEmail() + "'");
+		
+		prestmt.execute();
+		
+		ResultSet r = prestmt.executeQuery();
+		Vector<Besuch> besuch = new Vector<Besuch>();
+		while (r.next()) {
+			Besuch b = new Besuch();
+			Profil besuchtesProfil = new Profil();
+			
+			b.setBesuchendesProfil(p.getEmail());
+			b.setBesuchtesProfil(besuchtesProfil.getEmail());
+			p.setEmail(r.getString("besuchteemail"));
+			besuch.add(b);	
+		}
+		return besuch;	
+	}
 	
-	// Auslesen der Besuche.
 	
-	
+	/**
+	 * Filterfunktion auf bereits besuchte Profile für das spaeter folgende Reporting.
+	 * 
+	 * @param b
+	 * @return boolean 
+	 * @throws Exception
+	 */
+	private boolean Besuch(Besuch b) throws Exception {
+		
+		Connection con = (Connection) DBConnection.connection();
+		
+		PreparedStatement prestmt = con.prepareStatement(
+				"SELECT * FROM besuch WHERE "
+				+ "besuchendeemail = '" 
+				+ b.getBesuchendesProfil()
+				+ "' AND besuchteemail = '" 
+				+ b.getBesuchtesProfil() + "'");
+		
+		ResultSet r = prestmt.executeQuery();
+		if(r.next()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
