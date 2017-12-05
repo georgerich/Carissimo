@@ -4,4 +4,6 @@ import com.google.gwt.user.client.rpc.RemoteService;
 
 public interface ReportGeneratorService extends RemoteService {
 
+	void init();
+
 }

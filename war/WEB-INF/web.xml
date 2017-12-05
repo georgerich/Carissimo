@@ -4,7 +4,15 @@
               http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5"
          xmlns="http://java.sun.com/xml/ns/javaee">
-
+         
+		<servlet>
+		<servlet-name>loginService</servlet-name>
+		<servlet-class>de.hdm.gwt.carissimo.server.LoginServiceImpl</servlet-class>
+		</servlet>	
+		<servlet-mapping>
+		<servlet-name>loginService</servlet-name>
+		<url-pattern>/carissimo/login</url-pattern>
+		</servlet-mapping>
 
   
   <!-- Default page to serve -->

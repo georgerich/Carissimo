@@ -1,31 +1,75 @@
-package de.hdm.gwt.carissimo.client;
+	package de.hdm.gwt.carissimo.client;
 
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.KeyCodes;
-import com.google.gwt.event.dom.client.KeyUpEvent;
-import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-/**
- * Entry point classes define <code>onModuleLoad()</code>.
- */
-public class Carissimo implements EntryPoint {
+import de.hdm.gwt.carissimo.shared.EditorServiceAsync;
+import de.hdm.gwt.carissimo.shared.LoginInfo;
+import de.hdm.gwt.carissimo.shared.LoginService;
+import de.hdm.gwt.carissimo.shared.LoginServiceAsync;
 
-	@Override
-	public void onModuleLoad() {
-		// TODO Auto-generated method stub
-		
-	}
+public class Carissimo implements EntryPoint {
 	
+	EditorServiceAsync Project4uVerwaltung = ClientsideSettings.getEditorVerwaltung();
+
+	
+	private LoginInfo loginInfo = null;
+	private VerticalPanel loginPanel = new VerticalPanel();
+	private Label loginLabel = new Label(
+	"Bitte gebe deine Google Account ein");
+	private Anchor signInLink = new Anchor("Einloggen");
+	private Anchor signOutLink = new Anchor("Ausloggen");
+	
+	 private VerticalPanel mainPanel = new VerticalPanel();
+
+
+
+
+		  public void onModuleLoad() {
+
+			  LoginServiceAsync loginService = GWT.create(LoginService.class);
+			
+			loginService.login(GWT.getHostPageBaseURL(), new AsyncCallback<LoginInfo>() {
+				
+			public void onFailure(Throwable error) {
+			}
+			
+			public void onSuccess(LoginInfo result) {
+			loginInfo = result;
+			
+			if(loginInfo.isLoggedIn()) {
+			carissimo();
+			} 
+			
+			else {
+				
+			loadLogin();
+						}
+					}
+				});
+			}
+		  
+		  private void loadLogin() {
+
+			  	signInLink.setHref(loginInfo.getLoginUrl());
+				loginPanel.add(loginLabel);
+				loginPanel.add(signInLink);
+				RootPanel.get("content").add(loginPanel);
+		  }
+		  
+
+			private void carissimo() {
+			signOutLink.setHref(loginInfo.getLogoutUrl());
+			mainPanel.add(signOutLink);	
+
+		}
+
+
 }
+

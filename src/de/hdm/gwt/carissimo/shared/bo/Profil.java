@@ -24,6 +24,7 @@ public class Profil extends BusinessObject {
 	// Die E-Mail-Adresse des Teilnehmers/Profils
 	private String email;
 	
+	
 	// Der Vor- und Nachname der Teilnehmers
 	private String vorname, nachname;
 	
@@ -231,11 +232,5 @@ public class Profil extends BusinessObject {
 	public void setKontaktsperre(Kontaktsperre kontaktsperre) {
 		this.kontaktsperre = kontaktsperre;
 	}
-	
-	
-	
-	
-	
-	
 
 }
