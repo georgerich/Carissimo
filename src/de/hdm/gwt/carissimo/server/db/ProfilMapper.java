@@ -12,7 +12,7 @@ public class ProfilMapper
 	private static ProfilMapper profilMapper = null;
 	
 	
-	//Protected damit per new keine neuen Instanzen erzeugt werden kÃ¶nnen
+	//Protected damit per new keine neuen Instanzen erzeugt werden können
 	protected ProfilMapper() 
 	{
 		
@@ -34,13 +34,13 @@ public class ProfilMapper
 			
 		}
 		
-		//Profil einfÃ¼gen
+		//Profil einfügen
 		public void insertProfil (Profil p) throws Exception 
 		{
 			
 		}
 		
-		//Profil lÃ¶schen
+		//Profil löschen
 		public void deleteProfil (String email) throws Exception 
 		{
 			
@@ -73,5 +73,4 @@ public class ProfilMapper
 		}
 		
 	}
-
 
