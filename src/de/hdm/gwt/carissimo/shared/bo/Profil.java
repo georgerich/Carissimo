@@ -49,6 +49,10 @@ public class Profil extends BusinessObject {
 	// Das Info-Objekt des Profils eines Teilnehmers
 	private Info info;
 	
+	// Die Freitextbeschreibung des Profils eines Teilnehmers
+	private String beschreibung;
+	
+	
 	//Der Merkzettel des Profils eines Teilnehmers
 	private Merkzettel merkzettel;
 	
@@ -203,6 +207,20 @@ public class Profil extends BusinessObject {
 	 */
 	public void setInfo(Info info) {
 		this.info = info;
+	}
+	
+	/**
+	 * Auslesen der Beschreibung
+	 */
+	public String getBeschreibung() {
+		return beschreibung;
+	}
+
+	/**
+	 * Setzen der Beschreibung
+	 */
+	public void setBeschreibung(String beschreibung) {
+		this.beschreibung = beschreibung;
 	}
 	
 	/**
