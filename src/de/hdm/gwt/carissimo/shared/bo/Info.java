@@ -22,7 +22,9 @@ public class Info extends BusinessObject {
 	 * Jedes Info-Objekt erhält eine eindeutig identifizierbare ID
 	 */
 	private int infoId;
-	private Eigenschaft eigenschaft;
+	private String value;
+	private int eigenschaftId;
+	
 	
 	/**
 	 * Es folgen die Get- und Set-Methoden um die Instanzvaribalen zu initialisieren.
@@ -44,21 +46,31 @@ public class Info extends BusinessObject {
 	}
 	
 	/**
+	 * Auslesen des Wertes/ der Auswahl zur Eigenschaft
+	 */
+	public String getValue() {
+		return value;
+	}
+	
+	/**
+	 * Setzen des Wertes/ Auswahl oder Freitext
+	 */
+	public void setValue(String value) {
+		this.value = value;
+	}
+	
+	/**
 	 * Auslesen der Eigenschaft
 	 */
-	public Eigenschaft getEigenschaft() {
-		return eigenschaft;
+	public int getEigenschaftId() {
+		return eigenschaftId;
 	}
 	
 	/**
 	 * Setzen der Eigenschaft
 	 */
-	public void setEigenschaft(Eigenschaft eigenschaft) {
-		this.eigenschaft = eigenschaft;
+	public void setEigenschaftId(int eigenschaftId) {
+		this.eigenschaftId = eigenschaftId;
 	}
-	
-	
-	
-
 
 }

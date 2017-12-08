@@ -62,7 +62,7 @@ public class SuchprofilMapper {
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
-				"INSERT INTO suchprofil (suchprofilid, suchprofilname, geschlecht, minaler, maxaltrer, mingroesse, maxgroesse, haarfarbe, religion raucher) VALUES ('"
+				"INSERT INTO suchprofil (suchprofilid, suchprofilname, geschlecht, minaler, maxaltrer, mingroesse, maxgroesse, haarfarbe, religion, raucher) VALUES ('"
 				+ sb.getSuchprofilId() + "', '"
 				+ sb.getSuchprofilname() + "', '"
 				+ sb.getGeschlecht() + "', '"

@@ -28,7 +28,7 @@ public class Eigenschaft extends BusinessObject{
 	 * Jedes Info-Objekt erhält eine eindeutig identifizierbare ID und eine Erlaeuerterung
 	 */
 	private int eigenschaftId;
-	private String erlauterung;
+	private String eigenschaft;
 	
 	/**
 	* Es folgen die Get- und Set-Methoden um die Instanzvaribalen zu initialisieren.
@@ -39,7 +39,6 @@ public class Eigenschaft extends BusinessObject{
 	 */
 	public int getEigenschaftid() {
 		return eigenschaftId;
-		
 	}
 	
 	/**
@@ -52,22 +51,14 @@ public class Eigenschaft extends BusinessObject{
 	/**
 	 * Auslesen der Eigenschaftserlaeuterung
 	 */
-	public String getErlauterung() {
-		return erlauterung;
+	public String getEigenschaft() {
+		return eigenschaft;
 	}
 	
 	/**Setzen der Eigenschaftserlaeuterung
 	 */
-	public void setErlauterung(String erlauterung) {
-		this.erlauterung = erlauterung;
+	public void setEigenschaftg(String eigenschaft) {
+		this.eigenschaft = eigenschaft;
 	}
 	
-
-	
-	
-	
-	
-	
-	
-
 }
