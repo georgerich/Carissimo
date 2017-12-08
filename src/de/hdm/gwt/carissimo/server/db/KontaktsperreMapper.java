@@ -11,12 +11,13 @@ import de.hdm.gwt.carissimo.shared.bo.Profil;
  * Datenbank abbildet. Um mit diesen Objekte zu arbeiten, werden hierfür eine Reihe
  * verschiedener Methoden zur Verfügung gestellt.
  *
+ *@author Kevin Cataluna Batista 
  */
 
 public class KontaktsperreMapper {
 	
 	/**
-	 * Die Klasse Kontaktsperre wird nur einmal instanziiert (Singleton).
+	 * Die Klasse KontaktsperreMapper wird nur einmal instanziiert (Singleton).
 	 * Diese Variable ist durch den Bezeichner <code>static</code> nur einmal 
 	 * saemtliche eventuellen Instanzen dieser Klasse vorhanden.
 	 * Diese Variable speichert die einzige Instanz dieser Klasse.
@@ -75,17 +76,16 @@ public class KontaktsperreMapper {
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
-				"DELETE FROM kontaktsperre"
+				"DELETE FROM kontaktsperre "
 				+ "WHERE email = '" 
 				+ k.getSperrendesProfil() 
-				+ "AND gesperrteemail = '"
-				+ k.getGesperrtesProfil() + "')");
+				+ "' AND gesperrteemail = '"
+				+ k.getGesperrtesProfil() + "'");
 		
 		 prestmt.executeQuery();
 		
 			
 		}
-		
 		
 	
 	/**
@@ -97,11 +97,11 @@ public class KontaktsperreMapper {
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
-				"SELECT k.gesperrteemail, p.vorname, p.nachname FROM kontaktsperre k"
+				"SELECT k.gesperrteemail, p.vorname, p.nachname FROM kontaktsperre k "
 				+ "INNER JOIN profil p "
 				+ "ON k.gesperrteemail = p.email "
 				+ "WHERE k.email = '" 
-				+ ks.getGesperrtesProfil() +"')");
+				+ ks.getGesperrtesProfil() +"'");
 		
 		ResultSet result = prestmt.executeQuery();
 		Vector<Profil> gesperrteProfile = new Vector();
@@ -119,13 +119,9 @@ public class KontaktsperreMapper {
 		
 	}
 	
-	// 2) Auslesen, bei wem der User gesperrt ist, UM nachher im Reporting diese Leute
-	//	  anhand dieser Mehtohde zu filtern. 
-	
-		
+			
 	/**
 	 * Auslesen der Kontaktsperren die den User beinhalten.
-	 * @throws Exception 
 	 */
 	
 	public Vector<Kontaktsperre> getKontaktsperren(Profil p) throws Exception {
