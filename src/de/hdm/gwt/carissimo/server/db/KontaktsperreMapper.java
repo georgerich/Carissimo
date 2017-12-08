@@ -12,7 +12,6 @@ import de.hdm.gwt.carissimo.shared.bo.Profil;
  * verschiedener Methoden zur Verfügung gestellt.
  *
  *@author Kevin Cataluna Batista 
- *@version 1.0
  */
 
 public class KontaktsperreMapper {

@@ -13,8 +13,7 @@ import de.hdm.gwt.carissimo.shared.bo.Profil;
  * Datenbank abbildet. Um mit diesen Objekte zu arbeiten, werden hierfür eine Reihe
  * verschiedener Methoden zur Verfügung gestellt.
  *
- *@author Kevin Cataluna Batista 
- *@version 1.0
+ *@author Kevin Cataluna Batista & Marko Deveric
  */
 
 
