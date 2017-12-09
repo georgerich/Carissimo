@@ -70,6 +70,26 @@ public class InfoMapper {
 	}
 	
 	
+/*	
+ * 
+ * 
+	public void insertInfo(Info i) throws Exception {
+		
+		Connection con = (Connection) DBConnection.connection();
+		
+		PreparedStatement prestmt = con.prepareStatement(
+				"INSERT INTO info (infoid, value, eigenschaftid, email) VALUES ('"
+				+ i.getInfoId() + "', '"
+				+ i.getValue() + "', '"
+				+ i.getEigenschaftId() + "', '"
+				+ i.getEmail() + "')");
+		
+		prestmt.execute();	
+	}
+	
+*/
+	 
+	
 	// getInfo()
 	
 	
@@ -77,16 +97,6 @@ public class InfoMapper {
 	
 	
 	// deleteInfo()
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }
