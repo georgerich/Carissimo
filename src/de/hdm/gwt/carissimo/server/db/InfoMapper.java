@@ -1,15 +1,17 @@
 package de.hdm.gwt.carissimo.server.db;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.Vector;
-import com.mysql.jdbc.Connection;
+import java.sql.*;
+import java.util.*;
+import com.google.cloud.sql.jdbc.Connection;
+import com.google.cloud.sql.jdbc.PreparedStatement;
 import de.hdm.gwt.carissimo.shared.bo.Info;
+import de.hdm.gwt.carissimo.shared.bo.Profil;
+import de.hdm.gwt.carissimo.shared.bo.Eigenschaft;
 
 
 /**
  * Mapperklasse, welche <code>Info</code>-Objekte auf einer relationalen
- * Datenbank abbildet und es damit ermöglicht, mit diesen unter Verwendung verschiedener
+ * Datenbank abbildet und es damit ermï¿½glicht, mit diesen unter Verwendung verschiedener
  * Methoden zu arbeiten.
  */
 public class InfoMapper {
@@ -17,16 +19,16 @@ public class InfoMapper {
 	/**
 	 * Die Klasse InfoMapper wird nur einmal instantziiert (Singleton).
 	 * 
-	 * Diese Variable ist durch den Bezeichner <code>static</code> nur einmal für
-	 * sämtliche eventuelle Instanzen dieser Klasse vorhanden. Sie speichert die
+	 * Diese Variable ist durch den Bezeichner <code>static</code> nur einmal fï¿½r
+	 * sï¿½mtliche eventuelle Instanzen dieser Klasse vorhanden. Sie speichert die
 	 * einzige Instanz dieser Klasse.
 	 */
 	private static InfoMapper infoMapper = null;
 
 	
 	/**
-	 * Geschützer Konstruktor - verhindert das instanziieren von neuen Objekten dieser Klasse
-	 * mittels dem Schlüsselwort <code>new</code>.
+	 * Geschï¿½tzer Konstruktor - verhindert das instanziieren von neuen Objekten dieser Klasse
+	 * mittels dem Schlï¿½sselwort <code>new</code>.
 	 */	
 	protected InfoMapper(){
 		
@@ -35,7 +37,7 @@ public class InfoMapper {
    /**
 	* Diese statische Methode kann aufgrufen werden durch
 	* <code>InfoMapper.infoMapper()</code>. Sie stellt die
-	* Singleton-Eigenschaft sicher, indem Sie dafür sorgt, dass nur eine einzige
+	* Singleton-Eigenschaft sicher, indem Sie dafï¿½r sorgt, dass nur eine einzige
 	* Instanz von <code>SuchprofilMapper</code> existiert.
 	* 
 	* <b>Fazit:</b> InfoMapper sollte nicht mittels <code>new</code>
@@ -52,7 +54,7 @@ public class InfoMapper {
 	}
 	
 	/**
-	 * Einfügen eines <code>Info</code> -Objekts in die Datenbank.
+	 * Einfï¿½gen eines <code>Info</code> -Objekts in die Datenbank.
 	 * 
 	 * @param i
 	 * @throws Exception
@@ -62,41 +64,59 @@ public class InfoMapper {
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
-				"INSERT INTO info (value, eigenschaftid) VALUES ('"		// passt das?
+				"INSERT INTO info (infoid, value, eigenschaftid) VALUES ('"
+				+ i.getInfoid() + "', '"
 				+ i.getValue() + "', '"
 				+ i.getEigenschaftId() + "')");
 		
 		prestmt.execute();	
 	}
 	
-	
-/*	
- * 
- * 
-	public void insertInfo(Info i) throws Exception {
-		
+	public void updateInfo (Info i) throws Exception
+	{
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
-				"INSERT INTO info (infoid, value, eigenschaftid, email) VALUES ('"
-				+ i.getInfoId() + "', '"
-				+ i.getValue() + "', '"
-				+ i.getEigenschaftId() + "', '"
-				+ i.getEmail() + "')");
+				"UPDATE info SET"
+				+ "infoid = '" + i.getInfoid() + "', "
+				+ "eigenschaftid = '" + i.getEigenschaftId() + "', "
+				+ "value = '" + i.getValue() + "', ");
 		
-		prestmt.execute();	
+		prestmt.execute();
+		
 	}
 	
-*/
+	public void deleteInfo (Info i) throws Exception
+	{
+		Connection con = (Connection) DBConnection.connection();
+		
+		PreparedStatement prestmt = con.prepareStatement(
+				"DELETE FROM info"
+				+"WHERE infoid = '"
+				+i.getInfoid() + "'");
+		
+		prestmt.execute();
+	}
 	 
-	
-	// getInfo()
-	
-	
-	// updateInfo()
-	
-	
-	// deleteInfo()
-	
+	//muss hier nicht int EigneschaftId und String value uerbegeben werden?
+	public Info getInfo (Info i) throws Exception
+	{
+
+		Connection con = (Connection) DBConnection.connection();
+		
+		PreparedStatement prestmt = con.prepareStatement(
+				"SELECT * FROM info WHERE infoid = '" + i.getInfoid() + "'");
+		
+		ResultSet result = prestmt.executeQuery();
+		
+		Info info = new Info();
+		while (result.next()){			
+			info.setInfoid(result.getInt("infoid"));
+			info.setEigenschaftId(result.getInt("eigenschaft"));
+			info.setValue(result.getString("value"));
+	}
+		
+		return info;
+	}
 	
 }
