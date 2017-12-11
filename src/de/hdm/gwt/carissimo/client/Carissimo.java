@@ -9,10 +9,12 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.hdm.gwt.carissimo.client.gui.HauptAnsicht;
 import de.hdm.gwt.carissimo.shared.EditorServiceAsync;
 import de.hdm.gwt.carissimo.shared.LoginInfo;
 import de.hdm.gwt.carissimo.shared.LoginService;
 import de.hdm.gwt.carissimo.shared.LoginServiceAsync;
+
 
 public class Carissimo implements EntryPoint {
 	
@@ -27,9 +29,6 @@ public class Carissimo implements EntryPoint {
 	private Anchor signOutLink = new Anchor("Ausloggen");
 	
 	 private VerticalPanel mainPanel = new VerticalPanel();
-
-
-
 
 		  public void onModuleLoad() {
 
@@ -65,8 +64,9 @@ public class Carissimo implements EntryPoint {
 		  
 
 			private void carissimo() {
-			signOutLink.setHref(loginInfo.getLogoutUrl());
-			mainPanel.add(signOutLink);	
+				HauptAnsicht seite = new HauptAnsicht ();
+				
+				RootPanel.get().add(seite);
 
 		}
 

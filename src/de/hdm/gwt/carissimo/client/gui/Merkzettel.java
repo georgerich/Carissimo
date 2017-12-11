@@ -4,17 +4,17 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class Startseite extends Composite {
+public class Merkzettel extends Composite {
 	
 	private VerticalPanel vPanel = new VerticalPanel ();
 	
-	public Startseite (){
+	public Merkzettel (){
 		initWidget(this.vPanel);
 		
-		Image startseite = new Image ("/Images/startseite.gif"); 
-		startseite.setWidth("600px");
+		Image merkzettel = new Image ("/Images/merkzettel.jpg"); 
+		merkzettel.setWidth("600px");
 		
-		this.vPanel.add(startseite);
+		this.vPanel.add(merkzettel);
 		
 		
 		
