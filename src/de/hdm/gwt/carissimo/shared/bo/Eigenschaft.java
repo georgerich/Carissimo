@@ -2,9 +2,9 @@ package de.hdm.gwt.carissimo.shared.bo;
 
 
 /**
- * Realisierung einer exemplarischen Partnerbörse. Über die Eigenschaft werden 
- * dem Profil bescheibende Attribute hinzugefügt. Eigenschaftsobjekte werden 
- * in einem Info-Objekt aggregiert und bestehen aus einer Eigenschaft-ID und der dazugehörigen
+ * Realisierung einer exemplarischen Partnerbï¿½rse. ï¿½ber die Eigenschaft werden 
+ * dem Profil bescheibende Attribute hinzugefï¿½gt. Eigenschaftsobjekte werden 
+ * in einem Info-Objekt aggregiert und bestehen aus einer Eigenschaft-ID und der dazugehï¿½rigen
  * Erlaeuterung.
  * Bspw.: Eigenschaft-ID: 1 = Erlaeuterung: Haarfarbe
  * 
@@ -25,7 +25,7 @@ public class Eigenschaft extends BusinessObject{
 	 */
 	
 	/**
-	 * Jedes Info-Objekt erhält eine eindeutig identifizierbare ID und eine Erlaeuerterung
+	 * Jedes Info-Objekt erhï¿½lt eine eindeutig identifizierbare ID und eine Erlaeuerterung
 	 */
 	private int eigenschaftId;
 	private String eigenschaft;
@@ -57,7 +57,7 @@ public class Eigenschaft extends BusinessObject{
 	
 	/**Setzen der Eigenschaftserlaeuterung
 	 */
-	public void setEigenschaftg(String eigenschaft) {
+	public void setEigenschaft(String eigenschaft) {
 		this.eigenschaft = eigenschaft;
 	}
 	
