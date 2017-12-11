@@ -1,4 +1,4 @@
-package de.hdm.gwt.carissimo.server;
+package de.hdm.gwt.carissimo.server.login;
 
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
