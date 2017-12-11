@@ -1,10 +1,11 @@
-	package de.hdm.gwt.carissimo.client;
+package de.hdm.gwt.carissimo.client;
 
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -16,37 +17,46 @@ import de.hdm.gwt.carissimo.shared.LoginServiceAsync;
 
 public class Carissimo implements EntryPoint {
 	
-	EditorServiceAsync Project4uVerwaltung = ClientsideSettings.getEditorVerwaltung();
-
+	EditorServiceAsync editorVerwaltung = ClientsideSettings.getEditorVerwaltung();
 	
-	private LoginInfo loginInfo = null;
 	private VerticalPanel loginPanel = new VerticalPanel();
+	private VerticalPanel mainPanel = new VerticalPanel();
+	
+	// Text für die Anmeldung (Log-In)
 	private Label loginLabel = new Label(
-	"Bitte gebe deine Google Account ein");
+	"Bitte melde dich mit einem Google Account ein");
+	
+	// Für die An- und Abmeldung
+	private LoginInfo loginInfo = null;
 	private Anchor signInLink = new Anchor("Einloggen");
 	private Anchor signOutLink = new Anchor("Ausloggen");
+	private Button logInButton = new Button("Log-In");
+	private Button logOutButton = new Button("Log-Out");
 	
-	 private VerticalPanel mainPanel = new VerticalPanel();
+	
 
-
-
-
-		  public void onModuleLoad() {
-
-			  LoginServiceAsync loginService = GWT.create(LoginService.class);
+	/**
+	 * Da diese Klasse die Implementierung des Interface <code>EntryPoint</code>
+	 * zusichert, benÃ¶tigen wir eine Methode
+	 * <code>public void onModuleLoad()</code>. Diese ist das GWT-Pendant der
+	 * <code>main()</code>-Methode normaler Java-Applikationen.
+	 */
+	public void onModuleLoad() {
+		
+		LoginServiceAsync loginService = GWT.create(LoginService.class);
+		loginService.login(GWT.getHostPageBaseURL(), new AsyncCallback<LoginInfo>() {
 			
-			loginService.login(GWT.getHostPageBaseURL(), new AsyncCallback<LoginInfo>() {
-				
 			public void onFailure(Throwable error) {
 			}
+				
 			
 			public void onSuccess(LoginInfo result) {
 			loginInfo = result;
-			
+					
 			if(loginInfo.isLoggedIn()) {
 			carissimo();
 			} 
-			
+						
 			else {
 				
 			loadLogin();
@@ -56,17 +66,17 @@ public class Carissimo implements EntryPoint {
 			}
 		  
 		  private void loadLogin() {
-
-			  	signInLink.setHref(loginInfo.getLoginUrl());
-				loginPanel.add(loginLabel);
-				loginPanel.add(signInLink);
-				RootPanel.get("content").add(loginPanel);
-		  }
+			  
+			  signInLink.setHref(loginInfo.getLoginUrl());
+			  loginPanel.add(loginLabel);
+			  loginPanel.add(signInLink);
+			  RootPanel.get().add(loginPanel);
+			  }
 		  
-
-			private void carissimo() {
-			signOutLink.setHref(loginInfo.getLogoutUrl());
-			mainPanel.add(signOutLink);	
+		  private void carissimo() {
+			  
+			  signOutLink.setHref(loginInfo.getLogoutUrl());
+			  mainPanel.add(signOutLink);	
 
 		}
 
