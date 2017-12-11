@@ -3,7 +3,10 @@ package de.hdm.gwt.carissimo.server.db;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
+//import com.google.cloud.sql.jdbc.Connection;
+//import com.google.cloud.sql.jdbc.PreparedStatement;
+
 import de.hdm.gwt.carissimo.shared.bo.Merkzettel;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
 
@@ -18,16 +21,16 @@ public class MerkzettelMapper {
 	/**
 	 * Die Klasse MerkzettelMapper wird nur einmal instantziiert (Singleton).
 	 * 
-	 * Diese Variable ist durch den Bezeichner <code>static</code> nur einmal für
-	 * sämtliche eventuelle Instanzen dieser Klasse vorhanden. Sie speichert die
+	 * Diese Variable ist durch den Bezeichner <code>static</code> nur einmal fï¿½r
+	 * sï¿½mtliche eventuelle Instanzen dieser Klasse vorhanden. Sie speichert die
 	 * einzige Instanz dieser Klasse.
 	 */
 	private static MerkzettelMapper merkzettelMapper = null;
 
 	
 	/**
-	 * Geschützer Konstruktor - verhindert das instanziieren von neuen Objekten dieser Klasse
-	 * mittels dem Schlüsselwort <code>new</code>.
+	 * Geschï¿½tzer Konstruktor - verhindert das instanziieren von neuen Objekten dieser Klasse
+	 * mittels dem Schlï¿½sselwort <code>new</code>.
 	 */	
 	protected MerkzettelMapper(){
 		
@@ -37,7 +40,7 @@ public class MerkzettelMapper {
    /**
 	* Diese statische Methode kann aufgrufen werden durch
 	* <code>MerkzettelMapper.merkzettelMapper()</code>. Sie stellt die
-	* Singleton-Eigenschaft sicher, indem Sie dafür sorgt, dass nur eine einzige
+	* Singleton-Eigenschaft sicher, indem Sie dafï¿½r sorgt, dass nur eine einzige
 	* Instanz von <code>MerkzettelMapper</code> existiert.
 	* 
 	* <b>Fazit:</b> MerkzettelMapper sollte nicht mittels <code>new</code>
@@ -55,7 +58,7 @@ public class MerkzettelMapper {
 
 	
 	/**
-	 * Einfügen eines Merkzettel-Objekts in die Datenbank.
+	 * Einfï¿½gen eines Merkzettel-Objekts in die Datenbank.
 	 * 
 	 * @param m
 	 * @throws Exception
@@ -74,7 +77,7 @@ public class MerkzettelMapper {
 	
 	
 	/**
-	 * Löschen eines Merkzettel-Objekts aus der Datenbank.
+	 * Lï¿½schen eines Merkzettel-Objekts aus der Datenbank.
 	 * 
 	 * @param m
 	 * @throws Exception 

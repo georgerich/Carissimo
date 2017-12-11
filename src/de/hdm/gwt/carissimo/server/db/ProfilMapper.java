@@ -1,11 +1,8 @@
 package de.hdm.gwt.carissimo.server.db;
-
 import java.sql.ResultSet;
 import java.util.Vector;
-
 import com.google.cloud.sql.jdbc.Connection;
 import com.google.cloud.sql.jdbc.PreparedStatement;
-
 import de.hdm.gwt.carissimo.shared.bo.Profil;
 
 /**
@@ -164,11 +161,8 @@ public class ProfilMapper {
 				"SELECT * FROM profil WHERE email = '" + email + "'");
 		
 		ResultSet result = prestmt.executeQuery();
-			
-		while (result.next()){
-			
-			Profil profil = new Profil();
-			
+		Profil profil = new Profil();
+		while (result.next()){			
 			profil.setEmail(email);
 			profil.setVorname(result.getString("vorname"));
 			profil.setNachname(result.getString("nachname"));
@@ -180,16 +174,5 @@ public class ProfilMapper {
 			profil.setRaucher(result.getString("raucher"));
 		}
 		return profil;
-		
-	
-	}
-	
-	
-	
-
-	
-	
+	}	
 }
-
-
-

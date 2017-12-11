@@ -3,7 +3,9 @@ package de.hdm.gwt.carissimo.server.db;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
+//import com.google.cloud.sql.jdbc.Connection;
+//import com.google.cloud.sql.jdbc.PreparedStatement;
 
 import de.hdm.gwt.carissimo.shared.bo.Besuch;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
@@ -11,7 +13,7 @@ import de.hdm.gwt.carissimo.shared.bo.Profil;
 
 /**
  * Mapperklasse, welche <code>Besuch</code>-Objekte auf einer relationalen
- * Datenbank abbildet bzw dafür zuständig ist, besuchte Profile zu merken.
+ * Datenbank abbildet bzw dafï¿½r zustï¿½ndig ist, besuchte Profile zu merken.
  */
 
 public class BesuchMapper {
@@ -19,16 +21,16 @@ public class BesuchMapper {
 	/**
 	 * Die Klasse BesuchMapper wird nur einmal instantziiert (Singleton).
 	 * 
-	 * Diese Variable ist durch den Bezeichner <code>static</code> nur einmal für
-	 * sämtliche eventuelle Instanzen dieser Klasse vorhanden. Sie speichert die
+	 * Diese Variable ist durch den Bezeichner <code>static</code> nur einmal fï¿½r
+	 * sï¿½mtliche eventuelle Instanzen dieser Klasse vorhanden. Sie speichert die
 	 * einzige Instanz dieser Klasse.
 	 */
 	private static BesuchMapper besuchMapper = null;
 
 	
 	/**
-	 * Geschützer Konstruktor - verhindert das instanziieren von neuen Objekten dieser Klasse
-	 * mittels dem Schlüsselwort <code>new</code>.
+	 * Geschï¿½tzer Konstruktor - verhindert das instanziieren von neuen Objekten dieser Klasse
+	 * mittels dem Schlï¿½sselwort <code>new</code>.
 	 */	
 	protected BesuchMapper(){
 		
@@ -38,7 +40,7 @@ public class BesuchMapper {
    /**
 	* Diese statische Methode kann aufgrufen werden durch
 	* <code>BesuchMapper.besuchMapper()</code>. Sie stellt die
-	* Singleton-Eigenschaft sicher, indem Sie dafür sorgt, dass nur eine einzige
+	* Singleton-Eigenschaft sicher, indem Sie dafï¿½r sorgt, dass nur eine einzige
 	* Instanz von <code>BesuchMapper</code> existiert.
 	* 
 	* <b>Fazit:</b> BesuchMapper sollte nicht mittels <code>new</code>
@@ -56,7 +58,7 @@ public class BesuchMapper {
 
 	
 	/**
-	 * Einfügen eines Besuch-Objekts in die Datenbank.
+	 * Einfï¿½gen eines Besuch-Objekts in die Datenbank.
 	 * 
 	 * @param b
 	 * @throws Exception
@@ -107,7 +109,7 @@ public class BesuchMapper {
 	
 	
 	/**
-	 * Filterfunktion auf bereits besuchte Profile für das spaeter folgende Reporting.
+	 * Filterfunktion auf bereits besuchte Profile fï¿½r das spaeter folgende Reporting.
 	 * 
 	 * @param b
 	 * @return boolean 

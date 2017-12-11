@@ -1,15 +1,19 @@
 package de.hdm.gwt.carissimo.server.db;
+
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
-import com.google.cloud.sql.jdbc.Connection;
-import com.google.cloud.sql.jdbc.PreparedStatement;
+import java.sql.Connection;
+//import com.google.cloud.sql.jdbc.Connection;
+//import com.google.cloud.sql.jdbc.PreparedStatement;
+
 import de.hdm.gwt.carissimo.shared.bo.Kontaktsperre;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
 
 /**
  * Mapper-Klasse, die <code>Kontaktsperre</code>-Objekte auf eine relationale
- * Datenbank abbildet. Um mit diesen Objekte zu arbeiten, werden hierfür eine Reihe
- * verschiedener Methoden zur Verfügung gestellt.
+ * Datenbank abbildet. Um mit diesen Objekte zu arbeiten, werden hierfï¿½r eine Reihe
+ * verschiedener Methoden zur Verfï¿½gung gestellt.
  *
  *@author Kevin Cataluna Batista 
  */
@@ -26,7 +30,7 @@ public class KontaktsperreMapper {
 	
 	
 	/**
-	 * Geschützter Konstruktor damit mittels dem Schluesselwort <code>new</>
+	 * Geschï¿½tzter Konstruktor damit mittels dem Schluesselwort <code>new</>
 	 * keine neuen Instanzen erzeugt werden koennen.
 	 */
 	protected KontaktsperreMapper() {
@@ -49,8 +53,8 @@ public class KontaktsperreMapper {
 	}
 	
 	/**
-	 * Hier folgt die Einfüge-Operation.
-	 * Einfügen eines Kontaktsperren-Objekts in die Datenbank.
+	 * Hier folgt die Einfï¿½ge-Operation.
+	 * Einfï¿½gen eines Kontaktsperren-Objekts in die Datenbank.
 	 */
 	
 	public void insertKontaktsperre(Kontaktsperre k) throws Exception{
@@ -67,8 +71,8 @@ public class KontaktsperreMapper {
 	}
 	
 	/**
-	 * Hier folgt die Lösch-Operation.
-	 * Löschen eines Kontaktsperren-Objekts aus der Datenbank
+	 * Hier folgt die Lï¿½sch-Operation.
+	 * Lï¿½schen eines Kontaktsperren-Objekts aus der Datenbank
 	 * @throws Exception 
 	 */
 	public void deleteKontaktsperre(Kontaktsperre k) throws Exception{
@@ -90,7 +94,7 @@ public class KontaktsperreMapper {
 	
 	/**
 	 * Auslesen aller <code>Kontaktsperre</code> bzw. <code>Profil</code>-Objekte bezogen auf ein Profil.
-	 * Gibt die gesperrten Profil eines User zurück	*/
+	 * Gibt die gesperrten Profil eines User zurï¿½ck	*/
 	
 		public Vector<Profil> getGesperrteProfile(Kontaktsperre ks) throws Exception{
 		
