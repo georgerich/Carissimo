@@ -3,13 +3,16 @@ package de.hdm.gwt.carissimo.server.db;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
+//import com.google.cloud.sql.jdbc.Connection;
+//import com.google.cloud.sql.jdbc.PreparedStatement;
+
 import de.hdm.gwt.carissimo.shared.bo.Suchprofil;
 
 
 /**
  * Mapperklasse, welche <code>Suchprofil</code>-Objekte auf einer relationalen
- * Datenbank abbildet und es damit ermöglicht, mit diesen unter Verwendung verschiedener
+ * Datenbank abbildet und es damit ermï¿½glicht, mit diesen unter Verwendung verschiedener
  * Methoden zu arbeiten.
  */
 public class SuchprofilMapper {
@@ -17,16 +20,16 @@ public class SuchprofilMapper {
 	/**
 	 * Die Klasse SuchprofilMapper wird nur einmal instantziiert (Singleton).
 	 * 
-	 * Diese Variable ist durch den Bezeichner <code>static</code> nur einmal für
-	 * sämtliche eventuelle Instanzen dieser Klasse vorhanden. Sie speichert die
+	 * Diese Variable ist durch den Bezeichner <code>static</code> nur einmal fï¿½r
+	 * sï¿½mtliche eventuelle Instanzen dieser Klasse vorhanden. Sie speichert die
 	 * einzige Instanz dieser Klasse.
 	 */
 	private static SuchprofilMapper suchprofilMapper = null;
 
 	
 	/**
-	 * Geschützer Konstruktor - verhindert das instanziieren von neuen Objekten dieser Klasse
-	 * mittels dem Schlüsselwort <code>new</code>.
+	 * Geschï¿½tzer Konstruktor - verhindert das instanziieren von neuen Objekten dieser Klasse
+	 * mittels dem Schlï¿½sselwort <code>new</code>.
 	 */	
 	protected SuchprofilMapper(){
 		
@@ -35,7 +38,7 @@ public class SuchprofilMapper {
    /**
 	* Diese statische Methode kann aufgrufen werden durch
 	* <code>SuchprofilMapper.suchprofilMapper()</code>. Sie stellt die
-	* Singleton-Eigenschaft sicher, indem Sie dafür sorgt, dass nur eine einzige
+	* Singleton-Eigenschaft sicher, indem Sie dafï¿½r sorgt, dass nur eine einzige
 	* Instanz von <code>SuchprofilMapper</code> existiert.
 	* 
 	* <b>Fazit:</b> SuchprofilMapper sollte nicht mittels <code>new</code>
@@ -52,7 +55,7 @@ public class SuchprofilMapper {
 	}
 	
 	/**
-	 * Einfügen eines <code>Suchprofil</code> -Objekts in die Datenbank.
+	 * Einfï¿½gen eines <code>Suchprofil</code> -Objekts in die Datenbank.
 	 * 
 	 * @param sp
 	 * @throws Exception
@@ -145,7 +148,7 @@ public class SuchprofilMapper {
 	}
 	
 	/**
-	 * Presistente Speicherung einer Veränderung in einem <code>Suchproifl</code>-Objekt eines Benutzers.
+	 * Presistente Speicherung einer Verï¿½nderung in einem <code>Suchproifl</code>-Objekt eines Benutzers.
 	 * 
 	 * @param sp
 	 * @throws Exception
@@ -169,7 +172,7 @@ public class SuchprofilMapper {
 	}
 	
 	/**
-	 * Löschen eines <code>Suchprofil</code>-Objekts.
+	 * Lï¿½schen eines <code>Suchprofil</code>-Objekts.
 	 * 
 	 * @param sp
 	 * @throws Exception

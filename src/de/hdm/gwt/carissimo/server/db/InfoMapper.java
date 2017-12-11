@@ -1,11 +1,12 @@
 package de.hdm.gwt.carissimo.server.db;
 
-import java.sql.*;
-import java.util.*;
-import com.google.cloud.sql.jdbc.Connection;
-import com.google.cloud.sql.jdbc.PreparedStatement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Connection;
+//import com.google.cloud.sql.jdbc.Connection;
+//import com.google.cloud.sql.jdbc.PreparedStatement;
+
 import de.hdm.gwt.carissimo.shared.bo.Info;
-import de.hdm.gwt.carissimo.shared.bo.Profil;
 import de.hdm.gwt.carissimo.shared.bo.Eigenschaft;
 
 
