@@ -3,6 +3,9 @@ package de.hdm.gwt.carissimo.server.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+//import com.google.cloud.sql.jdbc.Driver;
+//import com.google.cloud.sql.jdbc.Connection;
+
 import com.google.appengine.api.utils.SystemProperty;
 
 	
