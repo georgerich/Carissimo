@@ -1,6 +1,6 @@
 package de.hdm.gwt.carissimo.shared.bo;
 
-public class Profilinfo extends BusinessObject
+public class ProfilInfo extends BusinessObject
 {
 	private static final long serialVersionUID = 1L;
 
