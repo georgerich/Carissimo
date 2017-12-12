@@ -24,9 +24,9 @@ public class MenuAnsicht extends Composite {
 		
 		Button buttonProfil = new Button ("Mein Profil");
 		buttonProfil.addClickHandler(new ProfilHandler());
-		this.hPanel.add(buttonStartseite);
+		this.hPanel.add(buttonProfil);
 		
-		Button buttonEigenschaft = new Button ("Meine Eigenschafte");
+		Button buttonEigenschaft = new Button ("Meine Eigenschaften");
 		buttonEigenschaft.addClickHandler(new EigenschaftHandler());
 		this.hPanel.add(buttonEigenschaft);
 		
@@ -34,12 +34,14 @@ public class MenuAnsicht extends Composite {
 		buttonMerkzettel.addClickHandler(new MerkzettelHandler());
 		this.hPanel.add(buttonMerkzettel);
 		
-		Button buttonKontaksperre = new Button ("Kontaktsperre");  	
+		Button buttonKontaksperre = new Button ("Meine Kontaktsperren");  	
 		buttonKontaksperre.addClickHandler(new KontaktsperreHandler());
 		this.hPanel.add(buttonKontaksperre);
 
 		
-		
+		/**
+		 * Groesse fuer die Button wird angepasst
+		 */
 		buttonStartseite.setPixelSize(200, 40);
 		buttonProfil.setPixelSize(200, 40);
 		buttonEigenschaft.setPixelSize(200, 40);
@@ -48,6 +50,11 @@ public class MenuAnsicht extends Composite {
 
 	}
 	
+	/**
+	 * 
+	 * Es folgen die ClickHandler-Implementierungen fuer die Buttons
+	 *
+	 */
 	private class StartseiteHandler implements ClickHandler {
 
 		@Override
@@ -59,16 +66,14 @@ public class MenuAnsicht extends Composite {
 	
 	private class ProfilHandler implements ClickHandler {
 
-		@Override
 		public void onClick(ClickEvent event) {
-			main.openKontaktsperre();
+			main.openProfile();
 		}
 		
 	}
 	
 	private class EigenschaftHandler implements ClickHandler {
 
-		@Override
 		public void onClick(ClickEvent event) {
 			main.openKontaktsperre();
 		}
@@ -77,7 +82,6 @@ public class MenuAnsicht extends Composite {
 	
 	private class MerkzettelHandler implements ClickHandler {
 
-		@Override
 		public void onClick(ClickEvent event) {
 			main.openMerkzettel();
 		}
@@ -86,7 +90,6 @@ public class MenuAnsicht extends Composite {
 	
 	private class KontaktsperreHandler implements ClickHandler {
 
-		@Override
 		public void onClick(ClickEvent event) {
 			main.openKontaktsperre();
 		}
