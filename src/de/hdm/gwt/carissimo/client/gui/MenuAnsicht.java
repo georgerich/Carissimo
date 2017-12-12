@@ -10,33 +10,33 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class MenuAnsicht extends Composite {
 	
-	private VerticalPanel vPanel = new VerticalPanel (); 
+	private HorizontalPanel hPanel = new HorizontalPanel (); 
 	private HauptAnsicht main; 
 	
 	public MenuAnsicht (HauptAnsicht main){
-		initWidget(vPanel);
+		initWidget(hPanel);
 		this.main = main;
 	
 		
 		Button buttonStartseite = new Button ("Startseite");  	
 		buttonStartseite.addClickHandler(new StartseiteHandler());
-		this.vPanel.add(buttonStartseite);
+		this.hPanel.add(buttonStartseite);
 		
 		Button buttonProfil = new Button ("Mein Profil");
 		buttonProfil.addClickHandler(new ProfilHandler());
-		this.vPanel.add(buttonStartseite);
+		this.hPanel.add(buttonStartseite);
 		
 		Button buttonEigenschaft = new Button ("Meine Eigenschafte");
 		buttonEigenschaft.addClickHandler(new EigenschaftHandler());
-		this.vPanel.add(buttonEigenschaft);
+		this.hPanel.add(buttonEigenschaft);
 		
 		Button buttonMerkzettel = new Button ("Mein Merkzettel"); 
 		buttonMerkzettel.addClickHandler(new MerkzettelHandler());
-		this.vPanel.add(buttonMerkzettel);
+		this.hPanel.add(buttonMerkzettel);
 		
 		Button buttonKontaksperre = new Button ("Kontaktsperre");  	
 		buttonKontaksperre.addClickHandler(new KontaktsperreHandler());
-		this.vPanel.add(buttonKontaksperre);
+		this.hPanel.add(buttonKontaksperre);
 
 		
 		
