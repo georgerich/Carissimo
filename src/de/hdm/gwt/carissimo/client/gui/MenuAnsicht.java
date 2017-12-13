@@ -70,7 +70,7 @@ public class MenuAnsicht extends Composite {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			main.openKontaktsperre();
+			main.openEigenschaft();
 		}
 		
 	}

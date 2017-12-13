@@ -43,6 +43,12 @@ public class HauptAnsicht extends Composite {
 		this.contenPanel.add(merkzettel); 
 	}
 	
+	public void openEigenschaft () {
+		this.contenPanel.clear();
+		Eigenschaft eigenschaft = new Eigenschaft (); 
+		this.contenPanel.add(eigenschaft); 
+	}
+	
 }
 
 
