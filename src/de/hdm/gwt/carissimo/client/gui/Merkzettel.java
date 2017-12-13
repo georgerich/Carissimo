@@ -2,6 +2,7 @@ package de.hdm.gwt.carissimo.client.gui;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class Merkzettel extends Composite {
@@ -11,10 +12,8 @@ public class Merkzettel extends Composite {
 	public Merkzettel (){
 		initWidget(this.vPanel);
 		
-		Image merkzettel = new Image ("/Images/merkzettel.jpg"); 
-		merkzettel.setWidth("600px");
-		
-		this.vPanel.add(merkzettel);
+		Label merkzettelLabel = new Label ("Hier folgt die Ansicht fuer den Merkzettel"); 
+		this.vPanel.add(merkzettelLabel);
 		
 		
 		

@@ -1,14 +1,17 @@
 package de.hdm.gwt.carissimo.server.db;
 import java.sql.ResultSet;
 import java.util.Vector;
-import com.google.cloud.sql.jdbc.Connection;
-import com.google.cloud.sql.jdbc.PreparedStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+//import com.google.cloud.sql.jdbc.Connection;
+//import com.google.cloud.sql.jdbc.PreparedStatement;
+
 import de.hdm.gwt.carissimo.shared.bo.Profil;
 
 /**
  * Mapper-Klasse, die <code>Profil</code>-Objekte auf eine relationale
- * Datenbank abbildet. Um mit diesen Objekte zu arbeiten, werden hierfür eine Reihe
- * verschiedener Methoden zur Verfügung gestellt.
+ * Datenbank abbildet. Um mit diesen Objekte zu arbeiten, werden hierfï¿½r eine Reihe
+ * verschiedener Methoden zur Verfï¿½gung gestellt.
  *
  *@author Kevin Cataluna Batista & Marko Deveric
  */
@@ -26,7 +29,7 @@ public class ProfilMapper {
 	public static ProfilMapper profilMapper = null;
 	
 	/**
-	 * Geschützter Konstruktor damit mittels dem Schluesselwort <code>new</>
+	 * Geschï¿½tzter Konstruktor damit mittels dem Schluesselwort <code>new</>
 	 * keine neuen Instanzen erzeugt werden koennen.
 	 */
 	protected ProfilMapper() {
@@ -49,8 +52,8 @@ public class ProfilMapper {
 	}
 	
 	/**
-	 * Hier folgt die Einfüge-Operation.
-	 * Einfügen eines Kontaktsperren-Objekts in die Datenbank.
+	 * Hier folgt die Einfï¿½ge-Operation.
+	 * Einfï¿½gen eines Kontaktsperren-Objekts in die Datenbank.
 	 */
 	
 	public void insertProfilMapper(Profil p) throws Exception{
@@ -76,8 +79,8 @@ public class ProfilMapper {
 	}
 	
 	/**
-	 * Hier folgt die Einfüge-Operation.
-	 * Einfügen eines Profil-Objekts in die Datenbank.
+	 * Hier folgt die Einfï¿½ge-Operation.
+	 * Einfï¿½gen eines Profil-Objekts in die Datenbank.
 	 */
 	public void updateProfil(Profil p) throws Exception{
 		
@@ -102,8 +105,8 @@ public class ProfilMapper {
 	}
 	
 	/**
-	 * Hier folgt die Lösch-Operation.
-	 * Löschen eines Profil-Objekts aus der Datenbank
+	 * Hier folgt die Lï¿½sch-Operation.
+	 * Lï¿½schen eines Profil-Objekts aus der Datenbank
 	 */
 	public void deleteProfil(Profil p) throws Exception{
 		

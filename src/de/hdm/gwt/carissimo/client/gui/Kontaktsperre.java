@@ -2,6 +2,7 @@ package de.hdm.gwt.carissimo.client.gui;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 
@@ -12,10 +13,9 @@ public class Kontaktsperre extends Composite {
 	public Kontaktsperre (){
 		initWidget(this.vPanel);
 		
-		Image baustelle = new Image ("/Images/Baustelle.jpg"); 
-		baustelle.setWidth("600px");
+		Label kontaktsperreLabel = new Label ("Hier folgt die Ansicht fuer die Kontaktsperren"); 
 		
-		this.vPanel.add(baustelle);	
+		this.vPanel.add(kontaktsperreLabel);	
 		
 	}
 
