@@ -7,21 +7,21 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class HauptAnsicht extends Composite {
 	
-	private VerticalPanel frame = new VerticalPanel ();
+	private VerticalPanel vPanel = new VerticalPanel ();
 	private VerticalPanel contenPanel; 
 	
 	public HauptAnsicht () {
-		initWidget(this.frame);
-		this.frame.setBorderWidth(1);
+		initWidget(this.vPanel);
+		this.vPanel.setBorderWidth(1);
 		
 				
 		//Erst wird das Menu hinzugefuegt
 		MenuAnsicht menu = new MenuAnsicht(this); 
-		this.frame.add(menu);
+		this.vPanel.add(menu);
 		
 		// Nun wird der ContentPanel der den Inhalt anzeigt hinzugefuegt
 		this.contenPanel = new VerticalPanel();
-		this.frame.add(contenPanel);
+		this.vPanel.add(contenPanel);
 		
 		Label textLabel = new Label ("Klicke auf eines der Buttons");
 		this.contenPanel.add(textLabel);
