@@ -8,9 +8,12 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class Startseite extends Composite {
 	
 	private VerticalPanel vPanel = new VerticalPanel ();
+
 	
 	public Startseite (){
 		initWidget(this.vPanel);
+
+		 
 		
 		//Label fuer die Startseite 
 		Label startseitenLabel = new Label("Dies ist die Startseite");		

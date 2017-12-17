@@ -33,7 +33,7 @@ public class HauptAnsicht extends Composite {
 	 */
 	public void openKontaktsperre() {
 		this.contenPanel.clear();
-		Kontaktsperre kontaktsperre = new Kontaktsperre (); 
+		Kontaktsperre kontaktsperre = new Kontaktsperre(); 
 		this.contenPanel.add(kontaktsperre); 
 	}
 	
@@ -54,7 +54,7 @@ public class HauptAnsicht extends Composite {
 	 */
 	public void openStartseite() {
 		this.contenPanel.clear();
-		Startseite startseite = new Startseite (); 
+		Startseite startseite = new Startseite(); 
 		this.contenPanel.add(startseite); 
 	}
 	
@@ -64,15 +64,23 @@ public class HauptAnsicht extends Composite {
 	 */
 	public void openMerkzettel() {
 		this.contenPanel.clear();
-		Merkzettel merkzettel = new Merkzettel (); 
+		Merkzettel merkzettel = new Merkzettel(); 
 		this.contenPanel.add(merkzettel); 
 	}
 	
 	public void openEigenschaft() {
 		this.contenPanel.clear();
-		Eigenschaft eigenschaft = new Eigenschaft (); 
+		Eigenschaft eigenschaft = new Eigenschaft(); 
 		this.contenPanel.add(eigenschaft); 
 	}
+	
+	public void openProfilBearbeiten() {
+		this.contenPanel.clear();
+		ProfilBearbeiten profilEdit = new ProfilBearbeiten(); 
+		this.contenPanel.add(profilEdit); 
+	}
+	
+
 	
 
 	

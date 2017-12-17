@@ -1,4 +1,6 @@
 package de.hdm.gwt.carissimo.client.gui;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -8,7 +10,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
  * Profilseite welche die Eigenschaften bzw. das Profil anzeigen soll
- * @author @author Kevin C. Batista & Georg Erich
+ * @author Kevin C. Batista & Georg Erich
  *
  */
 
@@ -17,6 +19,10 @@ public class ProfilSeite extends Composite {
 	HorizontalPanel hPanel = new HorizontalPanel();
 	HorizontalPanel buttonsPanel = new HorizontalPanel();
 	VerticalPanel vPanel = new VerticalPanel();
+
+	
+	ProfilBearbeiten profiledit = new ProfilBearbeiten();
+
 		
 	
 	// Deklaration einer FlexTable um die Profilattribute anzuzeigen
@@ -84,11 +90,37 @@ public class ProfilSeite extends Composite {
 			buttonsPanel.add(ProfilLoeschen);
 			vPanel.add(buttonsPanel);
 			
+			/**
+			 * ClickHandler der von einer  einer anonymen Klasse implementiert wird
+			 * und die Methode <code>ladeProfilBearbeiten</code> aufruft.
+			 * Diese zeigt die Ansicht zur Profilbearbeitung an.
+			 */
+			ProfilBearbeiten.addClickHandler(new ClickHandler() {
+				
+				public void onClick(ClickEvent event) {
+					ladeProfilBearbeiten();
+					
+				}
+			});
 			
-
 			
-		
 		}
+		
+		/**
+		 * Methode die den Inhalt der Seite Profilbearbeiten anzeigt
+		 */
+		public void ladeProfilBearbeiten(){
+			this.vPanel.clear();
+			this.vPanel.add(profiledit);
+			
+		}
+		
+
+
+		
+
+		
+
 		
 
 
