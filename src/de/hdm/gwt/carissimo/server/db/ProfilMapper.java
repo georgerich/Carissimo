@@ -56,7 +56,7 @@ public class ProfilMapper {
 	 * Einf�gen eines Kontaktsperren-Objekts in die Datenbank.
 	 */
 	
-	public void insertProfilMapper(Profil p) throws Exception{
+	public void insertProfil(Profil p) throws Exception{
 		
 		Connection con = (Connection) DBConnection.connection();
 		
@@ -69,7 +69,7 @@ public class ProfilMapper {
 				+ p.getNachname() + "','"
 				+ p.getGeschlecht() + "','"
 				+ p.getGeburtsdatum()+ "','"
-				+ p.getKoepergroesse() + "','"
+				+ p.getKoerpergroesse() + "','"
 				+ p.getHaarfarbe() + "','"
 				+ p.getRaucher() + "','"
 				+ p.getReligion() + "','"				
@@ -93,7 +93,7 @@ public class ProfilMapper {
 				+ "nachname = '" + p.getNachname() + "', "
 				+ "geschlecht = '" + p.getGeschlecht() + "', "
 			    + "geburtsdatum = '" + p.getGeburtsdatum() + "', "
-				+ "koerpergroesse = '" + p.getKoepergroesse() + "', "
+				+ "koerpergroesse = '" + p.getKoerpergroesse() + "', "
 				+ "haarfarbe = '" + p.getHaarfarbe() + "', "
 				+ "raucher = '" + p.getRaucher() + "', "
 				+ "religion = '" + p.getReligion() + "', "
@@ -143,7 +143,7 @@ public class ProfilMapper {
 			profil.setGeburtsdatum(result.getDate("geburtsdatum"));
 			profil.setGeschlecht(result.getString("geschlecht"));
 			profil.setHaarfarbe(result.getString("haarfarbe"));
-			profil.setKoepergroesse(result.getInt("koerpergroesse"));
+			profil.setKoerpergroesse(result.getInt("koerpergroesse"));
 			profil.setReligion(result.getString("religion"));
 			profil.setRaucher(result.getString("raucher"));
 				
@@ -172,7 +172,7 @@ public class ProfilMapper {
 			profil.setGeburtsdatum(result.getDate("geburtsdatum"));
 			profil.setGeschlecht(result.getString("geschlecht"));
 			profil.setHaarfarbe(result.getString("haarfarbe"));
-			profil.setKoepergroesse(result.getInt("koerpergroesse"));
+			profil.setKoerpergroesse(result.getInt("koerpergroesse"));
 			profil.setReligion(result.getString("religion"));
 			profil.setRaucher(result.getString("raucher"));
 		}
