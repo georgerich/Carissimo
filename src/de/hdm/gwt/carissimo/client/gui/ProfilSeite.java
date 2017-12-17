@@ -1,12 +1,17 @@
 package de.hdm.gwt.carissimo.client.gui;
+
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
+
+import de.hdm.gwt.carissimo.shared.bo.Profil;
 
 /**
  * Klasse die zur Ansicht des Profils dient - diese zeigt die Eigenschaften bzw. das Profil an
@@ -25,6 +30,26 @@ public class ProfilSeite extends Composite {
 
 	// Deklaration einer FlexTable um die Profilattribute anzuzeigen
 	private FlexTable profilTabelle;
+	
+	//Instanziierung der Labels fuer die Auswahl-Eigenschaften
+	Label vorname = new Label("Vorname");
+	Label nachname = new Label("Nachname");
+	Label geburtsdatum = new Label("Geburtsdatum");
+	Label haarfarbe = new Label("Haarfarbe");
+	Label koerpergroesse = new Label("k\u00F6rpergr\u00F6sse");
+	Label raucher = new Label("Raucher");
+	Label religion = new Label("Religion");
+	Label geschlecht = new Label("Geschlecht");
+	
+	//Instanziierung der Labels fuer die Werte der Eigenschaften
+	Label vornameValue = new Label();
+	Label nachnameValue = new Label();
+	Label geburtsdatumValue = new Label();
+	Label haarfarbeValue = new Label();
+	Label koerpergroesseValue = new Label();
+	Label raucherValue = new Label();
+	Label religionValue = new Label();
+	Label geschlechtValue = new Label();
 		
 		public ProfilSeite() {
 			initWidget(vPanel);
@@ -35,26 +60,6 @@ public class ProfilSeite extends Composite {
 			vPanel.add(hPanel);
 		
 					
-			//Instanziierung der Labels fuer die Auswahl-Eigenschaften
-			Label vorname = new Label("Vorname");
-			Label nachname = new Label("Nachname");
-			Label geburtsdatum = new Label("Geburtsdatum");
-			Label haarfarbe = new Label("Haarfarbe");
-			Label koerpergroesse = new Label("Koerpergroesse");
-			Label raucher = new Label("Raucher");
-			Label religion = new Label("Religion");
-			Label geschlecht = new Label("Geschlecht");
-			
-			//Instanziierung der Labels fuer die Werte der Eigenschaften
-			Label vornameValue = new Label();
-			Label nachnameValue = new Label();
-			Label geburtsdatumValue = new Label();
-			Label haarfarbeValue = new Label();
-			Label koerpergroesseValue = new Label();
-			Label raucherValue = new Label();
-			Label religionValue = new Label();
-			Label geschlechtValue = new Label();
-			
 			//Instanzzierung der FlexTable und Zuweisung der Widgets (Labels)
 			this.profilTabelle = new FlexTable();
 			profilTabelle.setText(0, 0, "Eigenschaft");
@@ -88,6 +93,7 @@ public class ProfilSeite extends Composite {
 			buttonsPanel.add(ProfilLoeschen);
 			vPanel.add(buttonsPanel);
 			
+			
 			ProfilBearbeiten.addClickHandler(new ClickHandler() {
 				
 				public void onClick(ClickEvent event) {
@@ -99,6 +105,34 @@ public class ProfilSeite extends Composite {
 			
 		}
 		
+		// ------- Ende Konstruktor -------
+		
+		
+		
+		public class ProfilSeiteCallback implements AsyncCallback<Profil> {
+
+			/**
+			 * Auslesen der Eigenschaften bzw. der Business-Objects,
+			 * Die Eigenschaften werden in der FlexTable den Labels zugeweisen und 
+			 * auf dieser Weise angezeigt.
+			 */
+			public void onSuccess(Profil p) {
+				vornameValue.setText(p.getVorname());
+				nachnameValue.setText(p.getNachname());
+				geburtsdatumValue.setText(String.valueOf(p.getGeburtsdatum()));
+				haarfarbeValue.setText(p.getHaarfarbe());
+				koerpergroesseValue.setText(Integer.toString(p.getKoerpergroesse()));
+				raucherValue.setText(p.getRaucher());
+				religionValue.setText(p.getReligion());
+				geschlechtValue.setText(p.getGeschlecht());
+			}
+
+			public void onFailure(Throwable caught) {
+			}
+			
+		}
+		
+	
 		/**
 		 * Methode die den Inhalt der Seite Profilbearbeiten lädt
 		 */
