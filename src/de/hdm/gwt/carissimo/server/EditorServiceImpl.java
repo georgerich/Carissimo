@@ -17,6 +17,23 @@ import de.hdm.gwt.carissimo.server.db.SuchprofilMapper;
 import de.hdm.gwt.carissimo.shared.EditorService;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
 
+
+/**
+ * Um ein RPC-Interface zu definieren, muessen drei Komponenten geschrieben werden: 
+ * 	1. <>EditorService<>
+ * 	2. <>EditorServiceImpl<>
+ * 	3. <>EditorServiceAsync<>
+ * 
+ * Erstellen der Klasse <code>EditorServiceImpl</code>, welche die Klasse <code>RemoteServiceServlet</code>
+ * erweitert und das Service implementiert - Hier werden die Methoden/ wird die Applikationslogik implementiert.
+ * 
+ * @info: Sowohl Client als auch Server besitzen die Faehigkeit Daten zu serialisieren bzw. deserialisieren, 
+ * sodass die Datenobjekte zwischen Server und Client als textuelle Form ausgetauscht werden koennen:
+ * Zustaendig hierfuer ist der Service <code>RemoteServiceServlet</code>. 
+ * 
+ * @author YakupKanal
+ *
+ */
 public class EditorServiceImpl extends RemoteServiceServlet implements EditorService{
 
 	// Instanzvariablen: Mapperklassen
@@ -48,6 +65,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		user = p;
 	}
 
+	
 	/**
 	 * Profil anlegen
 	 * @param Profilattribute
@@ -73,7 +91,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	/**
 	 * Profil updaten
 	 */
-	
 	public void updateProfil(String email, String vorname, String nachname, String geschlecht, Date geburtsdatum,
 			int koerpergroesse, String haarfarbe, String raucher, String religion, String beschreibung) throws Exception {
 		
@@ -90,6 +107,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		p.setReligion(religion);
 		pMapper.updateProfil(p);
 	}
+	
 	
 	/**
 	 * Profil loeschen
