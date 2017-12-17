@@ -7,41 +7,74 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class HauptAnsicht extends Composite {
 	
-	private VerticalPanel vPanel = new VerticalPanel ();
-	private VerticalPanel contenPanel = new VerticalPanel(); 
+	public VerticalPanel hauptPanel = new VerticalPanel ();
+	private VerticalPanel contenPanel; 
 	
 	public HauptAnsicht () {
-		initWidget(this.vPanel);
-		this.vPanel.setBorderWidth(1);
+		initWidget(this.hauptPanel);
+		this.hauptPanel.setBorderWidth(3);
 		
-		MenuAnsicht menu = new MenuAnsicht (this); 
-		this.vPanel.add(menu);
+				
+		//Erst wird das Menu hinzugefuegt
+		MenuAnsicht menu = new MenuAnsicht(this); 
+		this.hauptPanel.add(menu);
 		
-		
+		// Nun wird der ContentPanel der den Inhalt anzeigt hinzugefuegt
 		this.contenPanel = new VerticalPanel();
-		this.vPanel.add(contenPanel);
+		this.hauptPanel.add(contenPanel);
 		
-		Label textLabel = new Label ("Drück auf etwas");
+		Label textLabel = new Label ("Klicke auf eines der Buttons");
 		this.contenPanel.add(textLabel);
 	}
 	
-	public void openKontaktsperre () {
+	/**
+	 * Methode um die Kontaktsperrenseite aufzurufen
+	 * dabei wird erst sichergestellt das der vorherige Inhalt aus dem ContentPanel geloescht wird
+	 */
+	public void openKontaktsperre() {
 		this.contenPanel.clear();
-		Kontaktsperre baustelle = new Kontaktsperre (); 
-		this.contenPanel.add(baustelle); 
+		Kontaktsperre kontaktsperre = new Kontaktsperre (); 
+		this.contenPanel.add(kontaktsperre); 
 	}
 	
-	public void openStartseite () {
+	
+	/**
+	 * Methode um die Profilseite aufzurufen
+	 * dabei wird erst sichergestellt das der vorherige Inhalt aus dem ContentPanel geloescht wird
+	 */
+	public void openProfilSeite() {
+		this.contenPanel.clear();
+		ProfilSeite profilSeite = new ProfilSeite();
+		this.contenPanel.add(profilSeite); 
+	}
+	
+	/**
+	 * Methode um die Startseite aufzurufen
+	 * dabei wird erst sichergestellt das der vorherige Inhalt aus dem ContentPanel geloescht wird
+	 */
+	public void openStartseite() {
 		this.contenPanel.clear();
 		Startseite startseite = new Startseite (); 
 		this.contenPanel.add(startseite); 
 	}
 	
-	public void openMerkzettel () {
+	/**
+	 * Methode um die Merkzettelseite aufzurufen
+	 * dabei wird erst sichergestellt das der vorherige Inhalt aus dem ContentPanel geloescht wird
+	 */
+	public void openMerkzettel() {
 		this.contenPanel.clear();
 		Merkzettel merkzettel = new Merkzettel (); 
 		this.contenPanel.add(merkzettel); 
 	}
+	
+	public void openEigenschaft() {
+		this.contenPanel.clear();
+		Eigenschaft eigenschaft = new Eigenschaft (); 
+		this.contenPanel.add(eigenschaft); 
+	}
+	
+
 	
 }
 

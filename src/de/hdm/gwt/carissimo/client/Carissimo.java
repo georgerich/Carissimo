@@ -76,8 +76,8 @@ public class Carissimo implements EntryPoint {
 		  
 			private void carissimo() {
 				
-				HauptAnsicht seite = new HauptAnsicht ();
-				RootPanel.get().add(seite);
+				HauptAnsicht carissimoPage = new HauptAnsicht ();
+				RootPanel.get().add(carissimoPage);
 
 		}
 

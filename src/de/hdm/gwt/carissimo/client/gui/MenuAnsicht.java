@@ -15,6 +15,7 @@ public class MenuAnsicht extends Composite {
 	
 	public MenuAnsicht (HauptAnsicht main){
 		initWidget(hPanel);
+		this.hPanel.setBorderWidth(3);
 		this.main = main;
 	
 		
@@ -22,11 +23,11 @@ public class MenuAnsicht extends Composite {
 		buttonStartseite.addClickHandler(new StartseiteHandler());
 		this.hPanel.add(buttonStartseite);
 		
-		Button buttonProfil = new Button ("Mein Profil");
-		buttonProfil.addClickHandler(new ProfilHandler());
-		this.hPanel.add(buttonStartseite);
+		Button buttonProfilSeite = new Button ("Mein Profil");
+		buttonProfilSeite.addClickHandler(new ProfilHandler());
+		this.hPanel.add(buttonProfilSeite);
 		
-		Button buttonEigenschaft = new Button ("Meine Eigenschafte");
+		Button buttonEigenschaft = new Button ("Meine Eigenschaften");
 		buttonEigenschaft.addClickHandler(new EigenschaftHandler());
 		this.hPanel.add(buttonEigenschaft);
 		
@@ -34,20 +35,27 @@ public class MenuAnsicht extends Composite {
 		buttonMerkzettel.addClickHandler(new MerkzettelHandler());
 		this.hPanel.add(buttonMerkzettel);
 		
-		Button buttonKontaksperre = new Button ("Kontaktsperre");  	
+		Button buttonKontaksperre = new Button ("Meine Kontaktsperren");  	
 		buttonKontaksperre.addClickHandler(new KontaktsperreHandler());
 		this.hPanel.add(buttonKontaksperre);
 
 		
-		
+		/**
+		 * Groesse fuer die Button wird angepasst
+		 */
 		buttonStartseite.setPixelSize(200, 40);
-		buttonProfil.setPixelSize(200, 40);
+		buttonProfilSeite.setPixelSize(200, 40);
 		buttonEigenschaft.setPixelSize(200, 40);
 		buttonMerkzettel.setPixelSize(200, 40);
 		buttonKontaksperre.setPixelSize(200, 40);
 
 	}
 	
+	/**
+	 * 
+	 * Es folgen die ClickHandler-Implementierungen fuer die Buttons
+	 *
+	 */
 	private class StartseiteHandler implements ClickHandler {
 
 		@Override
@@ -59,25 +67,22 @@ public class MenuAnsicht extends Composite {
 	
 	private class ProfilHandler implements ClickHandler {
 
-		@Override
 		public void onClick(ClickEvent event) {
-			main.openKontaktsperre();
+			main.openProfilSeite();
 		}
 		
 	}
 	
 	private class EigenschaftHandler implements ClickHandler {
 
-		@Override
 		public void onClick(ClickEvent event) {
-			main.openKontaktsperre();
+			main.openEigenschaft();
 		}
 		
 	}
 	
 	private class MerkzettelHandler implements ClickHandler {
 
-		@Override
 		public void onClick(ClickEvent event) {
 			main.openMerkzettel();
 		}
@@ -86,7 +91,6 @@ public class MenuAnsicht extends Composite {
 	
 	private class KontaktsperreHandler implements ClickHandler {
 
-		@Override
 		public void onClick(ClickEvent event) {
 			main.openKontaktsperre();
 		}
