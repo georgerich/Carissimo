@@ -108,14 +108,14 @@ public class ProfilMapper {
 	 * Hier folgt die L�sch-Operation.
 	 * L�schen eines Profil-Objekts aus der Datenbank
 	 */
-	public void deleteProfil(Profil p) throws Exception{
+	public void deleteProfil(String email) throws Exception{
 		
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
 				"DELETE FROM profil "
 				+ "WHERE email = '" 
-				+ p.getEmail() + "'");
+				+ email + "'");
 		
 		 prestmt.executeQuery();
 		

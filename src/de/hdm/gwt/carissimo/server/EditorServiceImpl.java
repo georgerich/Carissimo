@@ -42,7 +42,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 ****************************************************************************************************/
 	
 	/**
-	 * Profil
+	 * Eingeloggter User
 	 */
 	public void setUser(Profil p) {
 		user = p;
@@ -50,7 +50,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	/**
 	 * Profil anlegen
-	 * 
 	 * @param Profilattribute
 	 */
 	public void insertProfil(String email, String vorname, String nachname, String geschlecht, Date geburtsdatum,
@@ -71,9 +70,35 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 	
 	
-	// Methode (2)
-
-	// Methode (3)
+	/**
+	 * Profil updaten
+	 */
+	
+	public void updateProfil(String email, String vorname, String nachname, String geschlecht, Date geburtsdatum,
+			int koerpergroesse, String haarfarbe, String raucher, String religion, String beschreibung) throws Exception {
+		
+		Profil p = new Profil();
+		
+		p.setEmail(email);
+		p.setVorname(vorname);
+		p.setNachname(nachname);
+		p.setGeschlecht(geschlecht);
+		p.setGeburtsdatum(geburtsdatum);
+		p.setKoerpergroesse(koerpergroesse);
+		p.setHaarfarbe(haarfarbe);
+		p.setRaucher(raucher);
+		p.setReligion(religion);
+		pMapper.updateProfil(p);
+	}
+	
+	/**
+	 * Profil loeschen
+	 */
+	public void deleteProfil() throws Exception {
+		pMapper.deleteProfil(user.getEmail());
+	}
+	
+	
 	
 	// ...
 	
