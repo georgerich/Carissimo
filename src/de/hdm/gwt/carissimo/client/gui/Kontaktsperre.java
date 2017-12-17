@@ -9,9 +9,12 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class Kontaktsperre extends Composite {
 	
 	private VerticalPanel vPanel = new VerticalPanel ();
+
+
 	
 	public Kontaktsperre (){
 		initWidget(this.vPanel);
+
 		
 		Label kontaktsperreLabel = new Label ("Hier folgt die Ansicht fuer die Kontaktsperren"); 
 		

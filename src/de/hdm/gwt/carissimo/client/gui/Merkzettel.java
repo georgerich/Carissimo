@@ -8,9 +8,11 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class Merkzettel extends Composite {
 	
 	private VerticalPanel vPanel = new VerticalPanel ();
+
 	
-	public Merkzettel (){
+	public Merkzettel(){
 		initWidget(this.vPanel);
+
 		
 		Label merkzettelLabel = new Label ("Hier folgt die Ansicht fuer den Merkzettel"); 
 		this.vPanel.add(merkzettelLabel);

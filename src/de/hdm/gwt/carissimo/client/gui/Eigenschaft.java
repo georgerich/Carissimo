@@ -16,8 +16,9 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class Eigenschaft extends Composite {
 	
 	private VerticalPanel vPanel = new VerticalPanel ();
+
 	
-	public Eigenschaft (){
+	public Eigenschaft(){
 		initWidget(this.vPanel);
 		
 		Button newEigenschaft = new Button("Eigenschaft hinzufügen");
