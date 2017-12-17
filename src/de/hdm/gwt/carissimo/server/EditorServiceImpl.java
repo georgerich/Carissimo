@@ -12,6 +12,7 @@ import de.hdm.gwt.carissimo.server.db.InfoMapper;
 import de.hdm.gwt.carissimo.server.db.KontaktsperreMapper;
 import de.hdm.gwt.carissimo.server.db.MerkzettelMapper;
 import de.hdm.gwt.carissimo.server.db.ProfilMapper;
+import de.hdm.gwt.carissimo.server.db.SuchprofilInfoMapper;
 import de.hdm.gwt.carissimo.server.db.SuchprofilMapper;
 import de.hdm.gwt.carissimo.shared.EditorService;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
@@ -25,7 +26,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	private AuswahleigenschaftMapper aMapper = AuswahleigenschaftMapper.auswahleigenschaftMapper();
 	private FreitexteigenschaftMapper fMapper = FreitexteigenschaftMapper.freitexteigenschaftMapper();
 	private SuchprofilMapper spMapper = SuchprofilMapper.suchprofilMapper();
-//	private SuchprofilInfoMapper spiMapper = SuchprofilInfoMapper.suchprofilInfoMapper();
+	private SuchprofilInfoMapper spiMapper = SuchprofilInfoMapper.SuchprofilInfoMapper();
 	private BesuchMapper bMapper = BesuchMapper.besuchMapper();
 	private MerkzettelMapper mMapper = MerkzettelMapper.merkzettelMapper();
 	private KontaktsperreMapper kMapper = KontaktsperreMapper.kontaktsperreMapper();
