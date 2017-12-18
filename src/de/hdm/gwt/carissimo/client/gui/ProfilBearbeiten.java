@@ -1,6 +1,4 @@
 package de.hdm.gwt.carissimo.client.gui;
-
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -24,6 +22,7 @@ public class ProfilBearbeiten extends Composite {
 	
 		VerticalPanel vPanel = new VerticalPanel();
 		HorizontalPanel ButtonPanel = new HorizontalPanel();
+		
 		
 		
 		// Deklaration einer FlexTable um die Profilattribute anzuzeigen
@@ -173,6 +172,15 @@ public class ProfilBearbeiten extends Composite {
 		ButtonPanel.add(profilSeiteButton);
 		vPanel.add(ButtonPanel);
 		
+		profilSeiteButton.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				ladeProfilSeite();
+				
+			}
+		});
+		
 		
 		
 		/**
@@ -204,7 +212,16 @@ public class ProfilBearbeiten extends Composite {
 		
 	}
 	
-
+	/**
+	 * Methode um zurück zur Profilansicht bzw. Profilseite zu gelangen.
+	 */
+	public void ladeProfilSeite(){
+		this.vPanel.clear();
+		ProfilSeite pseite = new ProfilSeite();
+		this.vPanel.add(pseite);
+		
+		
+	}
 	
 
 	
@@ -214,7 +231,8 @@ public class ProfilBearbeiten extends Composite {
 	
 
 	
-	
+
+		
 	
 	
 }
