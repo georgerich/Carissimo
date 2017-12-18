@@ -29,7 +29,34 @@ public interface EditorService extends RemoteService {
 	
 	void deleteProfil() throws Exception;
 	
+	//Eigenschaft:
 	
+	void insertEigenschaft(int eigenschaftId, String eigenschaft) throws Exception;
+	
+	//Info:
+	
+	void insertInfo (int infoId, int eigenschaftId, String value) throws Exception;
+	
+	void updateInfo (int infoId, int eigenschaftId, String value) throws Exception;
+	
+	void deleteInfo() throws Exception;
+	
+	//Auswahleigenschaft:
+	
+	void insertAuswahleigenschaft (int auswahlId, int eigenschaftId, String value) throws Exception;
+	
+	void updateAuswahleigenschaft (int auswahlId, int eigenschaftId, String value) throws Exception;
+	
+	void deleteAuswahleigenschaft() throws Exception;
+	
+	//Freitexteigenschaft:
+	
+	void insertFreitexteigenschaft (int freitextId, int eigenschaftId, String value) throws Exception;
+	
+	void updateFreitexteigenschaft (int freitextId, int eigenschaftId, String value) throws Exception;
+	
+	void deleteFreitexteigenschaft() throws Exception;
+
 	
 
 }

@@ -16,7 +16,10 @@ import de.hdm.gwt.carissimo.server.db.SuchprofilInfoMapper;
 import de.hdm.gwt.carissimo.server.db.SuchprofilMapper;
 import de.hdm.gwt.carissimo.shared.EditorService;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
-
+import de.hdm.gwt.carissimo.shared.bo.Eigenschaft;
+import de.hdm.gwt.carissimo.shared.bo.Info;
+import de.hdm.gwt.carissimo.shared.bo.Auswahleigenschaft;
+import de.hdm.gwt.carissimo.shared.bo.Freitexteigenschaft;
 
 /**
  * Um ein RPC-Interface zu definieren, muessen drei Komponenten geschrieben werden: 
@@ -32,6 +35,7 @@ import de.hdm.gwt.carissimo.shared.bo.Profil;
  * Zustaendig hierfuer ist der Service <code>RemoteServiceServlet</code>. 
  * 
  * @author YakupKanal
+ * @author MarkoDeveric
  *
  */
 public class EditorServiceImpl extends RemoteServiceServlet implements EditorService{
@@ -52,6 +56,17 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	// Instanzvariable: Eingeloggter User
 	private Profil user;
 	
+	//Instanzvariable: Eigenschaft
+	private Eigenschaft attribute;
+	
+	//Instanzvariable: Info
+	private Info information;
+	
+	//Instanzvariable Auswahleigenschaft
+	private Auswahleigenschaft choiceattribute;
+	
+	//Instanzvariable Freitexteigenschaft
+	private Freitexteigenschaft freeattribute;
 	
 	
 	/*****************************************************************************************************
@@ -131,11 +146,127 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * START: Eigenschaft, Auswahl & Info
 	 ****************************************************************************************************/
 	
-	// Methode (1)
+	public void setEigenschaft (Eigenschaft e) {
+		attribute = e;
+	}
 	
-	// Methode (2)
+	public void setInfo (Info i){
+		information = i;
+	}
+	
+	public void setChoiceAttrubute (Auswahleigenschaft a){
+		choiceattribute = a;
+	}
+	
+	public void setFreeAttribute (Freitexteigenschaft f){
+		freeattribute = f;
+	}
+	
+	
+	/**
+	 * Einfuegen von Eigenschaft, Info, Auswahleigenschaft & Freitexteigenschaft
+	 * @param eigenschaftid
+	 * @param eigenschaft
+	 * @throws Exception
+	 */
+	
+	public void insertEigenschaft(int eigenschaftid, String eigenschaft) throws Exception{
+		
+		Eigenschaft e = new Eigenschaft();
+		
+		e.setEigenschaftId(eigenschaftid);
+		e.setEigenschaft(eigenschaft);
+		eMapper.insertEigenschaft(e);	
+	}
+	
+	public void insertInfo (int infoId, int eigenschaftId, String value) throws Exception{
+		
+		Info i = new Info();
+		
+		i.setInfoid(infoId);
+		i.setEigenschaftId(eigenschaftId);
+		i.setValue(value);
+		iMapper.insertInfo(i);
+	}
+	
+	public void insertAuswahleigenschaft (int auswahlId, int eigenschaftId, String value) throws Exception {
+		
+		Auswahleigenschaft a = new Auswahleigenschaft();
+		
+		a.setAuswahlId(auswahlId);
+		a.setEigenschaftId(eigenschaftId);
+		a.setValue(value);
+		aMapper.insertAuswahleigenschaft(a);
+		
+	}
+	
+	public void insertFreitexteigenschaft (int freitextId, int eigenschaftId, String value) throws Exception{
+		
+		Freitexteigenschaft f = new Freitexteigenschaft();
+		
+		f.setFreitextId(freitextId);
+		f.setEigenschaftId(eigenschaftId);
+		f.setValue(value);
+		fMapper.insertFreitexteigenschaft(f);
+	}
+	
+	
+	/**
+	 * Aktualisieren von Info, Auswahleigenschaft & Freitexteigenschaft
+	 * @param infoId
+	 * @param eigenschaftId
+	 * @param value
+	 * @throws Exception
+	 */
+	
+	public void updateInfo (int infoId, int eigenschaftId, String value) throws Exception {
+		
+		Info i = new Info();
+		
+		i.setInfoid(infoId);
+		i.setEigenschaftId(eigenschaftId);
+		i.setValue(value);
+		iMapper.updateInfo(i);
+	}
+	
+	public void updateAuswahleigenschaft (int auswahlId, int eigenschaftId, String value) throws Exception {
+		
+		Auswahleigenschaft a = new Auswahleigenschaft();
+		
+		a.setAuswahlId(auswahlId);
+		a.setEigenschaftId(eigenschaftId);
+		a.setValue(value);
+		aMapper.updateAuswahleigenschaft(a);
+		
+	}
+	
+	public void updateFreitexteigenschaft (int freitextId, int eigenschaftId, String value) throws Exception {
+		
+		Freitexteigenschaft f = new Freitexteigenschaft();
+		
+		f.setFreitextId(freitextId);
+		f.setEigenschaftId(eigenschaftId);
+		f.setValue(value);
+		fMapper.updateFreitexteigenschaft(f);
+	}
 
-	// Methode (3)
+	/**
+	 * Loeschen von Info, Auswahleigenschaft & Freitexteigenschaft
+	 * @throws Exception
+	 */
+	
+	public void deleteInfo() throws Exception {
+		iMapper.deleteInfo(information);
+	}
+	
+	
+	public void deleteAuswahleigenschaft () throws Exception {
+		aMapper.deleteAuswahleigenschaft(choiceattribute);
+	}
+	
+	public void deleteFreitexteigenschaft () throws Exception {
+		fMapper.deleteFreitexteigenschaft(freeattribute);
+	}
 	
 	
 	/***************************************************************************************************** 
