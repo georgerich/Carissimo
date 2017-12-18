@@ -24,7 +24,6 @@ public class ProfilSeite extends Composite {
 	HorizontalPanel hPanel = new HorizontalPanel();
 	HorizontalPanel buttonsPanel = new HorizontalPanel();
 	VerticalPanel vPanel = new VerticalPanel();
-
 	
 	ProfilBearbeiten profiledit = new ProfilBearbeiten();
 
@@ -104,6 +103,7 @@ public class ProfilSeite extends Composite {
 			
 			
 		}
+		
 		
 		// ------- Ende Konstruktor -------
 		
