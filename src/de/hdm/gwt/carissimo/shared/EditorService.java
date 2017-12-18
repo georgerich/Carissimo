@@ -1,8 +1,11 @@
 package de.hdm.gwt.carissimo.shared;
 
 import java.util.Date;
+import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.RemoteService;
+
+import de.hdm.gwt.carissimo.shared.bo.Profil;
 
 /**
  * Um ein RPC-Interface zu definieren, muessen drei Komponenten geschrieben werden: 
@@ -29,6 +32,12 @@ public interface EditorService extends RemoteService {
 	
 	void deleteProfil() throws Exception;
 	
+	Profil getOwnProfil() throws Exception;
+	
+	Profil getProfil(String email) throws Exception;
+	
+	Vector<Profil> getAllProfile() throws Exception;
+	
 	//Eigenschaft:
 	
 	void insertEigenschaft(int eigenschaftId, String eigenschaft) throws Exception;
@@ -40,6 +49,7 @@ public interface EditorService extends RemoteService {
 	void updateInfo (int infoId, int eigenschaftId, String value) throws Exception;
 	
 	void deleteInfo() throws Exception;
+
 	
 	//Auswahleigenschaft:
 	

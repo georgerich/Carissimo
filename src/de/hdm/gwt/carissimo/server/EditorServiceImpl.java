@@ -1,6 +1,7 @@
 package de.hdm.gwt.carissimo.server;
 
 import java.util.Date;
+import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -15,6 +16,9 @@ import de.hdm.gwt.carissimo.server.db.ProfilMapper;
 import de.hdm.gwt.carissimo.server.db.SuchprofilInfoMapper;
 import de.hdm.gwt.carissimo.server.db.SuchprofilMapper;
 import de.hdm.gwt.carissimo.shared.EditorService;
+import de.hdm.gwt.carissimo.shared.bo.Besuch;
+import de.hdm.gwt.carissimo.shared.bo.Kontaktsperre;
+import de.hdm.gwt.carissimo.shared.bo.Merkzettel;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
 import de.hdm.gwt.carissimo.shared.bo.Eigenschaft;
 import de.hdm.gwt.carissimo.shared.bo.Info;
@@ -132,8 +136,90 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 	
 	
+	/**
+	 * Auslesen des eigenen Profils
+	 */
+	public Profil getOwnProfil() throws Exception {
+		return pMapper.getProfil(user.getEmail());
+	}
 	
-	// ...
+	
+	/**
+	 * Auslesen eines fremden Profils via email
+	 */
+	public Profil getProfil(String email) throws Exception {
+		return pMapper.getProfil(email);
+	}
+	
+	
+	/**
+	 * Auslesen aller Profile mit Ausnahmen auf:
+	 * 	- den User selbst,
+	 * 	- auf besuchte Profile des User	<code>Besuch</code>,
+	 *  - auf bereits gemerkte Profile des Users <code>Merkzettel</code>,
+	 *  - auf Profile, welche der User gesperrt hat <code>Kontaktsperre</code> und
+	 *  - auf Profile, welche den User gesperrt haben <code>Kontaktsperre</code>.
+	 *  
+	 *  
+	 */
+	public Vector<Profil> getAllProfile() throws Exception {
+		
+		// Alle Profile sowie Besuch und Merkzettel des Users als auch die Kontaktsperren (beidseitig) auslesen
+		Vector<Profil> profil = pMapper.getAllProfile();
+		Vector<Besuch> besuch = bMapper.getBesuch(user.getEmail());
+		Vector<Merkzettel> merkzettel = mMapper.getMerkzettel(user.getEmail());
+		Vector<Kontaktsperre> gesperrteProfile = kMapper.getKontaktsperrenGesperrteProfile(user.getEmail());
+		Vector<Kontaktsperre> sperrendeProfile = kMapper.getKontaktsperrenGesperrteProfile(user.getEmail());
+		
+		Vector<Profil> result = new Vector<Profil>();
+		
+		for(int i = 0; i < profil.size(); i++) {
+			
+			boolean check = true; 
+			
+			// Den User selbst über profil filtern:
+			if(profil.elementAt(i).getEmail().equals(user.getEmail())) {
+				check = false;
+				continue;
+			}
+			
+			// Besuchte Profile des Users über besuch filtern:
+			for(int b = 0; b < besuch.size(); b++) {
+				if(profil.elementAt(i).getEmail().equals(besuch.elementAt(b).getBesuchtesProfil())) {
+					check = false;
+					break;
+				}
+			}
+			
+			// Gemerkte Profile des Users über merkzettel filtern:
+			for(int m = 0; m < merkzettel.size(); m++) {
+				if(profil.elementAt(i).getEmail().equals(merkzettel.elementAt(m).getGemerktesProfil())) {
+					check = false;
+					break;
+				}
+			}
+			
+			// Profile, welche der User gesperrt hat über gesperrteProfile filtern:
+			for(int ks1 = 0; ks1 < gesperrteProfile.size(); ks1++) {
+				if(profil.elementAt(i).getEmail().equals(gesperrteProfile.elementAt(ks1))){
+					check = false;
+					break;
+				}
+			}
+			
+			// Profile, welche den Usergesperrt haben über sperrendeProfile filtern:
+			for(int ks2 = 0; ks2 < sperrendeProfile.size(); ks2++) {
+				if(profil.elementAt(i).getEmail().equals(sperrendeProfile.elementAt(ks2))){
+					check = false;
+					break;
+				}
+			}
+			
+			if (check) 
+				result.add(profil.elementAt(i));	
+		}
+		return result;
+	}
 	
 	
 	
