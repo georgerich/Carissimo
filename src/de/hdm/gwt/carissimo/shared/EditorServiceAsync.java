@@ -1,8 +1,11 @@
 package de.hdm.gwt.carissimo.shared;
 
 import java.util.Date;
+import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+
+import de.hdm.gwt.carissimo.shared.bo.Profil;
 
 /**
  * Um ein RPC-Interface zu definieren, muessen drei Komponenten geschrieben werden: 
@@ -30,6 +33,14 @@ public interface EditorServiceAsync {
 			AsyncCallback<Void> callback);
 
 	void deleteProfil(AsyncCallback<Void> callback);
+	
+	void getOwnProfil(AsyncCallback<Profil> callback);
+	
+	void getProfil(String email, AsyncCallback<Profil> callback);
+	
+	void getAllProfile(AsyncCallback<Vector<Profil>> callback);
+
+
 	
 
 

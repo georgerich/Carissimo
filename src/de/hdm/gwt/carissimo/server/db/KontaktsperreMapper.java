@@ -93,62 +93,81 @@ public class KontaktsperreMapper {
 		
 	
 	/**
-	 * Auslesen aller <code>Kontaktsperre</code> bzw. <code>Profil</code>-Objekte bezogen auf ein Profil.
-	 * Gibt die gesperrten Profil eines User zur�ck	*/
-	
-		public Vector<Profil> getGesperrteProfile(Kontaktsperre ks) throws Exception{
+	 *Auslesen der kontaktsperren, welche der User gesetzt hat.	 //Filter
+	 */
+		public Vector<Kontaktsperre> getKontaktsperrenGesperrteProfile(String email) throws Exception{
 		
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
-				"SELECT k.gesperrteemail, p.vorname, p.nachname FROM kontaktsperre k "
-				+ "INNER JOIN profil p "
-				+ "ON k.gesperrteemail = p.email "
-				+ "WHERE k.email = '" 
-				+ ks.getGesperrtesProfil() +"'");
+				"SELECT gesperrteemail FROM kontaktsperre WHERE email = '"
+				+ email + "'");
 		
 		ResultSet result = prestmt.executeQuery();
-		Vector<Profil> gesperrteProfile = new Vector();
+		Vector<Kontaktsperre> gesperrteProfile = new Vector<Kontaktsperre>();
 		
 		while (result.next()){
-			Profil p = new Profil();
-			p.setEmail("gesperrteemail");
-			p.setVorname("vorname");
-			p.setNachname("nachname");
-			
-			gesperrteProfile.add(p); 
-		}
-			
+			Kontaktsperre k = new Kontaktsperre();
+			k.setSperrendesProfil(email);
+			k.setGesperrtesProfil("gesperrteemail");
+			gesperrteProfile.add(k); 
+		}	
 		return gesperrteProfile;
-		
 	}
 	
 			
 	/**
-	 * Auslesen der Kontaktsperren die den User beinhalten.
+	 * Auslesen der Kontaktsperren die den User beinhalten/ bzw. gesperrt haben.  //Filter
 	 */
 	
-	public Vector<Kontaktsperre> getKontaktsperren(Profil p) throws Exception {
+	public Vector<Kontaktsperre> getKontaktsperrenSperrendeProfile(String email) throws Exception {
 		
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
 				"SELECT email FROM kontaktsperre "
 				+ "WHERE gesperrteemail = '"
-				+ p.getEmail() +"'");
+				+ email + "'");
 		
 		ResultSet result = prestmt.executeQuery();
-		Vector<Kontaktsperre> kontaktsperren = new Vector();
+		Vector<Kontaktsperre> kontaktsperren = new Vector<Kontaktsperre>();
 		
 		while (result.next()){
-			Kontaktsperre ks = new Kontaktsperre();
-			ks.setSperrendesProfil("email");
-			
-			kontaktsperren.add(ks); 
+			Kontaktsperre k = new Kontaktsperre();
+			k.setSperrendesProfil("email");
+			k.setGesperrtesProfil(email);
+			kontaktsperren.add(k);  
 		}
-			
 		return kontaktsperren;
+	}
+	
+	
+	/**
+	 * Auslesen der Profile, welche der User gesperrt hat.  // KontaktsperrSeite
+	 */
+	
+	public Vector<Profil> getGesperrteProfile(String email) throws Exception {
 		
+		Connection con = (Connection) DBConnection.connection();
+		
+		PreparedStatement prestmt = con.prepareStatement(
+				"SELECT p.email, p.vorname, p.nachname FROM profil p"
+				+ "INNER JOIN kontaktsperre k ON p.email = k.gesperrteemail "
+				+ "WHERE k.gesperrteemail = '"
+				+ email +"'");
+		
+		ResultSet result = prestmt.executeQuery();
+		Vector<Profil> gesperrteProfile = new Vector<Profil>();
+		
+		while (result.next()){
+			Profil p = new Profil();
+			p.setEmail(result.getString("email"));
+			p.setVorname(result.getString("vorname"));
+			p.setNachname(result.getNString("nachname"));
+			
+			gesperrteProfile.add(p); 
+		}
+		return gesperrteProfile;
 	}
 	
 }

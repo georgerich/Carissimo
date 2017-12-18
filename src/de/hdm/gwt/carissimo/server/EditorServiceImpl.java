@@ -1,6 +1,7 @@
 package de.hdm.gwt.carissimo.server;
 
 import java.util.Date;
+import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -15,6 +16,9 @@ import de.hdm.gwt.carissimo.server.db.ProfilMapper;
 import de.hdm.gwt.carissimo.server.db.SuchprofilInfoMapper;
 import de.hdm.gwt.carissimo.server.db.SuchprofilMapper;
 import de.hdm.gwt.carissimo.shared.EditorService;
+import de.hdm.gwt.carissimo.shared.bo.Besuch;
+import de.hdm.gwt.carissimo.shared.bo.Kontaktsperre;
+import de.hdm.gwt.carissimo.shared.bo.Merkzettel;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
 
 
@@ -116,9 +120,50 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		pMapper.deleteProfil(user.getEmail());
 	}
 	
-	
-	
 	// ...
+	
+	/**
+	 * Auslesen des eigenen Profils
+	 */
+	public Profil getOwnProfil() throws Exception {
+		return pMapper.getProfil(user.getEmail());
+	}
+	
+	
+	/**
+	 * Auslesen eines fremden Profils via email
+	 */
+	public Profil getProfil(String email) throws Exception {
+		return pMapper.getProfil(email);
+	}
+	
+	
+	/**
+	 * Auslesen aller Profile mit Ausnahmen auf:
+	 * 	- den User selbst,
+	 * 	- auf besuchte Profile des User	<code>Besuch</code>,
+	 *  - auf bereits gemerkte Profile des Users <code>Merkzettel</code>,
+	 *  - auf Profile, welche der User gesperrt hat <code>Kontaktsperre</code> und
+	 *  - auf Profile, welche den User gesperrt haben <code>Kontaktsperre</code>.
+	 *  
+	 *  
+	 */
+	public Vector<Profil> getAllProfile() throws Exception {
+		
+		Vector<Profil> p = pMapper.getAllProfile();
+		Vector<Besuch> b = bMapper.getBesuch(user.getEmail());
+		Vector<Merkzettel> m = mMapper.getMerkzettel(user.getEmail());
+		Vector<Kontaktsperre> gesperrteProfile = kMapper.getKontaktsperrenGesperrteProfile(user.getEmail());
+		Vector<Kontaktsperre> sperrendeProfile = kMapper.getKontaktsperrenGesperrteProfile(user.getEmail());
+		
+		Vector<Profil> result = new Vector<Profil>();
+		
+		// ...
+		// Methodenkoerper definieren
+		// ...
+		
+		return null;
+	}
 	
 	
 	
