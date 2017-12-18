@@ -120,7 +120,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		pMapper.deleteProfil(user.getEmail());
 	}
 	
-	// ...
 	
 	/**
 	 * Auslesen des eigenen Profils
@@ -150,19 +149,61 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 */
 	public Vector<Profil> getAllProfile() throws Exception {
 		
-		Vector<Profil> p = pMapper.getAllProfile();
-		Vector<Besuch> b = bMapper.getBesuch(user.getEmail());
-		Vector<Merkzettel> m = mMapper.getMerkzettel(user.getEmail());
+		// Alle Profile sowie Besuch und Merkzettel des Users als auch die Kontaktsperren (beidseitig) auslesen
+		Vector<Profil> profil = pMapper.getAllProfile();
+		Vector<Besuch> besuch = bMapper.getBesuch(user.getEmail());
+		Vector<Merkzettel> merkzettel = mMapper.getMerkzettel(user.getEmail());
 		Vector<Kontaktsperre> gesperrteProfile = kMapper.getKontaktsperrenGesperrteProfile(user.getEmail());
 		Vector<Kontaktsperre> sperrendeProfile = kMapper.getKontaktsperrenGesperrteProfile(user.getEmail());
 		
 		Vector<Profil> result = new Vector<Profil>();
 		
-		// ...
-		// Methodenkoerper definieren
-		// ...
-		
-		return null;
+		for(int i = 0; i < profil.size(); i++) {
+			
+			boolean check = true; 
+			
+			// Den User selbst über profil filtern:
+			if(profil.elementAt(i).getEmail().equals(user.getEmail())) {
+				check = false;
+				continue;
+			}
+			
+			// Besuchte Profile des Users über besuch filtern:
+			for(int b = 0; b < besuch.size(); b++) {
+				if(profil.elementAt(i).getEmail().equals(besuch.elementAt(b).getBesuchtesProfil())) {
+					check = false;
+					break;
+				}
+			}
+			
+			// Gemerkte Profile des Users über merkzettel filtern:
+			for(int m = 0; m < merkzettel.size(); m++) {
+				if(profil.elementAt(i).getEmail().equals(merkzettel.elementAt(m).getGemerktesProfil())) {
+					check = false;
+					break;
+				}
+			}
+			
+			// Profile, welche der User gesperrt hat über gesperrteProfile filtern:
+			for(int ks1 = 0; ks1 < gesperrteProfile.size(); ks1++) {
+				if(profil.elementAt(i).getEmail().equals(gesperrteProfile.elementAt(ks1))){
+					check = false;
+					break;
+				}
+			}
+			
+			// Profile, welche den Usergesperrt haben über sperrendeProfile filtern:
+			for(int ks2 = 0; ks2 < sperrendeProfile.size(); ks2++) {
+				if(profil.elementAt(i).getEmail().equals(sperrendeProfile.elementAt(ks2))){
+					check = false;
+					break;
+				}
+			}
+			
+			if (check) 
+				result.add(profil.elementAt(i));	
+		}
+		return result;
 	}
 	
 	
