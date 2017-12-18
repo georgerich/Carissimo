@@ -1,6 +1,7 @@
 package de.hdm.gwt.carissimo.server;
 
 import java.util.Date;
+import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -15,8 +16,14 @@ import de.hdm.gwt.carissimo.server.db.ProfilMapper;
 import de.hdm.gwt.carissimo.server.db.SuchprofilInfoMapper;
 import de.hdm.gwt.carissimo.server.db.SuchprofilMapper;
 import de.hdm.gwt.carissimo.shared.EditorService;
+import de.hdm.gwt.carissimo.shared.bo.Besuch;
+import de.hdm.gwt.carissimo.shared.bo.Kontaktsperre;
+import de.hdm.gwt.carissimo.shared.bo.Merkzettel;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
-
+import de.hdm.gwt.carissimo.shared.bo.Eigenschaft;
+import de.hdm.gwt.carissimo.shared.bo.Info;
+import de.hdm.gwt.carissimo.shared.bo.Auswahleigenschaft;
+import de.hdm.gwt.carissimo.shared.bo.Freitexteigenschaft;
 
 /**
  * Um ein RPC-Interface zu definieren, muessen drei Komponenten geschrieben werden: 
@@ -32,6 +39,7 @@ import de.hdm.gwt.carissimo.shared.bo.Profil;
  * Zustaendig hierfuer ist der Service <code>RemoteServiceServlet</code>. 
  * 
  * @author YakupKanal
+ * @author MarkoDeveric
  *
  */
 public class EditorServiceImpl extends RemoteServiceServlet implements EditorService{
@@ -52,6 +60,17 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	// Instanzvariable: Eingeloggter User
 	private Profil user;
 	
+	//Instanzvariable: Eigenschaft
+	private Eigenschaft attribute;
+	
+	//Instanzvariable: Info
+	private Info information;
+	
+	//Instanzvariable Auswahleigenschaft
+	private Auswahleigenschaft choiceattribute;
+	
+	//Instanzvariable Freitexteigenschaft
+	private Freitexteigenschaft freeattribute;
 	
 	
 	/*****************************************************************************************************
@@ -117,8 +136,90 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 	
 	
+	/**
+	 * Auslesen des eigenen Profils
+	 */
+	public Profil getOwnProfil() throws Exception {
+		return pMapper.getProfil(user.getEmail());
+	}
 	
-	// ...
+	
+	/**
+	 * Auslesen eines fremden Profils via email
+	 */
+	public Profil getProfil(String email) throws Exception {
+		return pMapper.getProfil(email);
+	}
+	
+	
+	/**
+	 * Auslesen aller Profile mit Ausnahmen auf:
+	 * 	- den User selbst,
+	 * 	- auf besuchte Profile des User	<code>Besuch</code>,
+	 *  - auf bereits gemerkte Profile des Users <code>Merkzettel</code>,
+	 *  - auf Profile, welche der User gesperrt hat <code>Kontaktsperre</code> und
+	 *  - auf Profile, welche den User gesperrt haben <code>Kontaktsperre</code>.
+	 *  
+	 *  
+	 */
+	public Vector<Profil> getAllProfile() throws Exception {
+		
+		// Alle Profile sowie Besuch und Merkzettel des Users als auch die Kontaktsperren (beidseitig) auslesen
+		Vector<Profil> profil = pMapper.getAllProfile();
+		Vector<Besuch> besuch = bMapper.getBesuch(user.getEmail());
+		Vector<Merkzettel> merkzettel = mMapper.getMerkzettel(user.getEmail());
+		Vector<Kontaktsperre> gesperrteProfile = kMapper.getKontaktsperrenGesperrteProfile(user.getEmail());
+		Vector<Kontaktsperre> sperrendeProfile = kMapper.getKontaktsperrenGesperrteProfile(user.getEmail());
+		
+		Vector<Profil> result = new Vector<Profil>();
+		
+		for(int i = 0; i < profil.size(); i++) {
+			
+			boolean check = true; 
+			
+			// Den User selbst über profil filtern:
+			if(profil.elementAt(i).getEmail().equals(user.getEmail())) {
+				check = false;
+				continue;
+			}
+			
+			// Besuchte Profile des Users über besuch filtern:
+			for(int b = 0; b < besuch.size(); b++) {
+				if(profil.elementAt(i).getEmail().equals(besuch.elementAt(b).getBesuchtesProfil())) {
+					check = false;
+					break;
+				}
+			}
+			
+			// Gemerkte Profile des Users über merkzettel filtern:
+			for(int m = 0; m < merkzettel.size(); m++) {
+				if(profil.elementAt(i).getEmail().equals(merkzettel.elementAt(m).getGemerktesProfil())) {
+					check = false;
+					break;
+				}
+			}
+			
+			// Profile, welche der User gesperrt hat über gesperrteProfile filtern:
+			for(int ks1 = 0; ks1 < gesperrteProfile.size(); ks1++) {
+				if(profil.elementAt(i).getEmail().equals(gesperrteProfile.elementAt(ks1))){
+					check = false;
+					break;
+				}
+			}
+			
+			// Profile, welche den Usergesperrt haben über sperrendeProfile filtern:
+			for(int ks2 = 0; ks2 < sperrendeProfile.size(); ks2++) {
+				if(profil.elementAt(i).getEmail().equals(sperrendeProfile.elementAt(ks2))){
+					check = false;
+					break;
+				}
+			}
+			
+			if (check) 
+				result.add(profil.elementAt(i));	
+		}
+		return result;
+	}
 	
 	
 	
@@ -131,11 +232,127 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * START: Eigenschaft, Auswahl & Info
 	 ****************************************************************************************************/
 	
-	// Methode (1)
+	public void setEigenschaft (Eigenschaft e) {
+		attribute = e;
+	}
 	
-	// Methode (2)
+	public void setInfo (Info i){
+		information = i;
+	}
+	
+	public void setChoiceAttrubute (Auswahleigenschaft a){
+		choiceattribute = a;
+	}
+	
+	public void setFreeAttribute (Freitexteigenschaft f){
+		freeattribute = f;
+	}
+	
+	
+	/**
+	 * Einfuegen von Eigenschaft, Info, Auswahleigenschaft & Freitexteigenschaft
+	 * @param eigenschaftid
+	 * @param eigenschaft
+	 * @throws Exception
+	 */
+	
+	public void insertEigenschaft(int eigenschaftid, String eigenschaft) throws Exception{
+		
+		Eigenschaft e = new Eigenschaft();
+		
+		e.setEigenschaftId(eigenschaftid);
+		e.setEigenschaft(eigenschaft);
+		eMapper.insertEigenschaft(e);	
+	}
+	
+	public void insertInfo (int infoId, int eigenschaftId, String value) throws Exception{
+		
+		Info i = new Info();
+		
+		i.setInfoid(infoId);
+		i.setEigenschaftId(eigenschaftId);
+		i.setValue(value);
+		iMapper.insertInfo(i);
+	}
+	
+	public void insertAuswahleigenschaft (int auswahlId, int eigenschaftId, String value) throws Exception {
+		
+		Auswahleigenschaft a = new Auswahleigenschaft();
+		
+		a.setAuswahlId(auswahlId);
+		a.setEigenschaftId(eigenschaftId);
+		a.setValue(value);
+		aMapper.insertAuswahleigenschaft(a);
+		
+	}
+	
+	public void insertFreitexteigenschaft (int freitextId, int eigenschaftId, String value) throws Exception{
+		
+		Freitexteigenschaft f = new Freitexteigenschaft();
+		
+		f.setFreitextId(freitextId);
+		f.setEigenschaftId(eigenschaftId);
+		f.setValue(value);
+		fMapper.insertFreitexteigenschaft(f);
+	}
+	
+	
+	/**
+	 * Aktualisieren von Info, Auswahleigenschaft & Freitexteigenschaft
+	 * @param infoId
+	 * @param eigenschaftId
+	 * @param value
+	 * @throws Exception
+	 */
+	
+	public void updateInfo (int infoId, int eigenschaftId, String value) throws Exception {
+		
+		Info i = new Info();
+		
+		i.setInfoid(infoId);
+		i.setEigenschaftId(eigenschaftId);
+		i.setValue(value);
+		iMapper.updateInfo(i);
+	}
+	
+	public void updateAuswahleigenschaft (int auswahlId, int eigenschaftId, String value) throws Exception {
+		
+		Auswahleigenschaft a = new Auswahleigenschaft();
+		
+		a.setAuswahlId(auswahlId);
+		a.setEigenschaftId(eigenschaftId);
+		a.setValue(value);
+		aMapper.updateAuswahleigenschaft(a);
+		
+	}
+	
+	public void updateFreitexteigenschaft (int freitextId, int eigenschaftId, String value) throws Exception {
+		
+		Freitexteigenschaft f = new Freitexteigenschaft();
+		
+		f.setFreitextId(freitextId);
+		f.setEigenschaftId(eigenschaftId);
+		f.setValue(value);
+		fMapper.updateFreitexteigenschaft(f);
+	}
 
-	// Methode (3)
+	/**
+	 * Loeschen von Info, Auswahleigenschaft & Freitexteigenschaft
+	 * @throws Exception
+	 */
+	
+	public void deleteInfo() throws Exception {
+		iMapper.deleteInfo(information);
+	}
+	
+	
+	public void deleteAuswahleigenschaft () throws Exception {
+		aMapper.deleteAuswahleigenschaft(choiceattribute);
+	}
+	
+	public void deleteFreitexteigenschaft () throws Exception {
+		fMapper.deleteFreitexteigenschaft(freeattribute);
+	}
 	
 	
 	/***************************************************************************************************** 

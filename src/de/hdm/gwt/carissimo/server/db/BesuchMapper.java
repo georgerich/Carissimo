@@ -83,25 +83,22 @@ public class BesuchMapper {
 	 * @return Vector<Besuch>
 	 * @throws Exception
 	 */
-	public Vector<Besuch> getBesuch(Profil p) throws Exception {
+	public Vector<Besuch> getBesuch(String email) throws Exception {
 		
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
 				"SELECT besuchteemail FROM besuch WHERE email = '"
-				+ p.getEmail() + "'");
+				+ email + "'");
 		
 		prestmt.execute();
 		
 		ResultSet r = prestmt.executeQuery();
 		Vector<Besuch> besuch = new Vector<Besuch>();
 		while (r.next()) {
-			Besuch b = new Besuch();
-			Profil besuchtesProfil = new Profil();
-			
-			b.setBesuchendesProfil(p.getEmail());
-			b.setBesuchtesProfil(besuchtesProfil.getEmail());
-			p.setEmail(r.getString("besuchteemail"));
+			Besuch b = new Besuch();			
+			b.setBesuchendesProfil(email);
+			b.setBesuchtesProfil(r.getString("besuchteemail"));
 			besuch.add(b);	
 		}
 		return besuch;	

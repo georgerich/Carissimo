@@ -48,7 +48,7 @@ public class AuswahleigenschaftMapper
 	} 
 	
 	//Auswahleigneschaft aktualisieren/aendern
-	public void udpateAuswahleigenschaft (Auswahleigenschaft a) throws Exception
+	public void updateAuswahleigenschaft (Auswahleigenschaft a) throws Exception
 	{
 		Connection con = (Connection) DBConnection.connection();
 			
