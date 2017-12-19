@@ -140,18 +140,19 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	/**
 	 * Auslesen aller Profile mit Ausnahmen auf:
 	 * 	- den User selbst,
-	 * 	- auf besuchte Profile des User	<code>Besuch</code>,
+/**	 * 	- auf besuchte Profile des User	<code>Besuch</code>,														
 	 *  - auf bereits gemerkte Profile des Users <code>Merkzettel</code>,
 	 *  - auf Profile, welche der User gesperrt hat <code>Kontaktsperre</code> und
 	 *  - auf Profile, welche den User gesperrt haben <code>Kontaktsperre</code>.
 	 *  
+	 *  // @gui Auf Button Finden koppeln?
 	 *  
 	 */
 	public Vector<Profil> getAllProfile() throws Exception {
 		
 		// Alle Profile sowie Besuch und Merkzettel des Users als auch die Kontaktsperren (beidseitig) auslesen
 		Vector<Profil> profil = pMapper.getAllProfile();
-		Vector<Besuch> besuch = bMapper.getBesuch(user.getEmail());
+/**		Vector<Besuch> besuch = bMapper.getBesuch(user.getEmail());													**/
 		Vector<Merkzettel> merkzettel = mMapper.getMerkzettel(user.getEmail());
 		Vector<Kontaktsperre> gesperrteProfile = kMapper.getKontaktsperrenGesperrteProfile(user.getEmail());
 		Vector<Kontaktsperre> sperrendeProfile = kMapper.getKontaktsperrenGesperrteProfile(user.getEmail());
@@ -167,7 +168,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 				check = false;
 				continue;
 			}
-			
+/**			
 			// Besuchte Profile des Users über besuch filtern:
 			for(int b = 0; b < besuch.size(); b++) {
 				if(profil.elementAt(i).getEmail().equals(besuch.elementAt(b).getBesuchtesProfil())) {
@@ -175,7 +176,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 					break;
 				}
 			}
-			
+**/			
 			// Gemerkte Profile des Users über merkzettel filtern:
 			for(int m = 0; m < merkzettel.size(); m++) {
 				if(profil.elementAt(i).getEmail().equals(merkzettel.elementAt(m).getGemerktesProfil())) {
@@ -192,7 +193,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 				}
 			}
 			
-			// Profile, welche den Usergesperrt haben über sperrendeProfile filtern:
+			// Profile, welche den User gesperrt haben über sperrendeProfile filtern:
 			for(int ks2 = 0; ks2 < sperrendeProfile.size(); ks2++) {
 				if(profil.elementAt(i).getEmail().equals(sperrendeProfile.elementAt(ks2))){
 					check = false;
@@ -205,14 +206,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 		}
 		return result;
 	}
-	
-	
+
 	
 	/***************************************************************************************************** 
 	 * ENDE: Profil
 	 ****************************************************************************************************/
-	
-	
 	/*****************************************************************************************************
 	 * START: Eigenschaft, Auswahl & Info
 	 ****************************************************************************************************/
@@ -223,12 +221,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// Methode (3)
 	
-	
 	/***************************************************************************************************** 
 	 * ENDE: Eigenschaft, Auswahl & Info
 	 ****************************************************************************************************/
-	
-	
 	/*****************************************************************************************************
 	 * START: Suchprofil & SuchprofilInfo
 	 ****************************************************************************************************/
@@ -239,12 +234,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// Methode (3)
 	
-	
 	/***************************************************************************************************** 
 	 * ENDE: Suchprofil & SuchprofilInfo
 	 ****************************************************************************************************/
-	
-	
 	/*****************************************************************************************************
 	 * START: Besuch
 	 ****************************************************************************************************/
@@ -255,12 +247,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// Methode (3)
 	
-	
 	/***************************************************************************************************** 
 	 * ENDE: Besuch
 	 ****************************************************************************************************/
-
-
 	/*****************************************************************************************************
 	 * START: Merkzettel
 	 ****************************************************************************************************/
@@ -271,12 +260,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// Methode (3)
 	
-	
 	/***************************************************************************************************** 
 	 * ENDE: Merkzettel
 	 ****************************************************************************************************/
-
-	
 	/*****************************************************************************************************
 	 * START: Kontaktsperre
 	 ****************************************************************************************************/
@@ -287,12 +273,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 
 	// Methode (3)
 	
-	
 	/***************************************************************************************************** 
 	 * ENDE: Kontaktsperre
 	 ****************************************************************************************************/
-	
-
 	/*****************************************************************************************************
 	 * START: Sonstiges
 	 ****************************************************************************************************/
@@ -302,7 +285,6 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	// Methode (2)
 
 	// Methode (3)
-	
 	
 	/***************************************************************************************************** 
 	 * ENDE: Sonstiges
