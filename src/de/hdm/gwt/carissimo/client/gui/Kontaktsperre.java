@@ -109,6 +109,7 @@ public class Kontaktsperre extends Composite {
 	public void ladeProfilAnsehenVonKontaktsperre(){
 		this.vPanel.clear();
 		this.vPanel.add(showProfil);
+		
 			
 	}
 

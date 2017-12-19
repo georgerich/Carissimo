@@ -7,7 +7,10 @@ import java.sql.Connection;
 //import com.google.cloud.sql.jdbc.Connection;
 //import com.google.cloud.sql.jdbc.PreparedStatement;
 
+import de.hdm.gwt.carissimo.shared.bo.Eigenschaft;
+import de.hdm.gwt.carissimo.shared.bo.Info;
 import de.hdm.gwt.carissimo.shared.bo.SuchprofilInfo;
+import de.hdm.gwt.carissimo.shared.ro.ProfilEigenschaft;
 
 public class SuchprofilInfoMapper
 {
@@ -78,31 +81,72 @@ public class SuchprofilInfoMapper
 		
 		 delete.execute();
 	}
+	
+	
+	/**
+	 * Auslesen eines SuchprofiLInfo-Objetks anhand der infoId
+	 * @param infoId
+	 * @return
+	 * @throws Exception
+	 */
+	
+	public ProfilEigenschaft getSuchprofilInfo(int infoId) throws Exception{
+		Connection con = DBConnection.connection();
 		
-	//Auslesen aller SuchprofilInfo-Objekte
-//	public Vector<SuchprofilInfo> getAllSuchprofilInfos() throws Exception{
-//		
-//	Connection con = (Connection) DBConnection.connection();
-//	
-//	PreparedStatement prestmt = con.prepareStatement(
-//				"SELECT * FROM suchprofilinfo");
-//		
-//	ResultSet result = prestmt.executeQuery();
-//		
-//	Vector<SuchprofilInfo> suchprofilinfos = new Vector<SuchprofilInfo>();
-//		
-//	while (result.next())
-//	{
-//		SuchprofilInfo suchprofilinfo = new SuchprofilInfo();
-//		suchprofilinfo.Profil(result.getString("email"));
-//		suchprofilinfo.setInfo(result.getStrin("infoid"));
-//		suchprofilinfo.setSuchprofil(result.getInt("suchprofilid"));
-//	
-//				
-//		suchprofilinfos.add(suchprofilinfo); 
-//	}
-//		
-//		return suchprofilinfos;
-//	
-//	}
+		PreparedStatement prestmt = con.prepareStatement("SELECT i.infoid, "
+				+ "i.value, e.eigenschaftid, e.eigenschaft"
+				+ "FROM info i JOIN eigenschaft e ON i.eigenschaftid = "
+				+ "e.eigenschaftid WHERE infoid = " + infoId);
+
+		ResultSet result = prestmt.executeQuery();
+		ProfilEigenschaft profileigenschaft = new ProfilEigenschaft();
+		
+		while(result.next()){
+			
+			Info info = new Info();
+			info.setEigenschaftId(result.getInt("eigenschaftid"));
+			info.setInfoid(result.getInt("infoid"));
+			info.setValue(result.getString("value"));
+			
+			Eigenschaft eigenschaft = new Eigenschaft();
+			eigenschaft.setEigenschaft(result.getString("eigenschaft"));
+			eigenschaft.setEigenschaftId(result.getInt("eigenschaftid"));
+
+			profileigenschaft.setInfo(info);
+			profileigenschaft.setEigenschaft(eigenschaft);
+			
+		}
+		
+		return profileigenschaft;
+		
+	}
+		
+	/**
+	 * Auslesen aller SuchprofilInfo-Objekte eines Suchprofils
+	 * @return
+	 * @throws Exception
+	 */
+	
+	public Vector <ProfilEigenschaft> getAllSuchprofilInfos(String email, String suchprofilname) throws Exception{
+		
+		Connection con = DBConnection.connection();
+		
+		PreparedStatement prestmt = con.prepareStatement("SELECT infoid FROM "
+				+ "suchprofilinfo WHERE email = '" + email + "' AND suchprofilname = '" + suchprofilname + "'");
+		
+		Vector<ProfilEigenschaft> suchprofilinfos = new Vector<ProfilEigenschaft>();
+		
+		ResultSet result = prestmt.executeQuery();
+		
+		while(result.next()){
+			
+			ProfilEigenschaft pi = getSuchprofilInfo(result.getInt("infoid"));
+			suchprofilinfos.add(pi);
+			
+		}
+		
+		return suchprofilinfos;
+		
+	}
+
 }

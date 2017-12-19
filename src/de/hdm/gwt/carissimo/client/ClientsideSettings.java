@@ -59,7 +59,6 @@ public class ClientsideSettings extends CommonSettings {
 		        }
 		      };
 
-		      reportGenerator.init(initReportGeneratorCallback);
 		    }
 
 		    return reportGenerator;

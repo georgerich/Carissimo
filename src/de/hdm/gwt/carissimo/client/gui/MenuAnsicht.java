@@ -15,6 +15,7 @@ public class MenuAnsicht extends Composite {
 	
 	public MenuAnsicht (HauptAnsicht main){
 		initWidget(hPanel);
+		this.hPanel.setBorderWidth(3);
 		this.main = main;
 	
 		
@@ -22,9 +23,9 @@ public class MenuAnsicht extends Composite {
 		buttonStartseite.addClickHandler(new StartseiteHandler());
 		this.hPanel.add(buttonStartseite);
 		
-		Button buttonProfil = new Button ("Mein Profil");
-		buttonProfil.addClickHandler(new ProfilHandler());
-		this.hPanel.add(buttonProfil);
+		Button buttonProfilSeite = new Button ("Mein Profil");
+		buttonProfilSeite.addClickHandler(new ProfilHandler());
+		this.hPanel.add(buttonProfilSeite);
 		
 		Button buttonEigenschaft = new Button ("Meine Eigenschaften");
 		buttonEigenschaft.addClickHandler(new EigenschaftHandler());
@@ -43,7 +44,7 @@ public class MenuAnsicht extends Composite {
 		 * Groesse fuer die Button wird angepasst
 		 */
 		buttonStartseite.setPixelSize(200, 40);
-		buttonProfil.setPixelSize(200, 40);
+		buttonProfilSeite.setPixelSize(200, 40);
 		buttonEigenschaft.setPixelSize(200, 40);
 		buttonMerkzettel.setPixelSize(200, 40);
 		buttonKontaksperre.setPixelSize(200, 40);
@@ -67,7 +68,7 @@ public class MenuAnsicht extends Composite {
 	private class ProfilHandler implements ClickHandler {
 
 		public void onClick(ClickEvent event) {
-			main.openProfile();
+			main.openProfilSeite();
 		}
 		
 	}

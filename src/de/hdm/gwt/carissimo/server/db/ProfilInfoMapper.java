@@ -2,12 +2,18 @@ package de.hdm.gwt.carissimo.server.db;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 import java.sql.Connection;
 //import com.google.cloud.sql.jdbc.Connection;
 //import com.google.cloud.sql.jdbc.PreparedStatement;
 
 import de.hdm.gwt.carissimo.shared.bo.ProfilInfo;
+import de.hdm.gwt.carissimo.shared.bo.Eigenschaft;
+import de.hdm.gwt.carissimo.shared.bo.Info;
+import de.hdm.gwt.carissimo.shared.bo.Profil;
+import de.hdm.gwt.carissimo.shared.ro.ProfilEigenschaft;
+import de.hdm.gwt.carissimo.shared.ro.ProfilInformation;
 
 public class ProfilInfoMapper
 {
@@ -75,29 +81,58 @@ public class ProfilInfoMapper
 		 delete.execute();
 	}
 		
-	//Auslesen aller ProfilInfo-Objekte
-	public Vector<ProfilInfo> getAllProfilInfos() throws Exception{
+	//Auslesen aller ProfilInfo-Objekte anhand der Email
+	public Vector<ProfilEigenschaft> getAllProfilInfos(String email) throws Exception{
 		
 	Connection con = (Connection) DBConnection.connection();
 	
 	PreparedStatement prestmt = con.prepareStatement(
-				"SELECT * FROM profilinfo");
+				"SELECT infoid FROM profilinfo WHERE email = '" + email + "'");
 		
 	ResultSet result = prestmt.executeQuery();
 		
-	Vector<ProfilInfo> profilinfos = new Vector<ProfilInfo>();
+	Vector<ProfilEigenschaft> profilinformationen = new Vector<ProfilEigenschaft>();
 		
 	while (result.next())
 	{
-		ProfilInfo profilinfo = new ProfilInfo();
-		profilinfo.setEmail(result.getString("email"));
-		profilinfo.setInfoid(result.getInt("infoid"));
-	
+		ProfilEigenschaft profileigenschaft = getAllProfilInfosByInfo(result.getInt("infoid"));
+		profilinformationen.add(profileigenschaft);
 				
-		profilinfos.add(profilinfo); 
 	}
 		
-		return profilinfos;
+		return profilinformationen;
 	
+	}
+	
+	//Auslesen aller Infos mit Eigenschaft anhand der infoId
+	public ProfilEigenschaft getAllProfilInfosByInfo(int infoId) throws Exception {
+		
+		Connection con = (Connection)DBConnection.connection();
+		
+		PreparedStatement prestmt = (PreparedStatement) con.prepareStatement("SELECT i.value,"
+				+"i.infoid, e.eigenschaftid, e.eigenschaft "
+				+"FROM info i JOIN eigenschaft e ON i.eigenschaftid = "
+				+"e.eigenschaftid WHERE infoid = " +infoId);
+		
+		ResultSet result = prestmt.executeQuery();
+		
+		ProfilEigenschaft profileigenschaft = new ProfilEigenschaft();
+		while(result.next()){
+			
+			Info info = new Info();
+			info.setEigenschaftId(result.getInt("eigenschaftid"));
+			info.setInfoid(result.getInt("infoid"));
+			info.setValue("value");
+			
+			Eigenschaft eigenschaft = new Eigenschaft();
+			eigenschaft.setEigenschaftId(result.getInt("eigenschaftid"));
+			eigenschaft.setEigenschaft(result.getString("eigenschaft"));
+			
+			profileigenschaft.setInfo(info);
+			profileigenschaft.setEigenschaft(eigenschaft);
+			
+		}
+		
+		return profileigenschaft;
 	}
 }

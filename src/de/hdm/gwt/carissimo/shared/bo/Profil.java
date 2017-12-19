@@ -34,8 +34,8 @@ public class Profil extends BusinessObject {
 	// Die Haarfarbe des Teilnehmers
 	private String haarfarbe;
 	
-	// Die koepergroesse des Teilnehmers
-	private int koepergroesse;
+	// Die koerpergroesse des Teilnehmers
+	private int koerpergroesse;
 	
 	// Angaben zu Raucher oder Nicht-Raucher
 	private String raucher;
@@ -142,15 +142,15 @@ public class Profil extends BusinessObject {
 	/**
 	 * Auslesen der Koepergroesse
 	 */
-	public int getKoepergroesse() {
-		return koepergroesse;
+	public int getKoerpergroesse() {
+		return koerpergroesse;
 	}
 	
 	/**
-	 * Setzen der Koepergroesse
+	 * Setzen der Koerpergroesse
 	 */
-	public void setKoepergroesse(int koepergroesse) {
-		this.koepergroesse = koepergroesse;
+	public void setKoerpergroesse(int koerpergroesse) {
+		this.koerpergroesse = koerpergroesse;
 	}
 	
 	/**

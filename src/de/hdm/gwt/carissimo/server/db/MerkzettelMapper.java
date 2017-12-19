@@ -109,14 +109,14 @@ public class MerkzettelMapper {
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement select = con.prepareStatement(
-				"SELECT gemerktesProfil FROM merkzettel WHERE merkendesProfil = '"
+				"SELECT gemerkteemail FROM merkzettel WHERE email = '"
 				+ email + "'");
 		
 		ResultSet r = select.executeQuery();
 		Vector<Merkzettel> merkzettel = new Vector<Merkzettel>();
 		while (r.next()) {
 			Merkzettel m = new Merkzettel();
-			m.setGemerktesProfil(r.getString("gemerktesProfil"));
+			m.setGemerktesProfil(r.getString("gemerkteemail"));
 			m.setMerkendesProfil(email);
 			merkzettel.add(m);
 		}
