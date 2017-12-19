@@ -4,24 +4,25 @@ import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-
-import de.hdm.gwt.carissimo.shared.ReportGeneratorService;
-
+import de.hdm.gwt.carissimo.server.db.BesuchMapper;
+import de.hdm.gwt.carissimo.server.db.EigenschaftMapper;
+import de.hdm.gwt.carissimo.server.db.KontaktsperreMapper;
+import de.hdm.gwt.carissimo.server.db.MerkzettelMapper;
 import de.hdm.gwt.carissimo.server.db.ProfilInfoMapper;
 import de.hdm.gwt.carissimo.server.db.ProfilMapper;
 import de.hdm.gwt.carissimo.server.db.SuchprofilInfoMapper;
 import de.hdm.gwt.carissimo.server.db.SuchprofilMapper;
-import de.hdm.gwt.carissimo.server.db.BesuchMapper;
-import de.hdm.gwt.carissimo.server.db.KontaktsperreMapper;
-import de.hdm.gwt.carissimo.server.db.MerkzettelMapper;
+import de.hdm.gwt.carissimo.shared.ReportGeneratorService;
 import de.hdm.gwt.carissimo.shared.bo.Besuch;
+import de.hdm.gwt.carissimo.shared.bo.Eigenschaft;
 import de.hdm.gwt.carissimo.shared.bo.Kontaktsperre;
 import de.hdm.gwt.carissimo.shared.bo.Merkzettel;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
 import de.hdm.gwt.carissimo.shared.bo.Suchprofil;
-import de.hdm.gwt.carissimo.shared.bo.SuchprofilInfo;
-
+import de.hdm.gwt.carissimo.shared.ro.ProfilAttribut;
 import de.hdm.gwt.carissimo.shared.ro.ProfilEigenschaft;
+import de.hdm.gwt.carissimo.shared.ro.ProfilReport;
+
 
 public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportGeneratorService{
 	
@@ -32,6 +33,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	private BesuchMapper bMapper = BesuchMapper.besuchMapper();
 	private MerkzettelMapper mMapper = MerkzettelMapper.merkzettelMapper();
 	private KontaktsperreMapper kMapper = KontaktsperreMapper.kontaktsperreMapper();
+	private EigenschaftMapper eMapper = EigenschaftMapper.eigenschaftMapper();
 	
 	
 	
@@ -41,6 +43,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	{
 		user = p;
 	}
+	
+	
 	
 	/**
 	 * Auslesen aller Profile mit Ausnahmen auf:
@@ -113,6 +117,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	}
 	
 	
+	
+	
 	/**
 	 * Auslesen aller Suchprofile
 	 * @return Vector<Suchprofil>
@@ -123,6 +129,60 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			sp.setProfileigenschaften(spiMapper.getAllSuchprofilInfos(user.getEmail(), sp.getSuchprofilname()));
 		}
 		return suchprofile;
+	}
+	
+	
+	/**
+	 * ProfilReport fuer ein Profil p
+	 * @throws Exception 
+	 */
+	
+	public ProfilReport createProfilReport (Profil p) throws Exception {
+		
+		ProfilReport profilreport = new ProfilReport();
+		
+		//Namen in den Titel einfügen
+		profilreport.setTitle(p.getVorname() + " " + p.getNachname());
+		//ProfilAttribut Geschlecht anlegen + Geschlecht aus Profil abrufen
+		ProfilAttribut geschlecht = new ProfilAttribut();
+		geschlecht.setName("Geschlecht");
+		geschlecht.setValue(p.getGeschlecht());
+		//ProfilAttribut Haarfarbe anlegen + Haarfarbe aus Profil abrufen
+		ProfilAttribut haarfarbe = new ProfilAttribut();
+		haarfarbe.setName("Haarfarbe");
+		haarfarbe.setValue(p.getHaarfarbe());
+		//ProfilAttribut Religion anlegen + aus Profil abrufen
+		ProfilAttribut religion = new ProfilAttribut();
+		religion.setName("Religion");
+		religion.setValue(p.getReligion());
+		//ProfilAttribut Raucher anlegen + aus Profil abrufen
+		ProfilAttribut raucher = new ProfilAttribut();
+		raucher.setName("Raucher");
+		raucher.setValue(p.getRaucher());
+		//ProfilAttribut Koerpergroesse anlegen + aus Profil abrufen
+		ProfilAttribut koerpergroesse = new ProfilAttribut();
+		koerpergroesse.setName("Koerpergroesse");
+		koerpergroesse.setValue(Integer.toString(p.getKoerpergroesse()));
+		//ProfilAttribut Geburtsdatum anlegen + aus Profil abrufen
+		ProfilAttribut geburtsdatum = new ProfilAttribut();
+		geburtsdatum.setName("Geburtsdatum");
+		geburtsdatum.setValue(String.valueOf(p.getGeburtsdatum()));
+		
+		//Hinzufuegen der Attribute zum ProfilReport
+		profilreport.addAttribut(geschlecht);
+		profilreport.addAttribut(haarfarbe);
+		profilreport.addAttribut(religion);
+		profilreport.addAttribut(raucher);
+		profilreport.addAttribut(koerpergroesse);
+		profilreport.addAttribut(geburtsdatum);
+		
+		//Hinzufuegen der Eigenschaften
+		Vector<ProfilEigenschaft> profilinformationen = piMapper.getAllProfilInfos(p.getEmail());
+		for (int i = 0; i < profilinformationen.size(); i++) {
+			profilreport.addEigenschaft(profilinformationen.elementAt(i));
+		}
+		
+		return profilreport;
 	}
 	
 	
