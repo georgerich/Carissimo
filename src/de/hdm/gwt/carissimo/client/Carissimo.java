@@ -77,7 +77,7 @@ public class Carissimo implements EntryPoint {
 			private void carissimo() {
 				
 				HauptAnsicht carissimoPage = new HauptAnsicht ();
-				RootPanel.get().add(carissimoPage);
+				RootPanel.get("contentBox").add(carissimoPage);
 
 		}
 
