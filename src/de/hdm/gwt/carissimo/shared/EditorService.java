@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.RemoteService;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import de.hdm.gwt.carissimo.shared.bo.Profil;
 
@@ -20,6 +21,7 @@ import de.hdm.gwt.carissimo.shared.bo.Profil;
  *
  */
 
+@RemoteServiceRelativePath("editor")
 public interface EditorService extends RemoteService {
 	
 	// Profil: 
@@ -38,34 +40,31 @@ public interface EditorService extends RemoteService {
 	
 	Vector<Profil> getAllProfile() throws Exception;
 	
-	//Eigenschaft:
 	
-	void insertEigenschaft(int eigenschaftId, String eigenschaft) throws Exception;
 	
-	//Info:
+	// Eigenschaft, Auswahl und Info:
 	
-	void insertInfo (int infoId, int eigenschaftId, String value) throws Exception;
 	
-	void updateInfo (int infoId, int eigenschaftId, String value) throws Exception;
 	
-	void deleteInfo() throws Exception;
+	// Suchprofil & SuchprofilInfo: 
+	
+	
+	
+	// Besuch:
+	
+	
+	
+	// Merkzettel:
+	
+	
+	
+	// Kontaktsperre: 
+
 
 	
-	//Auswahleigenschaft:
+
 	
-	void insertAuswahleigenschaft (int auswahlId, int eigenschaftId, String value) throws Exception;
-	
-	void updateAuswahleigenschaft (int auswahlId, int eigenschaftId, String value) throws Exception;
-	
-	void deleteAuswahleigenschaft() throws Exception;
-	
-	//Freitexteigenschaft:
-	
-	void insertFreitexteigenschaft (int freitextId, int eigenschaftId, String value) throws Exception;
-	
-	void updateFreitexteigenschaft (int freitextId, int eigenschaftId, String value) throws Exception;
-	
-	void deleteFreitexteigenschaft() throws Exception;
+
 
 	
 

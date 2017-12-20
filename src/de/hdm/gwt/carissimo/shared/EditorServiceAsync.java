@@ -6,6 +6,7 @@ import java.util.Vector;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import de.hdm.gwt.carissimo.shared.bo.Profil;
+import de.hdm.gwt.carissimo.shared.bo.Suchprofil;
 
 /**
  * Um ein RPC-Interface zu definieren, muessen drei Komponenten geschrieben werden: 
@@ -33,46 +34,42 @@ public interface EditorServiceAsync {
 			AsyncCallback<Void> callback);
 
 	void deleteProfil(AsyncCallback<Void> callback);
-
-	
-	//Eigenschaft:
-	
-	void insertEigenschaft(int eigenschaftId, String eigenschaft, AsyncCallback<Void> callback);
-
-	//Info:
-	
-	void insertInfo(int infoId, int eigenschaftId, String value, AsyncCallback<Void> callback);
-
-	void updateInfo(int infoId, int eigenschaftId, String value, AsyncCallback<Void> callback);
-
-	void deleteInfo(AsyncCallback<Void> callback);
-
-	
-	//Auswahleigenschaft:
-	
-	void insertAuswahleigenschaft(int auswahlId, int eigenschaftId, String value, AsyncCallback<Void> callback);
-
-	void updateAuswahleigenschaft(int auswahlId, int eigenschaftId, String value, AsyncCallback<Void> callback);
-
-	void deleteAuswahleigenschaft(AsyncCallback<Void> callback);
-	
-	//Freitexteigenschaft:
-
-	void insertFreitexteigenschaft(int freitextId, int eigenschaftId, String value, AsyncCallback<Void> callback);
-
-	void updateFreitexteigenschaft(int freitextId, int eigenschaftId, String value, AsyncCallback<Void> callback);
-
-	void deleteFreitexteigenschaft(AsyncCallback<Void> callback);
-
-	
-
-	
 	
 	void getOwnProfil(AsyncCallback<Profil> callback);
 	
 	void getProfil(String email, AsyncCallback<Profil> callback);
 	
 	void getAllProfile(AsyncCallback<Vector<Profil>> callback);
+
+	
+	// Eigenschaft, Auswahl und Info:
+	
+	
+	
+	// Suchprofil & SuchprofilInfo: 
+	
+	void insertSuchprofil(String suchprofilname, String geschlecht, int minalter, int maxalter, int mingroesse,
+			int maxgroesse, String haarfarbe, String religion, String raucher, AsyncCallback<Void> callback);
+
+	void updateSuchprofil(String suchprofilname, String geschlecht, int minalter, int maxalter, int mingroesse,
+			int maxgroesse, String haarfarbe, String religion, String raucher, AsyncCallback<Void> callback);
+
+	void deleteSuchprofil(int suchprofilid, AsyncCallback<Void> callback);
+
+	void getSuchprofil(int suchprofilid, AsyncCallback<Suchprofil> callback);
+
+	void getAllSuchprofile(String email, AsyncCallback<Vector<Suchprofil>> callback);
+	
+	
+	// Besuch:
+	
+	
+	
+	// Merkzettel:
+	
+	
+	
+	// Kontaktsperre: 
 
 
 	

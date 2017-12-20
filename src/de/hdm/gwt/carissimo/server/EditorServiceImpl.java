@@ -20,6 +20,7 @@ import de.hdm.gwt.carissimo.shared.bo.Besuch;
 import de.hdm.gwt.carissimo.shared.bo.Kontaktsperre;
 import de.hdm.gwt.carissimo.shared.bo.Merkzettel;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
+import de.hdm.gwt.carissimo.shared.bo.Suchprofil;
 import de.hdm.gwt.carissimo.shared.bo.Eigenschaft;
 import de.hdm.gwt.carissimo.shared.bo.Info;
 import de.hdm.gwt.carissimo.shared.bo.Auswahleigenschaft;
@@ -56,22 +57,9 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	private MerkzettelMapper mMapper = MerkzettelMapper.merkzettelMapper();
 	private KontaktsperreMapper kMapper = KontaktsperreMapper.kontaktsperreMapper();
 
-	
 	// Instanzvariable: Eingeloggter User
 	private Profil user;
-	
-	//Instanzvariable: Eigenschaft
-	private Eigenschaft attribute;
-	
-	//Instanzvariable: Info
-	private Info information;
-	
-	//Instanzvariable Auswahleigenschaft
-	private Auswahleigenschaft choiceattribute;
-	
-	//Instanzvariable Freitexteigenschaft
-	private Freitexteigenschaft freeattribute;
-	
+
 	
 	/*****************************************************************************************************
 	 * START: Profil
@@ -229,128 +217,113 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	/*****************************************************************************************************
 	 * START: Eigenschaft, Auswahl & Info
 	 ****************************************************************************************************/
-	
-	public void setEigenschaft (Eigenschaft e) {
-		attribute = e;
-	}
-	
-	public void setInfo (Info i){
-		information = i;
-	}
-	
-	public void setChoiceAttrubute (Auswahleigenschaft a){
-		choiceattribute = a;
-	}
-	
-	public void setFreeAttribute (Freitexteigenschaft f){
-		freeattribute = f;
-	}
-	
-	
-	/**
-	 * Einfuegen von Eigenschaft, Info, Auswahleigenschaft & Freitexteigenschaft
-	 * @param eigenschaftid
-	 * @param eigenschaft
-	 * @throws Exception
-	 */
-	
-	public void insertEigenschaft(int eigenschaftid, String eigenschaft) throws Exception{
-		
-		Eigenschaft e = new Eigenschaft();
-		
-		e.setEigenschaftId(eigenschaftid);
-		e.setEigenschaft(eigenschaft);
-		eMapper.insertEigenschaft(e);	
-	}
-	
-	public void insertInfo (int infoId, int eigenschaftId, String value) throws Exception{
-		
-		Info i = new Info();
-		
-		i.setInfoid(infoId);
-		i.setEigenschaftId(eigenschaftId);
-		i.setValue(value);
-		iMapper.insertInfo(i);
-	}
-	
-	public void insertAuswahleigenschaft (int auswahlId, int eigenschaftId, String value) throws Exception {
-		
-		Auswahleigenschaft a = new Auswahleigenschaft();
-		
-		a.setAuswahlId(auswahlId);
-		a.setEigenschaftId(eigenschaftId);
-		a.setValue(value);
-		aMapper.insertAuswahleigenschaft(a);
-		
-	}
-	
-	public void insertFreitexteigenschaft (int freitextId, int eigenschaftId, String value) throws Exception{
-		
-		Freitexteigenschaft f = new Freitexteigenschaft();
-		
-		f.setFreitextId(freitextId);
-		f.setEigenschaftId(eigenschaftId);
-		f.setValue(value);
-		fMapper.insertFreitexteigenschaft(f);
-	}
-	
-	
-	/**
-	 * Aktualisieren von Info, Auswahleigenschaft & Freitexteigenschaft
-	 * @param infoId
-	 * @param eigenschaftId
-	 * @param value
-	 * @throws Exception
-	 */
-	
-	public void updateInfo (int infoId, int eigenschaftId, String value) throws Exception {
-		
-		Info i = new Info();
-		
-		i.setInfoid(infoId);
-		i.setEigenschaftId(eigenschaftId);
-		i.setValue(value);
-		iMapper.updateInfo(i);
-	}
-	
-	public void updateAuswahleigenschaft (int auswahlId, int eigenschaftId, String value) throws Exception {
-		
-		Auswahleigenschaft a = new Auswahleigenschaft();
-		
-		a.setAuswahlId(auswahlId);
-		a.setEigenschaftId(eigenschaftId);
-		a.setValue(value);
-		aMapper.updateAuswahleigenschaft(a);
-		
-	}
-	
-	public void updateFreitexteigenschaft (int freitextId, int eigenschaftId, String value) throws Exception {
-		
-		Freitexteigenschaft f = new Freitexteigenschaft();
-		
-		f.setFreitextId(freitextId);
-		f.setEigenschaftId(eigenschaftId);
-		f.setValue(value);
-		fMapper.updateFreitexteigenschaft(f);
-	}
 
-	/**
-	 * Loeschen von Info, Auswahleigenschaft & Freitexteigenschaft
-	 * @throws Exception
-	 */
+	// BAUSTELLE
 	
-	public void deleteInfo() throws Exception {
-		iMapper.deleteInfo(information);
-	}
-	
-	
-	public void deleteAuswahleigenschaft () throws Exception {
-		aMapper.deleteAuswahleigenschaft(choiceattribute);
-	}
-	
-	public void deleteFreitexteigenschaft () throws Exception {
-		fMapper.deleteFreitexteigenschaft(freeattribute);
-	}
+//	/**
+//	 * Einfuegen von Eigenschaft, Info, Auswahleigenschaft & Freitexteigenschaft
+//	 * @param eigenschaftid
+//	 * @param eigenschaft
+//	 * @throws Exception
+//	 */
+//	
+//	public void insertEigenschaft(int eigenschaftid, String eigenschaft) throws Exception{
+//		
+//		Eigenschaft e = new Eigenschaft();
+//		
+//		e.setEigenschaftId(eigenschaftid);
+//		e.setEigenschaft(eigenschaft);
+//		eMapper.insertEigenschaft(e);	
+//	}
+//	
+//	public void insertInfo (int infoId, int eigenschaftId, String value) throws Exception{
+//		
+//		Info i = new Info();
+//		
+//		i.setInfoid(infoId);
+//		i.setEigenschaftId(eigenschaftId);
+//		i.setValue(value);
+//		iMapper.insertInfo(i);
+//	}
+//	
+//	public void insertAuswahleigenschaft (int auswahlId, int eigenschaftId, String value) throws Exception {
+//		
+//		Auswahleigenschaft a = new Auswahleigenschaft();
+//		
+//		a.setAuswahlId(auswahlId);
+//		a.setEigenschaftId(eigenschaftId);
+//		a.setValue(value);
+//		aMapper.insertAuswahleigenschaft(a);
+//		
+//	}
+//	
+//	public void insertFreitexteigenschaft (int freitextId, int eigenschaftId, String value) throws Exception{
+//		
+//		Freitexteigenschaft f = new Freitexteigenschaft();
+//		
+//		f.setFreitextId(freitextId);
+//		f.setEigenschaftId(eigenschaftId);
+//		f.setValue(value);
+//		fMapper.insertFreitexteigenschaft(f);
+//	}
+//	
+//	
+//	/**
+//	 * Aktualisieren von Info, Auswahleigenschaft & Freitexteigenschaft
+//	 * @param infoId
+//	 * @param eigenschaftId
+//	 * @param value
+//	 * @throws Exception
+//	 */
+//	
+//	public void updateInfo (int infoId, int eigenschaftId, String value) throws Exception {
+//		
+//		Info i = new Info();
+//		
+//		i.setInfoid(infoId);
+//		i.setEigenschaftId(eigenschaftId);
+//		i.setValue(value);
+//		iMapper.updateInfo(i);
+//	}
+//	
+//	public void updateAuswahleigenschaft (int auswahlId, int eigenschaftId, String value) throws Exception {
+//		
+//		Auswahleigenschaft a = new Auswahleigenschaft();
+//		
+//		a.setAuswahlId(auswahlId);
+//		a.setEigenschaftId(eigenschaftId);
+//		a.setValue(value);
+//		aMapper.updateAuswahleigenschaft(a);
+//		
+//	}
+//	
+//	public void updateFreitexteigenschaft (int freitextId, int eigenschaftId, String value) throws Exception {
+//		
+//		Freitexteigenschaft f = new Freitexteigenschaft();
+//		
+//		f.setFreitextId(freitextId);
+//		f.setEigenschaftId(eigenschaftId);
+//		f.setValue(value);
+//		fMapper.updateFreitexteigenschaft(f);
+//	}
+//
+//	/**
+//	 * Loeschen von Info, Auswahleigenschaft & Freitexteigenschaft
+//	 * @throws Exception
+//	 */
+//	
+//	public void deleteInfo() throws Exception {
+//		iMapper.deleteInfo(information);
+//	}
+//	
+//	
+//	public void deleteAuswahleigenschaft () throws Exception {
+//		aMapper.deleteAuswahleigenschaft(choiceattribute);
+//	}
+//	
+//	public void deleteFreitexteigenschaft () throws Exception {
+//		fMapper.deleteFreitexteigenschaft(freeattribute);
+//	}
 	
 	/***************************************************************************************************** 
 	 * ENDE: Eigenschaft, Auswahl & Info
@@ -359,7 +332,83 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * START: Suchprofil & SuchprofilInfo
 	 ****************************************************************************************************/
 	
-	// Methode (1)
+	/**
+	 * Suchprofil anlegen
+	 * @param Suchprofilattribute
+	 */
+	public void insertSuchprofil(String suchprofilname, String geschlecht, int minalter, int maxalter, int mingroesse, int maxgroesse,
+			String haarfarbe, String religion, String raucher) throws Exception {
+		
+		Suchprofil sp = new Suchprofil();
+		
+		sp.setSuchprofilname(suchprofilname);
+		sp.setGeschlecht(geschlecht);
+		sp.setAlterMin(minalter);
+		sp.setAlterMax(maxalter);
+		sp.setKoerpergroesseMin(mingroesse);
+		sp.setKoerpergroesseMax(maxgroesse);
+		sp.setHaarfarbe(haarfarbe);
+		sp.setReligion(religion);
+		sp.setRaucher(raucher);
+		sp.setEmail(user.getEmail());
+		
+		spMapper.insertSuchprofil(sp);
+	}
+	
+	
+	/**
+	 * Suchprofil updaten
+	 */
+	public void updateSuchprofil(String suchprofilname, String geschlecht, int minalter, int maxalter, int mingroesse, int maxgroesse,
+			String haarfarbe, String religion, String raucher) throws Exception {
+		
+		Suchprofil sp = new Suchprofil();
+		
+		sp.setSuchprofilname(suchprofilname);
+		sp.setGeschlecht(geschlecht);
+		sp.setAlterMin(minalter);
+		sp.setAlterMax(maxalter);
+		sp.setKoerpergroesseMin(mingroesse);
+		sp.setKoerpergroesseMax(maxgroesse);
+		sp.setHaarfarbe(haarfarbe);
+		sp.setReligion(religion);
+		sp.setRaucher(raucher);
+		sp.setEmail(user.getEmail());
+		
+		spMapper.updateSuchprofil(sp);
+	}	
+	
+	
+	/**
+	 * Suchprofil löschen
+	 */
+	public void deleteSuchprofil(int suchprofilid) throws Exception {
+		Suchprofil sp = new Suchprofil();
+		sp.setSuchprofilid(suchprofilid);
+		spMapper.deleteSuchprofil(sp);
+	}
+	
+	
+	/**
+	 * Auslesen des Suchprofils
+	 */
+	public Suchprofil getSuchprofil(int suchprofilid) throws Exception {
+		return spMapper.getSuchprofil(suchprofilid);
+	}
+	
+	
+	/**
+	 * Auslesen aller angelegten Suchprofile des users
+	 */
+	public Vector<Suchprofil> getAllSuchprofile(String email) throws Exception {
+		return spMapper.getSuchprofile(email);
+	}
+	
+	
+	/**
+	 * ...
+	 */
+	
 	
 	// Methode (2)
 

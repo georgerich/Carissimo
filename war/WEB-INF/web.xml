@@ -9,12 +9,34 @@
 		<servlet-name>loginService</servlet-name>
 		<servlet-class>de.hdm.gwt.carissimo.server.login.LoginServiceImpl</servlet-class>
 		</servlet>	
+		
 		<servlet-mapping>
 		<servlet-name>loginService</servlet-name>
 		<url-pattern>/carissimo/login</url-pattern>
 		</servlet-mapping>
+		
+		
+		<servlet>
+		<servlet-name>editorService</servlet-name>
+		<servlet-class>de.hdm.gwt.carissimo.server.EditorServiceImpl</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+		<servlet-name>editorService</servlet-name>
+		<url-pattern>/carissimo/editor</url-pattern>
+		</servlet-mapping>
+		
+		
+		<servlet>
+		<servlet-name>reportService</servlet-name>
+		<servlet-class>de.hdm.gwt.carissimo.server.report.ReportServiceImpl</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+		<servlet-name>reportService</servlet-name>
+		<url-pattern>/carissimo/report</url-pattern>
+		</servlet-mapping>
 
-  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>Carissimo.html</welcome-file>

@@ -26,7 +26,7 @@ public class Suchprofil extends BusinessObject {
 	 */
 	
 	private int suchprofilId;
-	private String suchprofilname, haarfarbe, raucher, religion, geschlecht;
+	private String suchprofilname, haarfarbe, raucher, religion, geschlecht, email;
 	private int koerpergroesseMin, koerpergroesseMax, alterMin, alterMax;
 	private Vector <ProfilEigenschaft> profileigenschaften;
 	
@@ -94,6 +94,12 @@ public class Suchprofil extends BusinessObject {
 	}
 	public void setAlterMax(int alterMax) {
 		this.alterMax = alterMax;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public Vector<ProfilEigenschaft> getProfileigenschaften() {
 		return profileigenschaften;

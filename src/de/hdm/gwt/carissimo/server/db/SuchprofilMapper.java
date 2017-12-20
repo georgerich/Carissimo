@@ -60,26 +60,100 @@ public class SuchprofilMapper {
 	 * @param sp
 	 * @throws Exception
 	 */
-	public void insertSuchprofil(Suchprofil sb) throws Exception {
+	public void insertSuchprofil(Suchprofil sp) throws Exception {
 		
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
-				"INSERT INTO suchprofil (suchprofilid, suchprofilname, geschlecht, minaler, maxaltrer, mingroesse, maxgroesse, haarfarbe, religion, raucher) VALUES ('"
-				+ sb.getSuchprofilId() + "', '"
-				+ sb.getSuchprofilname() + "', '"
-				+ sb.getGeschlecht() + "', '"
-				+ sb.getAlterMin() + "', '"
-				+ sb.getAlterMax() + "', '"
-				+ sb.getKoerpergroesseMin() + "', '"
-				+ sb.getKoerpergroesseMax() + "', '"
-				+ sb.getHaarfarbe() + "', '"
-				+ sb.getReligion() + "', '"
-				+ sb.getRaucher() + "')");
+				"INSERT INTO suchprofil (suchprofilid, suchprofilname, geschlecht, minalter, maxaltrer, mingroesse, maxgroesse, haarfarbe, religion, raucher, email) VALUES ('"
+				+ sp.getSuchprofilId() + "', '"
+				+ sp.getSuchprofilname() + "', '"
+				+ sp.getGeschlecht() + "', '"
+				+ sp.getAlterMin() + "', '"
+				+ sp.getAlterMax() + "', '"
+				+ sp.getKoerpergroesseMin() + "', '"
+				+ sp.getKoerpergroesseMax() + "', '"
+				+ sp.getHaarfarbe() + "', '"
+				+ sp.getReligion() + "', '"
+				+ sp.getRaucher() + "', '"
+				+ sp.getEmail()	+ "')");
 		
 		prestmt.execute();	
 	}
 		
+	/**
+	 * Presistente Speicherung einer Ver�nderung in einem <code>Suchproifl</code>-Objekt eines Benutzers.
+	 * 
+	 * @param sp
+	 * @throws Exception
+	 */
+	public void updateSuchprofil(Suchprofil sp) throws Exception {
+		
+		Connection con = (Connection) DBConnection.connection();
+		
+		PreparedStatement prestmt = con.prepareStatement(
+				"UPDATE suchprofil SET "
+				+ "suchprofilname = '" + sp.getSuchprofilname() + "', "
+				+ "minalter = '" + sp.getAlterMin() + "', "
+				+ "maxalter = '" + sp.getAlterMax() + "', "
+				+ "mingroesse = '" + sp.getKoerpergroesseMin() + "', "
+				+ "maxgroesse = '" + sp.getKoerpergroesseMax() + "', "
+				+ "haarfarbe = '" + sp.getHaarfarbe() + "', "
+				+ "religion = '" + sp.getReligion() + "', "
+				+ "raucher = '" + sp.getRaucher() + "' "
+				+ "email = '" + sp.getEmail() + "' "
+				+ "WHERE suchprofilid = '" + sp.getSuchprofilId());
+				
+		prestmt.execute();
+	}
+
+	/**
+	 * L�schen eines <code>Suchprofil</code>-Objekts.
+	 * 
+	 * @param sp
+	 * @throws Exception
+	 */
+	public void deleteSuchprofil(Suchprofil sp) throws Exception{
+		
+		Connection con = (Connection) DBConnection.connection();
+		
+		PreparedStatement prestmt = con.prepareStatement(
+				"DELETE FROM suchprofil WHERE suchprofilid = '" 
+				+ sp.getSuchprofilId() + "'");
+		prestmt.execute();
+	}
+
+	/**
+	 * Auslesen eines bestimmten <code>Suchprofil</code>-Objekts eines Benutzers.
+	 * 	
+	 * @param suchprofilId
+	 * @return DAS Suchprofil
+	 * @throws Exception
+	 */
+	public Suchprofil getSuchprofil(int suchprofilId) throws Exception {
+		
+		Connection con = (Connection) DBConnection.connection();
+		
+		PreparedStatement prestmt = con.prepareStatement(
+				"SELECT * FROM suchprofil WHERE suchprofilid = '"
+				+ suchprofilId + "'");
+				
+		ResultSet r = prestmt.executeQuery();
+		Suchprofil sp = new Suchprofil();
+		while(r.next()) {
+			sp.setSuchprofilid(r.getInt("suchprofilid"));
+			sp.setSuchprofilname(r.getString("suchprofilname"));
+			sp.setAlterMin(r.getInt("minalter"));
+			sp.setAlterMax(r.getInt("maxalter"));
+			sp.setKoerpergroesseMin(r.getInt("mingroesse"));
+			sp.setKoerpergroesseMax(r.getInt("maxgroesse"));
+			sp.setHaarfarbe(r.getString("haarfarbe"));
+			sp.setReligion(r.getString("religion"));
+			sp.setRaucher(r.getString("raucher"));
+		}
+		return sp;
+	}
+
 	/**
 	 * Auslesen aller <code>Suchprofil</code>-Objekte bezogen auf ein Profil.
 	 * 
@@ -113,77 +187,5 @@ public class SuchprofilMapper {
 			suchprofile.add(sp);	
 		}
 		return suchprofile;	
-	}
-		
-	/**
-	 * Auslesen eines bestimmten <code>Suchprofil</code>-Objekts eines Benutzers.
-	 * 	
-	 * @param suchprofilId
-	 * @return DAS Suchprofil
-	 * @throws Exception
-	 */
-	public Suchprofil getSuchprofil(int suchprofilId) throws Exception {
-		
-		Connection con = (Connection) DBConnection.connection();
-		
-		PreparedStatement prestmt = con.prepareStatement(
-				"SELECT * FROM suchprofil WHERE suchprofilid = '"
-				+ suchprofilId + "'");
-		
-		prestmt.execute();
-		
-		ResultSet r = prestmt.executeQuery();
-		Suchprofil sp = new Suchprofil();
-		sp.setSuchprofilid(r.getInt("suchprofilid"));
-		sp.setSuchprofilname(r.getString("suchprofilname"));
-		sp.setAlterMin(r.getInt("minalter"));
-		sp.setAlterMax(r.getInt("maxalter"));
-		sp.setKoerpergroesseMin(r.getInt("mingroesse"));
-		sp.setKoerpergroesseMax(r.getInt("maxgroesse"));
-		sp.setHaarfarbe(r.getString("haarfarbe"));
-		sp.setReligion(r.getString("religion"));
-		sp.setRaucher(r.getString("raucher"));
-		
-		return sp;
-	}
-	
-	/**
-	 * Presistente Speicherung einer Ver�nderung in einem <code>Suchproifl</code>-Objekt eines Benutzers.
-	 * 
-	 * @param sp
-	 * @throws Exception
-	 */
-	public void updateSuchprofil(Suchprofil sp) throws Exception {
-		
-		Connection con = (Connection) DBConnection.connection();
-		
-		PreparedStatement prestmt = con.prepareStatement(
-				"UPDATE suchprofil SET "
-				+ "suchprofilname = '" + sp.getSuchprofilname() + "', "
-				+ "minalter = '" + sp.getAlterMin() + "', "
-				+ "maxalter = '" + sp.getAlterMax() + "', "
-				+ "mingroesse = '" + sp.getKoerpergroesseMin() + "', "
-				+ "maxgroesse = '" + sp.getKoerpergroesseMax() + "', "
-				+ "haarfarbe = '" + sp.getHaarfarbe() + "', "
-				+ "religion = '" + sp.getReligion() + "', "
-				+ "raucher = '" + sp.getRaucher() + "'");
-				
-		prestmt.execute();
-	}
-	
-	/**
-	 * L�schen eines <code>Suchprofil</code>-Objekts.
-	 * 
-	 * @param sp
-	 * @throws Exception
-	 */
-	public void deleteSuchprofil (Suchprofil sp) throws Exception{
-		
-		Connection con = (Connection) DBConnection.connection();
-		
-		PreparedStatement prestmt = con.prepareStatement(
-				"DELETE FROM suchprofil WHERE suchprofilname = '" 
-				+ sp.getSuchprofilId() + "'");
-		prestmt.execute();
 	}
 }
