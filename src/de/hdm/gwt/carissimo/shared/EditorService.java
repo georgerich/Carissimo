@@ -6,7 +6,10 @@ import java.util.Vector;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
+import de.hdm.gwt.carissimo.shared.bo.Auswahleigenschaft;
+import de.hdm.gwt.carissimo.shared.bo.Eigenschaft;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
+import de.hdm.gwt.carissimo.shared.bo.Suchprofil;
 
 /**
  * Um ein RPC-Interface zu definieren, muessen drei Komponenten geschrieben werden: 
@@ -44,10 +47,25 @@ public interface EditorService extends RemoteService {
 	
 	// Eigenschaft, Auswahl und Info:
 	
+	Vector<Eigenschaft> getEigenschaften() throws Exception;
+	
+	Vector<Auswahleigenschaft> getAuswahl(Eigenschaft e) throws Exception;
+	
 	
 	
 	// Suchprofil & SuchprofilInfo: 
 	
+	void insertSuchprofil(String suchprofilname, String geschlecht, int minalter, int maxalter, int mingroesse, int maxgroesse,
+			String haarfarbe, String religion, String raucher) throws Exception;
+	
+	void updateSuchprofil(String suchprofilname, String geschlecht, int minalter, int maxalter, int mingroesse, int maxgroesse,
+			String haarfarbe, String religion, String raucher) throws Exception;
+	
+	void deleteSuchprofil(int suchprofilid) throws Exception;
+	
+	Suchprofil getSuchprofil(int suchprofilid) throws Exception;
+	
+	public Vector<Suchprofil> getAllSuchprofile(String email) throws Exception;
 	
 	
 	// Besuch:

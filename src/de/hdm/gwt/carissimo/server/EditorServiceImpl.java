@@ -218,112 +218,26 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * START: Eigenschaft, Auswahl & Info
 	 ****************************************************************************************************/
 
-	// BAUSTELLE
+	/**
+	 * Auslesen der Eigenschaften, die zur Auswahl stehen
+	 * @return Eigenschaften
+	 */
+	public Vector<Eigenschaft> getEigenschaften() throws Exception {
+		return eMapper.getEigenschaft();
+	}
 	
-//	/**
-//	 * Einfuegen von Eigenschaft, Info, Auswahleigenschaft & Freitexteigenschaft
-//	 * @param eigenschaftid
-//	 * @param eigenschaft
-//	 * @throws Exception
-//	 */
-//	
-//	public void insertEigenschaft(int eigenschaftid, String eigenschaft) throws Exception{
-//		
-//		Eigenschaft e = new Eigenschaft();
-//		
-//		e.setEigenschaftId(eigenschaftid);
-//		e.setEigenschaft(eigenschaft);
-//		eMapper.insertEigenschaft(e);	
-//	}
-//	
-//	public void insertInfo (int infoId, int eigenschaftId, String value) throws Exception{
-//		
-//		Info i = new Info();
-//		
-//		i.setInfoid(infoId);
-//		i.setEigenschaftId(eigenschaftId);
-//		i.setValue(value);
-//		iMapper.insertInfo(i);
-//	}
-//	
-//	public void insertAuswahleigenschaft (int auswahlId, int eigenschaftId, String value) throws Exception {
-//		
-//		Auswahleigenschaft a = new Auswahleigenschaft();
-//		
-//		a.setAuswahlId(auswahlId);
-//		a.setEigenschaftId(eigenschaftId);
-//		a.setValue(value);
-//		aMapper.insertAuswahleigenschaft(a);
-//		
-//	}
-//	
-//	public void insertFreitexteigenschaft (int freitextId, int eigenschaftId, String value) throws Exception{
-//		
-//		Freitexteigenschaft f = new Freitexteigenschaft();
-//		
-//		f.setFreitextId(freitextId);
-//		f.setEigenschaftId(eigenschaftId);
-//		f.setValue(value);
-//		fMapper.insertFreitexteigenschaft(f);
-//	}
-//	
-//	
-//	/**
-//	 * Aktualisieren von Info, Auswahleigenschaft & Freitexteigenschaft
-//	 * @param infoId
-//	 * @param eigenschaftId
-//	 * @param value
-//	 * @throws Exception
-//	 */
-//	
-//	public void updateInfo (int infoId, int eigenschaftId, String value) throws Exception {
-//		
-//		Info i = new Info();
-//		
-//		i.setInfoid(infoId);
-//		i.setEigenschaftId(eigenschaftId);
-//		i.setValue(value);
-//		iMapper.updateInfo(i);
-//	}
-//	
-//	public void updateAuswahleigenschaft (int auswahlId, int eigenschaftId, String value) throws Exception {
-//		
-//		Auswahleigenschaft a = new Auswahleigenschaft();
-//		
-//		a.setAuswahlId(auswahlId);
-//		a.setEigenschaftId(eigenschaftId);
-//		a.setValue(value);
-//		aMapper.updateAuswahleigenschaft(a);
-//		
-//	}
-//	
-//	public void updateFreitexteigenschaft (int freitextId, int eigenschaftId, String value) throws Exception {
-//		
-//		Freitexteigenschaft f = new Freitexteigenschaft();
-//		
-//		f.setFreitextId(freitextId);
-//		f.setEigenschaftId(eigenschaftId);
-//		f.setValue(value);
-//		fMapper.updateFreitexteigenschaft(f);
-//	}
-//
-//	/**
-//	 * Loeschen von Info, Auswahleigenschaft & Freitexteigenschaft
-//	 * @throws Exception
-//	 */
-//	
-//	public void deleteInfo() throws Exception {
-//		iMapper.deleteInfo(information);
-//	}
-//	
-//	
-//	public void deleteAuswahleigenschaft () throws Exception {
-//		aMapper.deleteAuswahleigenschaft(choiceattribute);
-//	}
-//	
-//	public void deleteFreitexteigenschaft () throws Exception {
-//		fMapper.deleteFreitexteigenschaft(freeattribute);
-//	}
+	
+	/**
+	 * Auslesen der Auswahl zugehoerig zur einer Eigenschaft, die zur Auswahl stehen
+	 * @return Auswahl
+	 */
+	public Vector<Auswahleigenschaft> getAuswahl(Eigenschaft e) throws Exception {
+		return aMapper.getAuswahleigenschaft(e);
+	}
+	
+	// Infobjekte() ...
+	
+	
 	
 	/***************************************************************************************************** 
 	 * ENDE: Eigenschaft, Auswahl & Info

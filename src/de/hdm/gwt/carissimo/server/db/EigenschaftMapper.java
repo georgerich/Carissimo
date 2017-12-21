@@ -46,13 +46,13 @@ public class EigenschaftMapper
 		
 	}
 	
-	//Eigenschaft anhand ID
+	//Auslesen einer Eigenschaft anhand ID
 	public Eigenschaft getEigenschaftbyId (int eigenschaftId) throws Exception
 	{
 	Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
-				"SELECT * FROM eigenschaft WHERE eigenschaftid = '" + eigenschaftId + "'");
+				"SELECT eigenschaft FROM eigenschaft WHERE eigenschaftid = '" + eigenschaftId + "'");
 		
 		ResultSet result = prestmt.executeQuery();
 		

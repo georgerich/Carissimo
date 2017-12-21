@@ -22,7 +22,7 @@ public class Auswahleigenschaft extends Eigenschaft {
 	
 	private int auswahlId;
 	private String value;
-	private String eigenschaftId;
+	private int eigenschaftId;
 	
 	
 	/**
@@ -56,14 +56,14 @@ public class Auswahleigenschaft extends Eigenschaft {
 	/**
 	 * Auslesen der Eigenschaft-ID 
 	 */
-	public String getEigenschaftId() {
+	public int getEigenschaftId() {
 		return eigenschaftId;
 	}
 	
 	/**
 	 * Setzen der Eigenschaft-ID 
 	 */
-	public void setEigenschaftId(String eigenschaftId) {
+	public void setEigenschaftId(int eigenschaftId) {
 		this.eigenschaftId = eigenschaftId;
 	}
 	

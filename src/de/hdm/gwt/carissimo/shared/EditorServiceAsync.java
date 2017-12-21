@@ -5,6 +5,8 @@ import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import de.hdm.gwt.carissimo.shared.bo.Auswahleigenschaft;
+import de.hdm.gwt.carissimo.shared.bo.Eigenschaft;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
 import de.hdm.gwt.carissimo.shared.bo.Suchprofil;
 
@@ -44,6 +46,10 @@ public interface EditorServiceAsync {
 	
 	// Eigenschaft, Auswahl und Info:
 	
+	void getEigenschaften(AsyncCallback<Vector<Eigenschaft>> callback);
+
+	void getAuswahl(Eigenschaft e, AsyncCallback<Vector<Auswahleigenschaft>> callback);
+	
 	
 	
 	// Suchprofil & SuchprofilInfo: 
@@ -59,6 +65,7 @@ public interface EditorServiceAsync {
 	void getSuchprofil(int suchprofilid, AsyncCallback<Suchprofil> callback);
 
 	void getAllSuchprofile(String email, AsyncCallback<Vector<Suchprofil>> callback);
+	
 	
 	
 	// Besuch:

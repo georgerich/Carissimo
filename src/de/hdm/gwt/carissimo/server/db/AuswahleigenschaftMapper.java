@@ -8,6 +8,7 @@ import java.sql.Connection;
 //import com.google.cloud.sql.jdbc.PreparedStatement;
 
 import de.hdm.gwt.carissimo.shared.bo.Auswahleigenschaft;
+import de.hdm.gwt.carissimo.shared.bo.Eigenschaft;
 
 public class AuswahleigenschaftMapper
 {
@@ -39,49 +40,21 @@ public class AuswahleigenschaftMapper
 		
 		PreparedStatement insert = (PreparedStatement) con.prepareStatement
 				
-				("INSERT INTO auswahleigenschaft (auswahlid, value, eigenschaftid) VALUES ('" 
-				+ a.getAuswahlId() + "','"
+				("INSERT INTO auswahleigenschaft (value, eigenschaftid) VALUES ('" 
 				+ a.getEigenschaftId() + "','"
 				+ a.getValue() + "')");
 		
 		insert.execute();
 	} 
 	
-	//Auswahleigneschaft aktualisieren/aendern
-	public void updateAuswahleigenschaft (Auswahleigenschaft a) throws Exception
-	{
-		Connection con = (Connection) DBConnection.connection();
-			
-		PreparedStatement update = con.prepareStatement(
-				"UPDATE auswahleigenschaft SET "
-					+ "auswahlid = '" + a.getAuswahlId() + "', "
-					+ "value = '" + a.getValue() + "', "
-					+ "eigenschaftid = '" + a.getEigenschaftId() + "'");
-					
-	
-		update.execute();
-	}
-	
-	//Loeschen der Auswahleigenschaft
-	public void deleteAuswahleigenschaft (Auswahleigenschaft a) throws Exception
-	{
-		Connection con = (Connection) DBConnection.connection();
-		
-		PreparedStatement delete = con.prepareStatement(
-				"DELETE FROM auswahleigenschaft "
-				+ "WHERE auswahlid = '" 
-				+ a.getAuswahlId() + "'");
-		
-		 delete.executeQuery();
-	}	
-	
-	//Auslesen aller Auswahleigenschaften
-	public Vector <Auswahleigenschaft> getAuswahlEigenschaft (Auswahleigenschaft a) throws Exception
+	//Auslesen aller Auswahleigenschaften einer Eigenschaft: 
+	public Vector <Auswahleigenschaft> getAuswahleigenschaft (Eigenschaft e) throws Exception
 	{
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
-					"SELECT * FROM auswahleigenschaft");
+					"SELECT value, eigenschaftid FROM auswahleigenschaft"
+					+ "WHERE eigenschaftid = " + e.getEigenschaftid());
 			
 		ResultSet result = prestmt.executeQuery();
 			
@@ -96,7 +69,7 @@ public class AuswahleigenschaftMapper
 				
 			auswahleigenschaften.add(auswahleigenschaft); 
 		}
-			return auswahleigenschaften;
+		return auswahleigenschaften;
 	}
 		
 }
