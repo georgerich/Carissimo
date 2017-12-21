@@ -5,7 +5,7 @@ import java.util.Vector;
 import de.hdm.gwt.carissimo.shared.ro.ProfilEigenschaft;
 
 /**
- * Realisierung einer exemplarischen Partnerbörse. Über ein Suchprofil kann 
+ * Realisierung einer exemplarischen Partnerbï¿½rse. ï¿½ber ein Suchprofil kann 
  * sich ein Teilnehmerprofil andere Profile nach festgelegten Kriterien anzeiegen lassen. 
  * 
  * 
