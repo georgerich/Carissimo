@@ -153,7 +153,7 @@ public class KontaktsperreMapper {
 		PreparedStatement prestmt = con.prepareStatement(
 				"SELECT p.email, p.vorname, p.nachname FROM profil p "
 				+ "INNER JOIN kontaktsperre k ON p.email = k.gesperrteemail "
-				+ "WHERE k.gesperrteemail = '"
+				+ "WHERE k.email = '"
 				+ email +"'");
 		
 		ResultSet result = prestmt.executeQuery();

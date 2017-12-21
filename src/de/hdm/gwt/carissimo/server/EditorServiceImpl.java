@@ -234,6 +234,11 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	public Vector<Auswahleigenschaft> getAuswahl(Eigenschaft e) throws Exception {
 		return aMapper.getAuswahleigenschaft(e);
 	}
+	
+	
+	/*
+	 *  Freitexteigenschaft ?
+	 */
 
 	
 	// BAUSTELLE ...
@@ -355,7 +360,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 ****************************************************************************************************/
 	
 	/**
-	 * Ein Besuch eines Profils verzeichnen
+	 * Ein Profilbesuch des Users verzeichnen
 	 * @param Profil Email
 	 */
 	public void insertBesuch(String besuchtesProfil) throws Exception {
@@ -402,7 +407,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	
 	
 	/**
-	 * Loeschen eines Merkzettels, welches *eine Vormerkung *eines Profil beinhaltet
+	 * Loeschen *eines Merkzettels, welches *eine Vormerkung *eines Profil beinhaltet
 	 */
 	public void deleteMerkzettel(String gemerktesProfil) throws Exception {
 		Merkzettel m = new Merkzettel();
@@ -419,11 +424,37 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * START: Kontaktsperre
 	 ****************************************************************************************************/
 	
-	// Methode (1)
+	/**
+	 * Anlegen einer Kontaktsperre
+	 * @param gesperrteemail
+	 */
+	public void insertKontaktsperre(String gesperrtesProfil) throws Exception {
+		Kontaktsperre k = new Kontaktsperre();
+		k.setSperrendesProfil(user.getEmail());
+		k.setGesperrtesProfil(gesperrtesProfil);
+		kMapper.insertKontaktsperre(k);
+	}
 	
-	// Methode (2)
+	
+	/**
+	 * Auslesen der Kontaktsperren
+	 * @return Gesperrte Profile 
+	 */
+	public Vector<Profil> getGesperrteProfile() throws Exception {
+		return kMapper.getGesperrteProfile(user.getEmail());
+	}
 
-	// Methode (3)
+	
+	/**
+	 * Aufheben einer Kontaktsperre
+	 * @param gesperrteemail
+	 */
+	public void deleteKontaktsperre(String gesperrtesProfil) throws Exception {
+		Kontaktsperre k = new Kontaktsperre();
+		k.setSperrendesProfil(user.getEmail());
+		k.setGesperrtesProfil(gesperrtesProfil);
+		kMapper.deleteKontaktsperre(k);
+	}
 	
 	/***************************************************************************************************** 
 	 * ENDE: Kontaktsperre

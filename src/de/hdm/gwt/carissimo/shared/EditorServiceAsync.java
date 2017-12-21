@@ -45,13 +45,11 @@ public interface EditorServiceAsync {
 	void getAllProfile(AsyncCallback<Vector<Profil>> callback);
 
 	
-	
 	// Eigenschaft, Auswahl und Info:
 	
 	void getEigenschaften(AsyncCallback<Vector<Eigenschaft>> callback);
 
 	void getAuswahl(Eigenschaft e, AsyncCallback<Vector<Auswahleigenschaft>> callback);
-	
 	
 	
 	// Suchprofil & SuchprofilInfo: 
@@ -69,12 +67,10 @@ public interface EditorServiceAsync {
 	void getAllSuchprofile(String email, AsyncCallback<Vector<Suchprofil>> callback);
 
 	
-	
 	// Besuch:
 	
 	void insertBesuch(String besuchtesProfil, AsyncCallback<Void> callback);
 
-	
 	
 	// Merkzettel:
 	
@@ -86,12 +82,14 @@ public interface EditorServiceAsync {
 
 	void deleteMerkzettel(String gemerktesProfil, AsyncCallback<Void> callback);
 
+
+	// Kontaktsperre:	
 	
+	void insertKontaktsperre(String gesperrtesProfil, AsyncCallback<Void> callback);
 
-	// Kontaktsperre: 
+	void getGesperrteProfile(AsyncCallback<Vector<Profil>> callback);
 
+	void deleteKontaktsperre(String gesperrtesProfil, AsyncCallback<Void> callback);
 
 	
-
-
 }

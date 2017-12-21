@@ -45,13 +45,11 @@ public interface EditorService extends RemoteService {
 	Vector<Profil> getAllProfile() throws Exception;
 	
 	
-	
 	// Eigenschaft, Auswahl und Info:
 	
 	Vector<Eigenschaft> getEigenschaften() throws Exception;
 	
 	Vector<Auswahleigenschaft> getAuswahl(Eigenschaft e) throws Exception;
-	
 	
 	
 	// Suchprofil & SuchprofilInfo: 
@@ -69,11 +67,9 @@ public interface EditorService extends RemoteService {
 	public Vector<Suchprofil> getAllSuchprofile(String email) throws Exception;
 	
 	
-	
 	// Besuch:
 	
 	void insertBesuch(String besuchtesProfil) throws Exception;
-	
 	
 	
 	// Merkzettel:
@@ -87,15 +83,13 @@ public interface EditorService extends RemoteService {
 	void deleteMerkzettel(String gemerktesProfil) throws Exception;
 	
 	
-	
 	// Kontaktsperre: 
 
-
+	void insertKontaktsperre(String gesperrtesProfil) throws Exception;
 	
-
+	Vector<Profil> getGesperrteProfile() throws Exception;
 	
-
-
+	void deleteKontaktsperre(String gesperrtesProfil) throws Exception;
 	
 
 }
