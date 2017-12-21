@@ -1,6 +1,8 @@
 package de.hdm.gwt.carissimo.client.gui;
 
 
+import java.util.Vector;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -11,6 +13,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.hdm.gwt.carissimo.client.ClientsideSettings;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
 
 /**
@@ -28,7 +31,7 @@ public class ProfilSeite extends Composite {
 	ProfilBearbeiten profiledit = new ProfilBearbeiten();
 
 	// Deklaration einer FlexTable um die Profilattribute anzuzeigen
-	private FlexTable profilTabelle;
+	public FlexTable profilTabelle;
 	
 	//Instanziierung der Labels fuer die Auswahl-Eigenschaften
 	Label vorname = new Label("Vorname");
@@ -49,15 +52,17 @@ public class ProfilSeite extends Composite {
 	Label raucherValue = new Label();
 	Label religionValue = new Label();
 	Label geschlechtValue = new Label();
+
 		
 		public ProfilSeite() {
+		
 			initWidget(vPanel);
 
 			Label begruessung = new Label ("Dies ist deine Profilseite, "
 					+ " hier kannst du dein Profil bearbeiten oder loeschen");
 			hPanel.add(begruessung);
 			vPanel.add(hPanel);
-		
+			
 					
 			//Instanzzierung der FlexTable und Zuweisung der Widgets (Labels)
 			this.profilTabelle = new FlexTable();
@@ -100,6 +105,8 @@ public class ProfilSeite extends Composite {
 					
 				}
 			});
+			
+			
 			
 			
 		}

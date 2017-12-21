@@ -5,6 +5,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -23,8 +24,21 @@ public class ProfilBearbeiten extends Composite {
 		VerticalPanel vPanel = new VerticalPanel();
 		HorizontalPanel ButtonPanel = new HorizontalPanel();
 		
-		
-		
+		/**
+		 * Instanzvariablen fuer die DialogBox welche es erlaubt
+		 * Freitexteigenschaften hinzuzufuegen
+		 */
+		final DialogBox dialogBox = new DialogBox();
+	    //Button um die textuell verfasste Freitexteigenschaft hinzuzufügen
+		Button bestätigen  = new Button("hinzuf\u00fcgen");
+	   
+		Label eigenschaftNameLabel = new Label("Name der Eigenschaft: ");
+	    //TextBox für die Eingabe der Eigenschaft
+	    TextBox eigenschaftTextBox = new TextBox();
+	    //Variable um die eingegebene Eigenschaft zu speichern
+	    Label beschreibungLabel = new Label("Beschreibung: ");
+	    TextBox beschreibungTextBox = new TextBox();
+	    
 		// Deklaration einer FlexTable um die Profilattribute anzuzeigen
 		private FlexTable profilBearbeitungsTabelle;
 		
@@ -86,7 +100,7 @@ public class ProfilBearbeiten extends Composite {
 		RadioButton religionRadioButton6 = new RadioButton("geschlechtsButton", "Atheismus ");
 		RadioButton religionRadioButton7 = new RadioButton("geschlechtsButton", "sonstige ");
 		FlowPanel religionRadioButtonPanel = new FlowPanel();
-	
+		
 
 	public ProfilBearbeiten(){
 		initWidget(vPanel);
@@ -98,7 +112,6 @@ public class ProfilBearbeiten extends Composite {
 		/**
 		 * Widgets werden dem zugehörigen Panel zugeweisen
 		 */
-		
 		//Für die Auswahl des Geburtsdatums
 		dateboxPanel.add(dateBox);
 		
@@ -132,9 +145,6 @@ public class ProfilBearbeiten extends Composite {
 		dateBox.setFormat(new DateBox.DefaultFormat(dateFormat));
 	    dateBox.getDatePicker().setYearArrowsVisible(true);
 		
-		
-		
-		
 		/**
 		 * Instanzzierung der FlexTable und Zuweisung der Widgets (Labels)
 		 */
@@ -166,37 +176,68 @@ public class ProfilBearbeiten extends Composite {
 		profilBearbeitungsTabelle.setBorderWidth(2);
 		vPanel.add(profilBearbeitungsTabelle);
 		
+		//Button zum Hinzufuegen einer Freitexteigenschaft
+		Button hinzufügen = new Button ("Eigenschaft hinzuf\u00fcgen");
+		ButtonPanel.add(hinzufügen);
 		
-
-		Button profilSeiteButton = new Button("Zurück zur Profilansicht");
-		ButtonPanel.add(profilSeiteButton);
-		vPanel.add(ButtonPanel);
-		
-		profilSeiteButton.addClickHandler(new ClickHandler() {
-			
-			@Override
+		hinzufügen.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				ladeProfilSeite();
-				
+			    HorizontalPanel hPanelDialoxBox = new HorizontalPanel();
+			    VerticalPanel vPaneldialogBox = new VerticalPanel();
+			    
+	    		eigenschaftTextBox.setFocus(true);
+	    		beschreibungTextBox.setFocus(true);
+	    		vPaneldialogBox.add(eigenschaftNameLabel);
+	    		vPaneldialogBox.add(eigenschaftTextBox);
+	    		vPaneldialogBox.add(beschreibungLabel);
+	    		vPaneldialogBox.add(beschreibungTextBox);
+	    		vPaneldialogBox.add(bestätigen);
+	    		hPanelDialoxBox.add(vPaneldialogBox);
+
+	    		dialogBox.add(hPanelDialoxBox);
+			    dialogBox.center();
+	    		dialogBox.show();
+
+
+		
 			}
 		});
 		
-		
+		bestätigen.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				insertEigenschaft();
+				dialogBox.hide();
+
+			}
+		});
+
 		
 		/**
 		 * Button zum Speichern der Änderungen
 		 */
 		Button speichernButton = new Button("speichern");
 		ButtonPanel.add(speichernButton);
-			
-
 		
+		
+		/**
+		 * Button um zurück zur Profilansicht zu gelanden
+		 */
+		Button profilSeiteButton = new Button("Zur\u00fcck zur Profilansicht");
+		ButtonPanel.add(profilSeiteButton);
+		vPanel.add(ButtonPanel);
+		
+		profilSeiteButton.addClickHandler(new ClickHandler() {
 
-
+			public void onClick(ClickEvent event) {
+				ladeProfilSeite();
+			}
+		});
+		
 		
 	}
 	
 	// ------- Ende Konstruktor -------
+	
 	
 	public class ProfilSeiteCallback implements AsyncCallback<Profil> {
 
@@ -213,13 +254,27 @@ public class ProfilBearbeiten extends Composite {
 	}
 	
 	/**
+	 * 
+	 */
+	public void insertEigenschaft(){
+		Label inputEigenschaft = new Label();
+		inputEigenschaft.setText(eigenschaftTextBox.getText());
+		
+		Label inputBeschreibung = new Label();
+		inputBeschreibung.setText(beschreibungTextBox.getText());
+		
+		int rows = profilBearbeitungsTabelle.getRowCount();
+		profilBearbeitungsTabelle.setWidget(rows+1, 0, inputEigenschaft);
+		profilBearbeitungsTabelle.setWidget(rows+1, 1, inputBeschreibung);
+	}
+	
+	/**
 	 * Methode um zurück zur Profilansicht bzw. Profilseite zu gelangen.
 	 */
 	public void ladeProfilSeite(){
 		this.vPanel.clear();
 		ProfilSeite pseite = new ProfilSeite();
 		this.vPanel.add(pseite);
-		
 		
 	}
 	
