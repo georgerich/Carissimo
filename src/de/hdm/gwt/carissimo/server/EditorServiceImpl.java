@@ -223,7 +223,7 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * @return Eigenschaften
 	 */
 	public Vector<Eigenschaft> getEigenschaften() throws Exception {
-		return eMapper.getEigenschaft();
+		return eMapper.getEigenschaften();
 	}
 	
 	
@@ -234,8 +234,25 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	public Vector<Auswahleigenschaft> getAuswahl(Eigenschaft e) throws Exception {
 		return aMapper.getAuswahleigenschaft(e);
 	}
+
 	
-	// Infobjekte() ...
+	// BAUSTELLE ...
+	
+	
+	/*
+	 * Info-Objekte()
+	 */
+	
+	
+	
+	/*
+	 * ProfilInfo-Objekte() 
+	 */
+	
+
+	
+	
+	
 	
 	
 	
@@ -319,14 +336,16 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	}
 	
 	
-	/**
-	 * ...
+	// BAUSTELLE ...
+	
+	
+	/*
+	 * SuchprofilInfo-Objekte()
 	 */
 	
 	
-	// Methode (2)
-
-	// Methode (3)
+	
+	
 	
 	/***************************************************************************************************** 
 	 * ENDE: Suchprofil & SuchprofilInfo
@@ -335,11 +354,17 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * START: Besuch
 	 ****************************************************************************************************/
 	
-	// Methode (1)
+	/**
+	 * Ein Besuch eines Profils verzeichnen
+	 * @param Profil Email
+	 */
+	public void insertBesuch(String besuchtesProfil) throws Exception {
+		Besuch b = new Besuch();
+		b.setBesuchendesProfil(user.getEmail());
+		b.setBesuchtesProfil(besuchtesProfil);
+		bMapper.insertBesuch(b);
+	}
 	
-	// Methode (2)
-
-	// Methode (3)
 	
 	/***************************************************************************************************** 
 	 * ENDE: Besuch
@@ -348,11 +373,44 @@ public class EditorServiceImpl extends RemoteServiceServlet implements EditorSer
 	 * START: Merkzettel
 	 ****************************************************************************************************/
 	
-	// Methode (1)
+	/**
+	 * Anlegen eines Merkzettels/ Profil, welches der User vormerkt
+	 * @param Email des gemerkten Profils
+	 */
+	public void insertMerkzettel(String gemerktesProfil) throws Exception {
+		Merkzettel m = new Merkzettel();
+		m.setMerkendesProfil(user.getEmail());
+		m.setGemerktesProfil(gemerktesProfil);
+		mMapper.insertMerkzettel(m);
+	}
 	
-	// Methode (2)
-
-	// Methode (3)
+	
+	/**
+	 * Auslesen der Merkzettel
+	 */
+	public Vector<Merkzettel> getMerkzettel() throws Exception {
+		return mMapper.getMerkzettel(user.getEmail());
+	}
+	
+	
+	/**
+	 * Auslesen der Profile, welche vom User vorgemerkt sind 
+	 */
+	public Vector<Profil> getMerkzettelProfile() throws Exception {
+		return mMapper.getMerkzettelProfile(user.getEmail());
+	}
+	
+	
+	/**
+	 * Loeschen eines Merkzettels, welches *eine Vormerkung *eines Profil beinhaltet
+	 */
+	public void deleteMerkzettel(String gemerktesProfil) throws Exception {
+		Merkzettel m = new Merkzettel();
+		m.setMerkendesProfil(user.getEmail());
+		m.setGemerktesProfil(gemerktesProfil);
+		mMapper.deleteMerkzettel(m);
+	}
+	
 	
 	/***************************************************************************************************** 
 	 * ENDE: Merkzettel

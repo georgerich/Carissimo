@@ -48,12 +48,12 @@ public class AuswahleigenschaftMapper
 	} 
 	
 	//Auslesen aller Auswahleigenschaften einer Eigenschaft: 
-	public Vector <Auswahleigenschaft> getAuswahleigenschaft (Eigenschaft e) throws Exception
+	public Vector <Auswahleigenschaft> getAuswahleigenschaft(Eigenschaft e) throws Exception
 	{
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
-					"SELECT value, eigenschaftid FROM auswahleigenschaft"
+					"SELECT value, eigenschaftid FROM auswahleigenschaft "
 					+ "WHERE eigenschaftid = " + e.getEigenschaftid());
 			
 		ResultSet result = prestmt.executeQuery();

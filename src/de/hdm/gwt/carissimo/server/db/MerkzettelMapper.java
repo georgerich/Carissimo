@@ -135,10 +135,10 @@ public class MerkzettelMapper {
 		Connection con = (Connection) DBConnection.connection();
 		
 		PreparedStatement prestmt = con.prepareStatement(
-				"SELECT merkzettel.gemerkteemail, profil.vorname, profil.nachname  FROM merkzettel "
-				+ "INNER JOIN profil "
-				+ "ON merkzettel.gemerkteemail = profil.email "
-				+ "WHERE merkzettel.merkendeemail = '"
+				"SELECT m.gemerkteemail, p.vorname, p.nachname  FROM merkzettel m "
+				+ "INNER JOIN profil p "
+				+ "ON m.gemerkteemail = p.email "
+				+ "WHERE m.merkendeemail = '"
 				+ email + "')");
 		
 		ResultSet r = prestmt.executeQuery();

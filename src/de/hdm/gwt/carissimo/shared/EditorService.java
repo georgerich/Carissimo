@@ -8,6 +8,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import de.hdm.gwt.carissimo.shared.bo.Auswahleigenschaft;
 import de.hdm.gwt.carissimo.shared.bo.Eigenschaft;
+import de.hdm.gwt.carissimo.shared.bo.Merkzettel;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
 import de.hdm.gwt.carissimo.shared.bo.Suchprofil;
 
@@ -68,11 +69,22 @@ public interface EditorService extends RemoteService {
 	public Vector<Suchprofil> getAllSuchprofile(String email) throws Exception;
 	
 	
+	
 	// Besuch:
+	
+	void insertBesuch(String besuchtesProfil) throws Exception;
 	
 	
 	
 	// Merkzettel:
+	
+	void insertMerkzettel(String gemerktesProfil) throws Exception;
+	
+	Vector<Merkzettel> getMerkzettel() throws Exception;
+	
+	Vector<Profil> getMerkzettelProfile() throws Exception;
+	
+	void deleteMerkzettel(String gemerktesProfil) throws Exception;
 	
 	
 	

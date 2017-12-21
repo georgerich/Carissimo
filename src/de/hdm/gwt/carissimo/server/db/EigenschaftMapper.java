@@ -66,7 +66,7 @@ public class EigenschaftMapper
 	}
 	
 	//Auslesen der Eigenschaften
-	public Vector<Eigenschaft> getEigenschaft() throws Exception
+	public Vector<Eigenschaft> getEigenschaften() throws Exception
 	{
 		Connection con = (Connection) DBConnection.connection();
 		

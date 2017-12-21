@@ -7,6 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import de.hdm.gwt.carissimo.shared.bo.Auswahleigenschaft;
 import de.hdm.gwt.carissimo.shared.bo.Eigenschaft;
+import de.hdm.gwt.carissimo.shared.bo.Merkzettel;
 import de.hdm.gwt.carissimo.shared.bo.Profil;
 import de.hdm.gwt.carissimo.shared.bo.Suchprofil;
 
@@ -44,6 +45,7 @@ public interface EditorServiceAsync {
 	void getAllProfile(AsyncCallback<Vector<Profil>> callback);
 
 	
+	
 	// Eigenschaft, Auswahl und Info:
 	
 	void getEigenschaften(AsyncCallback<Vector<Eigenschaft>> callback);
@@ -65,28 +67,31 @@ public interface EditorServiceAsync {
 	void getSuchprofil(int suchprofilid, AsyncCallback<Suchprofil> callback);
 
 	void getAllSuchprofile(String email, AsyncCallback<Vector<Suchprofil>> callback);
-	
+
 	
 	
 	// Besuch:
 	
+	void insertBesuch(String besuchtesProfil, AsyncCallback<Void> callback);
+
 	
 	
 	// Merkzettel:
 	
+	void insertMerkzettel(String gemerktesProfil, AsyncCallback<Void> callback);
+
+	void getMerkzettel(AsyncCallback<Vector<Merkzettel>> callback);
+
+	void getMerkzettelProfile(AsyncCallback<Vector<Profil>> callback);
+
+	void deleteMerkzettel(String gemerktesProfil, AsyncCallback<Void> callback);
+
 	
-	
+
 	// Kontaktsperre: 
 
 
 	
 
-
-
-	
-	
-	
-	
-	
 
 }
